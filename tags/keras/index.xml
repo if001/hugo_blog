@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Keras on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/tags/keras/</link>
+    <link>https://if001.github.io/hugo_blog/public/tags/keras/</link>
     <description>Recent content in Keras on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/keras/" rel="self" type="application/rss+xml" />
+    <atom:link href="/hugo_blog/public/tags/keras/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>kerasでモデルを結合する</title>
-      <link>https://if001.github.io/post/neuralnet/combine_model/</link>
+      <link>https://if001.github.io/hugo_blog/public/post/neuralnet/combine_model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/post/neuralnet/combine_model/</guid>
+      <guid>https://if001.github.io/hugo_blog/public/post/neuralnet/combine_model/</guid>
       <description>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
 autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
 Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。

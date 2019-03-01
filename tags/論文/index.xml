@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>論文 on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/tags/%E8%AB%96%E6%96%87/</link>
+    <link>https://if001.github.io/hugo_blog/public/tags/%E8%AB%96%E6%96%87/</link>
     <description>Recent content in 論文 on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/%E8%AB%96%E6%96%87/" rel="self" type="application/rss+xml" />
+    <atom:link href="/hugo_blog/public/tags/%E8%AB%96%E6%96%87/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SeqGANの論文を読む</title>
-      <link>https://if001.github.io/post/nlp/seqgan-paper/</link>
+      <link>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/post/nlp/seqgan-paper/</guid>
+      <guid>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</guid>
       <description>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
 https://arxiv.org/pdf/1609.05473.pdf
 SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
@@ -27,10 +27,10 @@ Sequence Generative Adversarial Nets 生成モデル$G_ \theta $はパラメー�
     
     <item>
       <title>ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</title>
-      <link>https://if001.github.io/post/nlp/diversity_neural_conversation_model/</link>
+      <link>https://if001.github.io/hugo_blog/public/post/nlp/diversity_neural_conversation_model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/post/nlp/diversity_neural_conversation_model/</guid>
+      <guid>https://if001.github.io/hugo_blog/public/post/nlp/diversity_neural_conversation_model/</guid>
       <description>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
 A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.org/abs/1510.03055
 会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。 モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。

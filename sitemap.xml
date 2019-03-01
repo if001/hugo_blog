@@ -3,253 +3,253 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://if001.github.io/post/python-get-extn/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/python-get-extn/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/falcon/falcon-img-upload/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/falcon/falcon-img-upload/</loc>
     <lastmod>2019-03-01T21:17:40+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/aws/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/aws/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/categories/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/deeplearning/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/deeplearning/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/neuralnet/pepar_summary/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/neuralnet/pepar_summary/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/docker/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/falcon/</loc>
-    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/google-analytics/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/docker/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/others/ga-define/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/hugo/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/falcon/</loc>
     <lastmod>2019-03-01T21:17:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/hugo/hugo-start-article/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/hugo-href-to-target-blank/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/others/http-portal-for-blog/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/hugo-ga/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/hugo-add-site-description/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/hugo_on_image/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/katex-introduction/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/katex/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/google-analytics/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/keras/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/neuralnet/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/nlp/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/python/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/rust/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/others/rust-macro-use-another/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/others/ga-define/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/seq2seq/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/nlp/seqgan-paper/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/seqgan/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/hugo/</loc>
     <lastmod>2019-03-01T21:17:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/test/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-start-article/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-href-to-target-blank/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/others/http-portal-for-blog/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-ga/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-add-site-description/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo_on_image/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/katex-introduction/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/katex/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/tex/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/keras/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/word2vec/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/neuralnet/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/falcon/falcon-tips/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/neuralnet/combine_model/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/python/python-matplotlib/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/python/python-matplotlib_base/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/others/aws-cli-at-pyenv/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/nlp/word2vec_output_word/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/nlp/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/nlp/diversity_neural_conversation_model/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/post/hugo/first-article/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://if001.github.io/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/post/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/others/tex_notation_numerical_formula/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/python/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/rust/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/others/rust-macro-use-another/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/post/nlp/nlp-parse-overview-1/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/seq2seq/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://if001.github.io/tags/%E8%AB%96%E6%96%87/</loc>
+    <loc>https://if001.github.io/hugo_blog/public/tags/seqgan/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/</loc>
+    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/test/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/tex/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/word2vec/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/falcon/falcon-tips/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/neuralnet/combine_model/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/python/python-matplotlib/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/python/python-matplotlib_base/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/others/aws-cli-at-pyenv/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/nlp/diversity_neural_conversation_model/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/first-article/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/others/tex_notation_numerical_formula/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/nlp/nlp-parse-overview-1/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/tags/%E8%AB%96%E6%96%87/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
