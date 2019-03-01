@@ -1,10 +1,10 @@
+{{ $ctx := . }}
 {{if .Params.tags }}
 <div class="tags">
   <ul>
     {{ range .Params.tags }}
     <li>
-	<!-- <a href="{{ "/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a> -->
-	<a href="{{ ".Site.BaseURL" }}{{"/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a>
+	<a href="{{$ctx.Site.BaseURL}}{{"/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
     </li>
     {{ end }}
   </ul>
