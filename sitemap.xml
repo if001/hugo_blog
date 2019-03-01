@@ -3,107 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://www.if-blog.site/post/falcon/falcon-image-upload/</loc>
+    <loc>http://www.if-blog.site/post/python-get-extn/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.if-blog.site/post/falcon/falcon-tips/</loc>
+    <loc>http://www.if-blog.site/post/falcon/falcon-img-upload/</loc>
+    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-add-site-description/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-first/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-ga/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-start-article/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo-test-article/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/hugo_on_image/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/hugo/katex-introduction/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/neuralnet/combine_model/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/neuralnet/pepar_summary/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/nlp_parse_overview-1/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/nlp_parse_overview-1/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/nlp_sentence_poem/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/seqgan_paper/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/nlp/word2vec_output_word/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/others/ga-define/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/others/http-portal-for-blog/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/others/rust-macro-use-another/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/others/tex_notation_numerical_formula/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/python-get-ext/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/python/matplot_lib_summary/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.if-blog.site/post/python/matplot_lib_usually/</loc>
+    <loc>http://www.if-blog.site/tags/aws/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -112,26 +24,233 @@
   </url>
   
   <url>
-    <loc>http://www.if-blog.site/tags/hoge/</loc>
+    <loc>http://www.if-blog.site/tags/deeplearning/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.if-blog.site/post/hugo-ga/</loc>
+    <loc>http://www.if-blog.site/post/neuralnet/pepar_summary/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/docker/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/falcon/</loc>
+    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/google-analytics/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/others/ga-define/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/hugo/</loc>
+    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/hugo-start-article/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/others/http-portal-for-blog/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/hugo-ga/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/hugo-add-site-description/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/hugo_on_image/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/katex-introduction/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/katex/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/keras/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/neuralnet/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/nlp/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.if-blog.site/post/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/python/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/rust/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/others/rust-macro-use-another/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/seq2seq/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/nlp/seqgan-paper/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/seqgan/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://www.if-blog.site/tags/</loc>
+    <lastmod>2019-03-01T21:17:40+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://www.if-blog.site/tags/test/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/tex/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/word2vec/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/falcon/falcon-tips/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/neuralnet/combine_model/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/python/python-matplotlib/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/python/python-matplotlib_base/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/nlp/word2vec_output_word/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.if-blog.site/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/hugo/first-article/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/others/tex_notation_numerical_formula/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/nlp/nlp-parse-overview-1/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/tags/%E8%AB%96%E6%96%87/</loc>
+    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>論文 on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/%E8%AB%96%E6%96%87/</link>
+    <description>Recent content in 論文 on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/%E8%AB%96%E6%96%87/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>SeqGANの論文を読む</title>
+      <link>http://www.if-blog.site/post/nlp/seqgan-paper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/nlp/seqgan-paper/</guid>
+      <description>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
+はじめに 文章生成では、LSTMcellを使ったRNNが優れたパフォーマンスを行う。一般的な学習法は対数尤度を最大化する方法だが、次のような問題点がある。
+ exposure bias(予測時には、自分の出力から次の語を予測することによるbias) BLEUを使っても良いけど、詩やchatbotだと難しい  これらの問題に対して、General adversarial net(GAN)が有効そうである。ただし2つの問題がある。
+ GANは連続データを生成するように設計されており、sequenceなどの離散データを直接生成するのは難しい。生成モデルGのパラメータの更新に識別モデルDの勾配を用いているが、微小な勾配により更新された生成モデルGに対応する出力値が離散のため存在しない可能性があるためである。 GANは、生成された文全体に対して、score/lossのみを与えることができる。部分的に生成されたsequenceには、文全体としての現在と将来のscoreのバランスをどのようにうまく取れば良いかが自明でない。  そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。
+Sequence Generative Adversarial Nets 生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。
+学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s&amp;rsquo;=Y_ {1:t}$に対して、$\delta^a_ {s,s&amp;rsquo;}=1$である。そうでないなら、次の状態$s&amp;rdquo;$に対して$\delta^a_ {s,s&amp;rdquo;}=0$である。
+加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</description>
+    </item>
+    
+    <item>
+      <title>ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</title>
+      <link>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</guid>
+      <description>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.org/abs/1510.03055
+会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。 モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。
+はじめに sequence to sequece(seq2seq)などの対話モデルでは、多様で文法的な応答が求められる。このモデルでは、入力される文章と出力される文章の対応のみを考慮しているため、I&amp;rsquo;m OKやI&amp;rsquo;dont knowのような高頻度フレーズを生成しがちである。したがって、メッセージに関する応答の依存性だけでなく、応答とメッセージの関係性についても考慮すべきである。
+そこで、私たちは、Maximum Mutual Information（MMI）を目的関数とする対話モデルを提案する。私たちは、MMIを使用することで、多様で興味深い文章を生成することを示します。
+MMIモデル seq2seqモデルの標準的な目的関数は以下のように表される。
+$$\hat{T} = argmax_T{\log p(T|S)}$$
+$N$は単語数を表し、入力文章(メッセージ)$S$とそれに対する応答$T$は以下のように表される。 $S = {s_1, s2, &amp;hellip;, s{N_s} }$ $T = {t_1, t2, &amp;hellip;, t{N_t}, EOS}$
+seq2seqモデルの目的関数を以下のように修正する。
+$$\hat{T} = argmax_T {\log p(T|S) - \log p(T)}$$
+このとき、argmaxの中身は、以下のように式変形から、相互情報量(wikipedia) を表していることがわかる。
+$${\log p(T|S) - \log p(T)} = \frac{\log p(S,T)}{\log p(S) \log p(T)}$$
+したがって、この式は、相互情報量を最大化(MMI)する応答を出力することとなる。
+また、$\log p(T)$は、seq2seqの標準的な目的関数に対するペナルティ項とみなすことができる。メッセージに対するありふれた応答に対してペナルティを与えることで、応答の多様性を保つことを期待している。
+このペナルティー項を調節できるように、(2)式に対して、パラメタ$\lambda$を追加する。 これを、MMI-antiLMと呼ぶ。 $$\hat{T} = argmax_T {\log p(T|S) - \lambda \log p(T)} \tag{1}$$</description>
+    </item>
+    
+  </channel>
+</rss>

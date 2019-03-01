@@ -6,11 +6,12 @@
     
 
     
-    <meta name="description" content="title=kerasでモデルを結合する slug=combine_model tags=[keras,neuralnet] autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
+    <meta name="description" content="autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
 autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
 Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
 Kerasのバージョンは、2.1.1
-まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを">
+まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。
+def model1(): layer_input = Input(shape=(None, 10)) layer_o">
     
 
     
@@ -28,7 +29,7 @@ Kerasのバージョンは、2.1.1
     
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="/css/myset.css">
-    <title> | アンドロイドは推理小説を描くか?</title>
+    <title>kerasでモデルを結合する | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -58,20 +59,34 @@ if (!doNotTrack) {
 <div class="article">
   <header>
     <div class="article-header">
-      <h1></h1>
+      <h1>kerasでモデルを結合する</h1>
       <div class="article-meta">
-        <span class="posttime">0001/01/01</span>
+          
+	  <span class="posttime">2019/03/01</span>
         
+<div class="tags">
+  <ul>
+    
+    <li>
+      <a href="http://www.if-blog.site/tags/keras/">keras</a>
+      
+    </li>
+    
+    <li>
+      <a href="http://www.if-blog.site/tags/neuralnet/">neuralnet</a>
+      
+    </li>
+    
+  </ul>
+</div>
+
 
       </div>
     </div>
     
   </header>
   <div class="content">
-    <p>title=kerasでモデルを結合する
-slug=combine_model
-tags=[keras,neuralnet]
-autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。</p>
+    <p>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。</p>
 
 <p>autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。</p>
 
@@ -202,7 +217,7 @@ if __name__ == '__main__':
     
     
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/neuralnet/combine_model//" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/neuralnet/combine_model//" class="hatena-bookmark-button" data-hatena-bookmark-title="kerasでモデルを結合する" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     
     
@@ -223,13 +238,13 @@ if __name__ == '__main__':
         
         <div id="pagenavigation-next">
           <span class="pagenav-label">Previous</span>
-          <a href="http://www.if-blog.site/post/neuralnet/pepar_summary/"></a>
+          <a href="http://www.if-blog.site/post/python/python-matplotlib/">matplotlibでよく使う記法まとめ</a>
         </div>
         
         
         <div id="pagenavigation-prev">
           <span class="pagenav-label">Next</span>
-          <a href="http://www.if-blog.site/post/hugo/katex-introduction/"></a>
+          <a href="http://www.if-blog.site/post/falcon/falcon-tips/">falconを使ってみた</a>
         </div>
         
       </div>
@@ -276,9 +291,333 @@ if __name__ == '__main__':
           <li>
 
 	      
-	      <a href="http://www.if-blog.site/tags/hoge/" style="font-size: 14px;"><span></span> hoge </a>
+	      <a href="http://www.if-blog.site/tags/aws/" style="font-size: 14px;"><span></span> aws </a>
 	      
 	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/deeplearning/" style="font-size: 14px;"><span></span> deeplearning </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/docker/" style="font-size: 14px;"><span></span> docker </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/falcon/" style="font-size: 17px;"><span></span> falcon </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/google-analytics/" style="font-size: 17px;"><span></span> google-analytics </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/hugo/" style="font-size: 20px;"><span></span> hugo </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/katex/" style="font-size: 14px;"><span></span> katex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/keras/" style="font-size: 14px;"><span></span> keras </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/neuralnet/" style="font-size: 17px;"><span></span> neuralnet </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/nlp/" style="font-size: 17px;"><span></span> nlp </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/python/" style="font-size: 20px;"><span></span> python </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/rust/" style="font-size: 14px;"><span></span> rust </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seq2seq/" style="font-size: 14px;"><span></span> seq2seq </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seqgan/" style="font-size: 14px;"><span></span> seqgan </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/test/" style="font-size: 14px;"><span></span> test </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/tex/" style="font-size: 14px;"><span></span> tex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/word2vec/" style="font-size: 14px;"><span></span> word2vec </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" style="font-size: 14px;"><span></span> 構文解析 </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/%E8%AB%96%E6%96%87/" style="font-size: 17px;"><span></span> 論文 </a>
 	      
 	  
 	      
@@ -319,7 +658,7 @@ if __name__ == '__main__':
             <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
             <span>
               
-              Copyright (c) 0001, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              Copyright (c) 2019, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
               
             </span>
           </div>

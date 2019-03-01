@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docker on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/docker/</link>
+    <description>Recent content in Docker on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/docker/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugoで作ったwebサイトを公開する</title>
+      <link>http://www.if-blog.site/post/others/http-portal-for-blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/others/http-portal-for-blog/</guid>
+      <description>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
+ドメイン ドメインは、お名前.comで取得します。これは特に説明なしでいけます。
+DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。
+Google Cloud Consoleから、「ネットワークサービス」→「Cloud DNS」を選択します。
+任意のゾーン名、取得したドメイン、(説明)を入力して作成。
+  Aレコードの登録 DNS名には、www.取得したドメイン、リソースタイプにはAレコードを設定し、作成します。   レジストラへの登録 生成されるNSレコードのns-cloud-c1.googledomains.com.をお名前.com側に登録します。
+https化 let&amp;rsquo;s encryptを使ってhttps化しようと思っていたところ便利なものを発見したのでこちらを使います。
+https-portal
+自動で証明書の更新も行ってくれます。すごい。便利。
+親切にdocker-composeが公式に載せてあるので、参考にします。 docker-composeのインストールはpipなどで行ってください。
+https-portal: image: steveltn/https-portal:1 ports: - &#39;80:80&#39; - &#39;443:443&#39; links: - wordpress restart: always environment: DOMAINS: &#39;wordpress.example.com -&amp;gt; http://wordpress:80&#39; # STAGE: &#39;production&#39; # FORCE_RENEW: &#39;true&#39; wordpress: image: wordpress links: - db:mysql db: image: mariadb environment: MYSQL_ROOT_PASSWORD: &#39;&amp;lt;a secure password&amp;gt;&#39;  imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    
+
+    
+    <meta name="description" content="すぐ忘れるので、matplotlibのよく使う記法をまとめておく
+公式：https://matplotlib.org/gallery.html
+普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
+matplotlib,pyplot,pylabの違い matplotlibがパッケージ全体
+pyplotはそのモジュール、スクリプトで作図するときに使う
+pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい
+基本的には、import matplotlib.pyplot as pltのように使う
+参考： https://matp">
+    
+
+    
+    
+    <link rel="shortcut icon" href="/images/favicon/favicon1.jpeg">
+    <link href="http://www.if-blog.site/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/myset.css">
+    <title>matplotlibのよく使う記法まとめ | アンドロイドは推理小説を描くか?</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+      <header class="site-header-myset">
+        <div class="site-header-left">
+          
+	  <a class="site-header-title" href="http://www.if-blog.site"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a> 
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>matplotlibのよく使う記法まとめ</h1>
+      <div class="article-meta">
+          
+	  <span class="posttime">2019/03/01</span>
+        
+<div class="tags">
+  <ul>
+    
+    <li>
+      <a href="http://www.if-blog.site/tags/python/">python</a>
+      
+    </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    
+  </header>
+  <div class="content">
+    
+
+<p>すぐ忘れるので、matplotlibのよく使う記法をまとめておく<br />
+公式：<a href="https://matplotlib.org/gallery.html" target="_blank">https://matplotlib.org/gallery.html</a></p>
+
+<p>普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい</p>
+
+<h2 id="matplotlib-pyplot-pylabの違い">matplotlib,pyplot,pylabの違い</h2>
+
+<p>matplotlibがパッケージ全体<br />
+pyplotはそのモジュール、スクリプトで作図するときに使う<br />
+pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい</p>
+
+<p>基本的には、<code>import matplotlib.pyplot as plt</code>のように使う</p>
+
+<p>参考：
+<a href="https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related" target="_blank">https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related</a>
+<a href="https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot" target="_blank">https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot</a></p>
+
+<h2 id="グラフを描く">グラフを描く</h2>
+
+<p>シンプルな例は以下</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+plt.plot(x,y)
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/69d2c0d5-e5bc-fd73-b2f7-a5bd61c363fe.png" width="60%"></p>
+
+<p>macでmatplotlibを呼ぶと<code>ValueError: unknown locale: UTF-8</code>で怒られることがある。<br />
+locale周りの設定がおかしいため。以下を参考に直す。<br />
+Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい<br />
+<a href="https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html" target="_blank">https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html</a></p>
+
+<h4 id="インスタンス化する">インスタンス化する</h4>
+
+<p><code>plt.figure()</code>でインスタンス化し、axesに対してプロットしていく<br />
+多分この使い方が多いと思う</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+plt.show()
+</code></pre>
+
+<p>以下のように描いても同じ</p>
+
+<pre><code class="language-python">fig, ax = plt.subplots(1, 1)
+ax.plot(x,y)
+plt.show()
+</code></pre>
+
+<h2 id="複数のグラフを描く">複数のグラフを描く</h2>
+
+<h3 id="複数のウィンドウに分けて描画">複数のウィンドウに分けて描画</h3>
+
+<p><code>fig = plt.figure()</code>の引数に適当にユニークな数字を入れておく。<br />
+figureに引数を与えることで、新たな図が生成される。<br />
+参考： <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html" target="_blank">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html</a></p>
+
+<pre><code class="language-python">
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure(1)
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+
+fig = plt.figure(2)
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+plt.show()
+</code></pre>
+
+<h3 id="1つのウィンドウに複数のグラフを描画">1つのウィンドウに複数のグラフを描画</h3>
+
+<p>1つのウィンドウに複数のグラフを描く場合は以下のようにする。</p>
+
+<pre><code class="language-python">fig = plt.figure()
+ax1 = fig.add_subplot(211)
+ax1.plot(x,y)
+ax2 = fig.add_subplot(212)
+ax2.plot(x,y)
+plt.show()
+</code></pre>
+
+<p>以下のように2つのグラフが描画される。<br />
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/0df0947f-bda0-d47d-cac6-2d4a35f91425.png" width="60%"></p>
+
+<p>以下のように描いても同じ、axesをタプルで受け取るのがちょっと気持ち悪い</p>
+
+<pre><code class="language-python">fig, (ax1, ax2) = plt.subplots(1, 2)
+ax1.plot(x,y)
+ax2.plot(x,y)
+plt.show()
+</code></pre>
+
+<h2 id="グラフの保存">グラフの保存</h2>
+
+<p>savefigでグラフの保存が可能</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+plt.savefig(&quot;./test2&quot;)
+</code></pre>
+
+<p>複数のグラフを描画した場合には、figureインスタンスに対してもsavefigが使える。</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure(1)
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+fig.savefig(&quot;./test1&quot;)
+
+fig = plt.figure(2)
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+fig.savefig(&quot;./test2&quot;)
+</code></pre>
+
+<h2 id="グラフを整形する">グラフを整形する</h2>
+
+<p>グラフの線の色、太さ、線の種類などはよく使う。<br />
+それぞれ、color,linewidth,linestyleの引数を与えることで設定できる。</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y,color=&quot;red&quot;,linewidth=2,linestyle=&quot;dashed&quot;)
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/534808eb-6257-9ee2-a62d-c956961f3c0e.png" width="60%"></p>
+
+<p>引数の詳細は公式の以下のページから確認できる。<br />
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html" target="_blank">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html</a></p>
+
+<h2 id="タイトルや軸名をつける">タイトルや軸名をつける</h2>
+
+<p>シンプルな例は以下</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+plt.plot(x,y)
+plt.title(&quot;test&quot;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;y&quot;)
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/91d3b0ae-527f-a608-75a8-777931888b8d.png" width="60%"></p>
+
+<p>インスタンス化した場合は次のようにする。</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+ax.set_title(&quot;test&quot;)
+ax.set_xlabel(&quot;x&quot;)
+ax.set_ylabel(&quot;y&quot;)
+plt.show()
+</code></pre>
+
+<h2 id="グラフの余白-幅を調整する">グラフの余白、幅を調整する</h2>
+
+<p><code>plt.subplots_adjust</code>で調整可能</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+plt.plot(x,y)
+plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95)
+plt.show()
+</code></pre>
+
+<p>わかりづらいが調整できてる。</p>
+
+<p>調整前
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/40c41033-d9f2-3403-6fab-8c5b34ee73ce.png" width="60%">
+調整後
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/45e25765-eb83-52c7-a42f-173379a51edc.png" width="60%"></p>
+
+<p>デフォルト値は以下</p>
+
+<pre><code>left  = 0.125  # the left side of the subplots of the figure
+right = 0.9    # the right side of the subplots of the figure
+bottom = 0.1   # the bottom of the subplots of the figure
+top = 0.9      # the top of the subplots of the figure
+wspace = 0.2   # the amount of width reserved for space between subplots,
+               # expressed as a fraction of the average axis width
+hspace = 0.2   # the amount of height reserved for space between subplots,
+               # expressed as a fraction of the average axis height
+</code></pre>
+
+<p>1つのウィンドウに複数のグラフを描画し軸名など入れた場合、グラフが重なることがある。<br />
+その場合は、<code>plt.subplots_adjust(hspace=0.4)</code>のように調整できる。<br />
+横幅は、wspaceで調整可能。</p>
+
+<pre><code class="language-python">fig = plt.figure()
+plt.subplots_adjust(hspace=0.6)
+ax1 = fig.add_subplot(211)
+ax1.plot(x,y)
+ax2 = fig.add_subplot(212)
+ax2.plot(x,y)
+plt.show()
+</code></pre>
+
+<p>調整前<br />
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/f5978344-7f45-5543-5b48-bff62b7de6a1.png" width="70%"></p>
+
+<p>調整後<br />
+<img src="https://qiita-image-store.s3.amazonaws.com/0/204896/a9dac675-aaf4-90b5-bcbd-1160960d9605.png" width="70%"></p>
+
+<p>参考：<a href="https://www.haya-programming.com/entry/2018/10/11/030103" target="_blank">https://www.haya-programming.com/entry/2018/10/11/030103</a></p>
+
+<h2 id="軸を設定し直す">軸を設定し直す</h2>
+
+<p>ちょっとめんどくさい</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(0,10,0.2)
+y = np.sin(x)
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+ticks = &quot;abcdefghijklmnopqrstuvwxyz&quot;
+plt.xticks(x,list(ticks))
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/83dc4fb3-1eaf-0720-21a4-3031890f7c9c.png" width="70%"></p>
+
+<p>設定し直したい次元と、元の軸の次元が合ってなくても設定できる模様。</p>
+
+<h2 id="x軸に時刻を設定-フォーマット">x軸に時刻を設定、フォーマット</h2>
+
+<p>datetimeをそのままx軸に利用できる。</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import pandas as pd
+x = [
+    '2018/08/08T12:15:45.000',
+    '2018/08/08T12:15:45.200',
+    '2018/08/08T12:17:45.600'
+]
+x = pd.to_datetime(x,format='%Y/%m/%dT%H:%M:%S.%f')
+y = [1,2,3]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/18a163b1-a001-d5a6-5543-1a4eb6d3a890.png" width="70%"></p>
+
+<p>フォーマットは、<code>ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))</code>を使って行う。</p>
+
+<pre><code class="language-python">import matplotlib.pyplot as plt
+import pandas as pd
+import matplotlib.dates as mdates
+
+x = [
+    '2018/08/08T12:15:45.000',
+    '2018/08/08T12:15:45.200',
+    '2018/08/08T12:17:45.600'
+]
+x = pd.to_datetime(x,format='%Y/%m/%dT%H:%M:%S.%f')
+
+y = [1,2,3]
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot(x,y)
+ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))
+plt.show()
+</code></pre>
+
+<p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/01b8a12d-d6af-2093-e2e1-55df4f68411a.png" width="70%"></p>
+
+<p>参考：<a href="https://hack-le.com/matplotlib-x-date-format/" target="_blank">https://hack-le.com/matplotlib-x-date-format/</a></p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/python/python-matplotlib_base//" class="hatena-bookmark-button" data-hatena-bookmark-title="matplotlibのよく使う記法まとめ" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="http://www.if-blog.site/post/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="http://www.if-blog.site/post/python/python-matplotlib/">matplotlibでよく使う記法まとめ</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <p><span>いふ</span></p>
+      <p><span>自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。</span></p>
+      <div>
+        
+        <a href="https://twitter.com/if_004" target="_black"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        <a href="https://github.com/if001" target="_black"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/aws/" style="font-size: 14px;"><span></span> aws </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/deeplearning/" style="font-size: 14px;"><span></span> deeplearning </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/docker/" style="font-size: 14px;"><span></span> docker </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/falcon/" style="font-size: 17px;"><span></span> falcon </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/google-analytics/" style="font-size: 17px;"><span></span> google-analytics </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/hugo/" style="font-size: 20px;"><span></span> hugo </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/katex/" style="font-size: 14px;"><span></span> katex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/keras/" style="font-size: 14px;"><span></span> keras </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/neuralnet/" style="font-size: 17px;"><span></span> neuralnet </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/nlp/" style="font-size: 17px;"><span></span> nlp </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/python/" style="font-size: 20px;"><span></span> python </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/rust/" style="font-size: 14px;"><span></span> rust </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seq2seq/" style="font-size: 14px;"><span></span> seq2seq </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seqgan/" style="font-size: 14px;"><span></span> seqgan </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/test/" style="font-size: 14px;"><span></span> test </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/tex/" style="font-size: 14px;"><span></span> tex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/word2vec/" style="font-size: 14px;"><span></span> word2vec </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" style="font-size: 14px;"><span></span> 構文解析 </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/%E8%AB%96%E6%96%87/" style="font-size: 17px;"><span></span> 論文 </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+      </ul>
+    </div>
+  </div>
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 2019, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+
+
+
+</html>
+
+
+
