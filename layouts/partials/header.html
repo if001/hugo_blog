@@ -44,12 +44,10 @@
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     {{ end }}
     
-    <link rel="stylesheet" href="{{ "css/myset.css" | relURL }}">
     <link rel="stylesheet" type="text/css" href="{{ "css/style.css" | relURL }}">
-
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/myset.css }}">
+    <link rel="stylesheet" href="{{ "css/myset.css" | relURL }}">
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/style.css }}">    
-
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/myset.css }}">
    
     <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   </head>
