@@ -25,15 +25,20 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>matplotlibのよく使う記法まとめ | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -113,17 +118,14 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
 <h2 id="グラフを描く">グラフを描く</h2>
 
 <p>シンプルな例は以下</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-plt.plot(x,y)
-plt.show()
-</code></pre>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/69d2c0d5-e5bc-fd73-b2f7-a5bd61c363fe.png" width="60%"></p>
 
 <p>macでmatplotlibを呼ぶと<code>ValueError: unknown locale: UTF-8</code>で怒られることがある。<br />
@@ -135,26 +137,20 @@ Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい<br />
 
 <p><code>plt.figure()</code>でインスタンス化し、axesに対してプロットしていく<br />
 多分この使い方が多いと思う</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-plt.show()
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p>以下のように描いても同じ</p>
-
-<pre><code class="language-python">fig, ax = plt.subplots(1, 1)
-ax.plot(x,y)
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <h2 id="複数のグラフを描く">複数のグラフを描く</h2>
 
 <h3 id="複数のウィンドウに分けて描画">複数のウィンドウに分けて描画</h3>
@@ -162,99 +158,80 @@ plt.show()
 <p><code>fig = plt.figure()</code>の引数に適当にユニークな数字を入れておく。<br />
 figureに引数を与えることで、新たな図が生成される。<br />
 参考： <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html" target="_blank">https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">
-import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-fig = plt.figure(1)
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-
-fig = plt.figure(2)
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-plt.show()
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <h3 id="1つのウィンドウに複数のグラフを描画">1つのウィンドウに複数のグラフを描画</h3>
 
 <p>1つのウィンドウに複数のグラフを描く場合は以下のようにする。</p>
-
-<pre><code class="language-python">fig = plt.figure()
-ax1 = fig.add_subplot(211)
-ax1.plot(x,y)
-ax2 = fig.add_subplot(212)
-ax2.plot(x,y)
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p>以下のように2つのグラフが描画される。<br />
 <img src="https://qiita-image-store.s3.amazonaws.com/0/204896/0df0947f-bda0-d47d-cac6-2d4a35f91425.png" width="60%"></p>
 
 <p>以下のように描いても同じ、axesをタプルで受け取るのがちょっと気持ち悪い</p>
-
-<pre><code class="language-python">fig, (ax1, ax2) = plt.subplots(1, 2)
-ax1.plot(x,y)
-ax2.plot(x,y)
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <h2 id="グラフの保存">グラフの保存</h2>
 
 <p>savefigでグラフの保存が可能</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-plt.savefig(&quot;./test2&quot;)
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;./test2&#34;</span><span class="p">)</span></code></pre></div>
 <p>複数のグラフを描画した場合には、figureインスタンスに対してもsavefigが使える。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;./test1&#34;</span><span class="p">)</span>
 
-fig = plt.figure(1)
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-fig.savefig(&quot;./test1&quot;)
-
-fig = plt.figure(2)
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-fig.savefig(&quot;./test2&quot;)
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&#34;./test2&#34;</span><span class="p">)</span></code></pre></div>
 <h2 id="グラフを整形する">グラフを整形する</h2>
 
 <p>グラフの線の色、太さ、線の種類などはよく使う。<br />
 それぞれ、color,linewidth,linestyleの引数を与えることで設定できる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y,color=&quot;red&quot;,linewidth=2,linestyle=&quot;dashed&quot;)
-plt.show()
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&#34;red&#34;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&#34;dashed&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/534808eb-6257-9ee2-a62d-c956961f3c0e.png" width="60%"></p>
 
 <p>引数の詳細は公式の以下のページから確認できる。<br />
@@ -263,54 +240,45 @@ plt.show()
 <h2 id="タイトルや軸名をつける">タイトルや軸名をつける</h2>
 
 <p>シンプルな例は以下</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-plt.plot(x,y)
-plt.title(&quot;test&quot;)
-plt.xlabel(&quot;x&quot;)
-plt.ylabel(&quot;y&quot;)
-plt.show()
-</code></pre>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/91d3b0ae-527f-a608-75a8-777931888b8d.png" width="60%"></p>
 
 <p>インスタンス化した場合は次のようにする。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-ax.set_title(&quot;test&quot;)
-ax.set_xlabel(&quot;x&quot;)
-ax.set_ylabel(&quot;y&quot;)
-plt.show()
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;test&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;x&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;y&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <h2 id="グラフの余白-幅を調整する">グラフの余白、幅を調整する</h2>
 
 <p><code>plt.subplots_adjust</code>で調整可能</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-plt.plot(x,y)
-plt.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.95)
-plt.show()
-</code></pre>
-
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p>わかりづらいが調整できてる。</p>
 
 <p>調整前
@@ -333,16 +301,13 @@ hspace = 0.2   # the amount of height reserved for space between subplots,
 <p>1つのウィンドウに複数のグラフを描画し軸名など入れた場合、グラフが重なることがある。<br />
 その場合は、<code>plt.subplots_adjust(hspace=0.4)</code>のように調整できる。<br />
 横幅は、wspaceで調整可能。</p>
-
-<pre><code class="language-python">fig = plt.figure()
-plt.subplots_adjust(hspace=0.6)
-ax1 = fig.add_subplot(211)
-ax1.plot(x,y)
-ax2 = fig.add_subplot(212)
-ax2.plot(x,y)
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p>調整前<br />
 <img src="https://qiita-image-store.s3.amazonaws.com/0/204896/f5978344-7f45-5543-5b48-bff62b7de6a1.png" width="70%"></p>
 
@@ -354,21 +319,18 @@ plt.show()
 <h2 id="軸を設定し直す">軸を設定し直す</h2>
 
 <p>ちょっとめんどくさい</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import numpy as np
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-x = np.arange(0,10,0.2)
-y = np.sin(x)
-
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-ticks = &quot;abcdefghijklmnopqrstuvwxyz&quot;
-plt.xticks(x,list(ticks))
-plt.show()
-</code></pre>
-
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ticks</span> <span class="o">=</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyz&#34;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">ticks</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/83dc4fb3-1eaf-0720-21a4-3031890f7c9c.png" width="70%"></p>
 
 <p>設定し直したい次元と、元の軸の次元が合ってなくても設定できる模様。</p>
@@ -376,45 +338,39 @@ plt.show()
 <h2 id="x軸に時刻を設定-フォーマット">x軸に時刻を設定、フォーマット</h2>
 
 <p>datetimeをそのままx軸に利用できる。</p>
-
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import pandas as pd
-x = [
-    '2018/08/08T12:15:45.000',
-    '2018/08/08T12:15:45.200',
-    '2018/08/08T12:17:45.600'
-]
-x = pd.to_datetime(x,format='%Y/%m/%dT%H:%M:%S.%f')
-y = [1,2,3]
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-plt.show()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;2018/08/08T12:15:45.000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2018/08/08T12:15:45.200&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2018/08/08T12:17:45.600&#39;</span>
+<span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/18a163b1-a001-d5a6-5543-1a4eb6d3a890.png" width="70%"></p>
 
 <p>フォーマットは、<code>ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))</code>を使って行う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="kn">as</span> <span class="nn">mdates</span>
 
-<pre><code class="language-python">import matplotlib.pyplot as plt
-import pandas as pd
-import matplotlib.dates as mdates
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;2018/08/08T12:15:45.000&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2018/08/08T12:15:45.200&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2018/08/08T12:17:45.600&#39;</span>
+<span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1">T%H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
 
-x = [
-    '2018/08/08T12:15:45.000',
-    '2018/08/08T12:15:45.200',
-    '2018/08/08T12:17:45.600'
-]
-x = pd.to_datetime(x,format='%Y/%m/%dT%H:%M:%S.%f')
-
-y = [1,2,3]
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.plot(x,y)
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%d\n%H:%M'))
-plt.show()
-</code></pre>
-
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%m/</span><span class="si">%d</span><span class="se">\n</span><span class="s1">%H:%M&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></div>
 <p><img src="https://qiita-image-store.s3.amazonaws.com/0/204896/01b8a12d-d6af-2093-e2e1-55df4f68411a.png" width="70%"></p>
 
 <p>参考：<a href="https://hack-le.com/matplotlib-x-date-format/" target="_blank">https://hack-le.com/matplotlib-x-date-format/</a></p>

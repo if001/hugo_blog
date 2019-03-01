@@ -16,12 +16,12 @@
       <guid>https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/</guid>
       <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
 結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0]  ただし、第3引数は出力する類似単語数を表す。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0] ただし、第3引数は出力する類似単語数を表す。
 使用例 青空文庫：江戸川乱歩の解析をしたので、その例を示す。
-model.wv[&amp;quot;ベクトル化したい単語&amp;quot;]  で単語をベクトル化できる。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;quot;犯罪&amp;quot;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word)  上記のようなコードを実行すると、
-[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&#39;犯罪&#39;, 1.0000001192092896)]  となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
-出力数を変更 vector = model.wv[&amp;quot;明智&amp;quot;] word = model.</description>
+model.wv[&amp;#34;ベクトル化したい単語&amp;#34;] で単語をベクトル化できる。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;#34;犯罪&amp;#34;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word) 上記のようなコードを実行すると、
+[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&amp;#39;犯罪&amp;#39;, 1.0000001192092896)] となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
+出力数を変更 vector = model.wv[&amp;#34;明智&amp;#34;] word = model.most_similar( [ vector ], [], 5) 以下のような結果が得られる。</description>
     </item>
     
   </channel>

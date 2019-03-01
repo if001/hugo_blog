@@ -23,15 +23,20 @@ Google Cloud Consoleから、「ネット">
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>Hugoで作ったwebサイトを公開する | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -152,48 +157,39 @@ if (!doNotTrack) {
 
 <p>親切にdocker-composeが公式に載せてあるので、参考にします。
 docker-composeのインストールはpipなどで行ってください。</p>
-
-<pre><code class="language-yaml">https-portal:
-  image: steveltn/https-portal:1
-  ports:
-    - '80:80'
-    - '443:443'
-  links:
-    - wordpress
-  restart: always
-  environment:
-    DOMAINS: 'wordpress.example.com -&gt; http://wordpress:80'
-    # STAGE: 'production'
-    # FORCE_RENEW: 'true'
-
-wordpress:
-  image: wordpress
-  links:
-    - db:mysql
-
-db:
-  image: mariadb
-  environment:
-    MYSQL_ROOT_PASSWORD: '&lt;a secure password&gt;'
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">https-portal<span class="p">:</span><span class="w">
+</span><span class="w">  </span>image<span class="p">:</span><span class="w"> </span>steveltn/https-portal<span class="p">:</span><span class="m">1</span><span class="w">
+</span><span class="w">  </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span><span class="s1">&#39;80:80&#39;</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span><span class="s1">&#39;443:443&#39;</span><span class="w">
+</span><span class="w">  </span>links<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>wordpress<span class="w">
+</span><span class="w">  </span>restart<span class="p">:</span><span class="w"> </span>always<span class="w">
+</span><span class="w">  </span>environment<span class="p">:</span><span class="w">
+</span><span class="w">    </span>DOMAINS<span class="p">:</span><span class="w"> </span><span class="s1">&#39;wordpress.example.com -&gt; http://wordpress:80&#39;</span><span class="w">
+</span><span class="w">    </span><span class="c"># STAGE: &#39;production&#39;</span><span class="w">
+</span><span class="w">    </span><span class="c"># FORCE_RENEW: &#39;true&#39;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>wordpress<span class="p">:</span><span class="w">
+</span><span class="w">  </span>image<span class="p">:</span><span class="w"> </span>wordpress<span class="w">
+</span><span class="w">  </span>links<span class="p">:</span><span class="w">
+</span><span class="w">    </span>-<span class="w"> </span>db<span class="p">:</span>mysql<span class="w">
+</span><span class="w">
+</span><span class="w"></span>db<span class="p">:</span><span class="w">
+</span><span class="w">  </span>image<span class="p">:</span><span class="w"> </span>mariadb<span class="w">
+</span><span class="w">  </span>environment<span class="p">:</span><span class="w">
+</span><span class="w">    </span>MYSQL_ROOT_PASSWORD<span class="p">:</span><span class="w"> </span><span class="s1">&#39;&lt;a secure password&gt;&#39;</span></code></pre></div>
 <p>imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</p>
 
 <pre><code>image: steveltn/https-portal:1
 </code></pre>
 
 <p>1.2以下だと、let&rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。</p>
-
-<pre><code class="language-yaml">links:
-- wordpress
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">links<span class="p">:</span><span class="w">
+</span><span class="w"></span>-<span class="w"> </span>wordpress</code></pre></div>
 <p>linksで公開するサービス名を指定しましょう。</p>
-
-<pre><code class="language-yaml">environment:
-	DOMAINS: 'wordpress.example.com -&gt; http://wordpress:80'
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">environment<span class="p">:</span><span class="w">
+</span><span class="w">	</span>DOMAINS<span class="p">:</span><span class="w"> </span><span class="s1">&#39;wordpress.example.com -&gt; http://wordpress:80&#39;</span></code></pre></div>
 <p>環境変数のDMAINSでは、リクエストを受けるドメイン -&gt; https化したいエンドポイントを指定します。</p>
 
 <p>linksで指定したエイリアスで指定できます。また、-&gt;を=&gt;に変更することでリダイレクトができます。</p>

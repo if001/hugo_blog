@@ -26,7 +26,13 @@ https化 let&amp;rsquo;s encryptを使ってhttps化しようと思っていた�
 https-portal
 自動で証明書の更新も行ってくれます。すごい。便利。
 親切にdocker-composeが公式に載せてあるので、参考にします。 docker-composeのインストールはpipなどで行ってください。
-https-portal: image: steveltn/https-portal:1 ports: - &#39;80:80&#39; - &#39;443:443&#39; links: - wordpress restart: always environment: DOMAINS: &#39;wordpress.example.com -&amp;gt; http://wordpress:80&#39; # STAGE: &#39;production&#39; # FORCE_RENEW: &#39;true&#39; wordpress: image: wordpress links: - db:mysql db: image: mariadb environment: MYSQL_ROOT_PASSWORD: &#39;&amp;lt;a secure password&amp;gt;&#39;  imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</description>
+https-portal:image:steveltn/https-portal:1ports:-&amp;#39;80:80&amp;#39;-&amp;#39;443:443&amp;#39;links:-wordpressrestart:alwaysenvironment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39;# STAGE: &amp;#39;production&amp;#39;# FORCE_RENEW: &amp;#39;true&amp;#39;wordpress:image:wordpresslinks:-db:mysqldb:image:mariadbenvironment:MYSQL_ROOT_PASSWORD:&amp;#39;&amp;lt;a secure password&amp;gt;&amp;#39; imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。
+image: steveltn/https-portal:1  1.2以下だと、let&amp;rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。
+links:-wordpress linksで公開するサービス名を指定しましょう。
+environment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39; 環境変数のDMAINSでは、リクエストを受けるドメイン -&amp;gt; https化したいエンドポイントを指定します。
+linksで指定したエイリアスで指定できます。また、-&amp;gt;を=&amp;gt;に変更することでリダイレクトができます。
+STAGEは、次の3つが指定できます。
+ STAGE: &#39;local&#39;でオレオレ証明書を作成します。テストなどに STAGE: &#39;staging&#39;でテスト用の証明書を作成します。 STAGE: &#39;production&#39;で本番用に、Let&amp;rsquo;s Encryptで正式な証明書を作成します。  その他、環境変数も指定できます。この辺りを参考しながら、設定を行います。 https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf</description>
     </item>
     
   </channel>

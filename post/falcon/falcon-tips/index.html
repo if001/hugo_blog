@@ -9,7 +9,7 @@
     <meta name="description" content="はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
 簡単なtipsをメモしておく。
 シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
-# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;quot;&amp;quot;&amp;quot;Handles GET requests&amp;qu">
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;#34;&amp;#34;&amp;#34;Handles GET requests&amp;#34;&amp;">
     
 
     
@@ -21,15 +21,20 @@
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>falconを使ってみた | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -104,28 +109,25 @@ if (!doNotTrack) {
 <h2 id="シンプルな例">シンプルな例</h2>
 
 <p>falconの公式に乗っているように、シンプルな例は次のようになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># sample.py</span>
 
-<pre><code class="language-python"># sample.py
+<span class="kn">import</span> <span class="nn">falcon</span>
 
-import falcon
+<span class="k">class</span> <span class="nc">QuoteResource</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;Handles GET requests&#34;&#34;&#34;</span>
+        <span class="n">quote</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;quote&#39;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&#34;I&#39;ve always been more interested in &#34;</span>
+                <span class="s2">&#34;the future than in the past.&#34;</span>
+            <span class="p">),</span>
+            <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Grace Hopper&#39;</span>
+        <span class="p">}</span>
 
-class QuoteResource:
-    def on_get(self, req, resp):
-        &quot;&quot;&quot;Handles GET requests&quot;&quot;&quot;
-        quote = {
-            'quote': (
-                &quot;I've always been more interested in &quot;
-                &quot;the future than in the past.&quot;
-            ),
-            'author': 'Grace Hopper'
-        }
+        <span class="n">resp</span><span class="o">.</span><span class="n">media</span> <span class="o">=</span> <span class="n">quote</span>
 
-        resp.media = quote
-
-api = falcon.API()
-api.add_route('/quote', QuoteResource())
-</code></pre>
-
+<span class="n">api</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;/quote&#39;</span><span class="p">,</span> <span class="n">QuoteResource</span><span class="p">())</span></code></pre></div>
 <h2 id="処理シーケンス">処理シーケンス</h2>
 
 <p>falconにはmiddlewareの他に、hooksというものが使える。
@@ -146,70 +148,57 @@ Middleware's process_response
 <h2 id="hooks">hooks</h2>
 
 <p>hooksは以下のように使う。(<a href="https://falcon.readthedocs.io/en/stable/api/hooks.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">validate_image_type</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+	<span class="o">....</span>
 
-<pre><code class="language-python">def validate_image_type(req, resp, resource, params):
-	....
-
-@falcon.before(validate_image_type)
-def on_post(self, req, resp):
-    pass
-</code></pre>
-
+<span class="nd">@falcon.before</span><span class="p">(</span><span class="n">validate_image_type</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+    <span class="k">pass</span></code></pre></div>
 <p>処理を差し込みたいメソッドにでコレーターでつけるだけ。</p>
 
 <h2 id="middleware">middleware</h2>
 
 <p>corsくらいしか使わなかったが、dbのconnection poolとかに使うようのものとかあるんだろう。(<a href="https://falcon.readthedocs.io/en/stable/api/middleware.html" target="_blank">公式</a>)</p>
-
-<pre><code class="language-python">class CORSMiddleware:
-    def process_request(self, req, resp):
-        resp.set_header('Access-Control-Allow-Origin', '*')
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">CORSMiddleware</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span></code></pre></div>
 <h2 id="エラーハンドリング">エラーハンドリング</h2>
 
 <p>routeが見つからなかった時に、エラーリスポンスを返したいときは以下のようにする。(<a href="https://falcon.readthedocs.io/en/stable/api/errors.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;message&#34;</span><span class="p">:</span><span class="s2">&#34;ok&#34;</span><span class="p">})</span>
 
-<pre><code class="language-python">class Index(object):
-    def on_get(self, req, resp):
-        resp.body = json.dumps({&quot;message&quot;:&quot;ok&quot;})
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="n">Index</span><span class="p">())</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_sink</span><span class="p">(</span><span class="n">handle_404</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 
-app = falcon.API()
-app.add_route(&quot;/&quot;, Index())
-app.add_sink(handle_404, '')
-
-if __name__ == &quot;__main__&quot;:
-    from wsgiref import simple_server
-    httpd = simple_server.make_server(&quot;127.0.0.7&quot;, 8000, app)
-    httpd.serve_forever()
-
-</code></pre>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&#34;127.0.0.7&#34;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></code></pre></div>
 <p>exceptionなどが起きた場合でも、200のリスポンスを返し、レスポンスボディの中でエラーコードとメッセージを返したかったが、うまく行かなかったので、これは次の機会にやる。</p>
 
 <h2 id="requestの取得">requestの取得</h2>
 
 <p>requsetの取得は以下のようになる。(<a href="https://falcon.readthedocs.io/en/stable/api/request_and_response.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">HealthCheck</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span> <span class="c1"># headerの取得</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="c1"># request paramの取得</span>
 
-<pre><code class="language-python">class HealthCheck(object):
-def on_get(self, req, resp):
-	print(req.headers) # headerの取得
-	print(req.params['name']) # request paramの取得
+   <span class="c1"># request bodyの取得</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
 
-   # request bodyの取得
-    body = req.stream.read().decode(&quot;utf-8&quot;)
-    data = json.loads(body)
-    name = data['name']
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">())</span>
 
-app = falcon.API()
-app.add_route(&quot;/&quot;, index())
-
-if __name__ == &quot;__main__&quot;:
-    from wsgiref import simple_server
-    httpd = simple_server.make_server(&quot;127.0.0.7&quot;, 8000, app)
-    httpd.serve_forever()
-</code></pre>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&#34;127.0.0.7&#34;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></code></pre></div>
   </div>
   <footer>
     <div class="article-footer">

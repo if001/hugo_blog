@@ -8,10 +8,10 @@
     
     <meta name="description" content="Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Description }}  markdown側では、ヘッダーに次のように記述します。
+{{ .Description }} markdown側では、ヘッダーに次のように記述します。
 description=&amp;quot;hogehoge&amp;quot;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。
 次のようにサイトサマリーを参照することも可能です
-{{ .Summar">
+{{ .Summary">
     
 
     
@@ -23,15 +23,20 @@ description=&amp;quot;hogehoge&amp;quot;  これまで書いた記事全てに�
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>Hugoの記事にdescriptionを追加する | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -95,10 +100,7 @@ if (!doNotTrack) {
 これでは検索に引っかからないのでdescriptionタグをつけましょう!</p>
 
 <p>html側で次のように書くと、markdownに書いたdescriptionが参照できます。</p>
-
-<pre><code class="language-html">{{ .Description }}
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ .Description }}</code></pre></div>
 <p>markdown側では、ヘッダーに次のように記述します。</p>
 
 <pre><code>description=&quot;hogehoge&quot;
@@ -107,53 +109,38 @@ if (!doNotTrack) {
 <p>これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。</p>
 
 <p>次のようにサイトサマリーを参照することも可能です</p>
-
-<pre><code class="language-html">{{ .Summary }}
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ .Summary }}</code></pre></div>
 <p>ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。</p>
-
-<pre><code class="language-yaml">hasCJKLanguage = true
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">hasCJKLanguage<span class="w"> </span>=<span class="w"> </span><span class="kc">true</span></code></pre></div>
 <p>こうすることでサマリーがいい感じのサイズになります。</p>
 
 <p>参考：<a href="https://blog.awm.jp/2016/01/02/hugo/" target="_blank">https://blog.awm.jp/2016/01/02/hugo/</a></p>
 
 <p>最終的に、header.htmlなどに次のように記述しておけば、descriptionを書いておくとそちらが使われるようになります。</p>
-
-<pre><code class="language-html">{{ if .Description }}
-&lt;meta name=&quot;description&quot; content=&quot;{{ .Description }}&quot;&gt;
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ if .Description }}
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ .Description }}&#34;</span><span class="p">&gt;</span>
 {{ else }}
-&lt;meta name=&quot;description&quot; content=&quot;{{ .Summary }}&quot;&gt;
-{{ end }}
-</code></pre>
-
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ .Summary }}&#34;</span><span class="p">&gt;</span>
+{{ end }}</code></pre></div>
 <h2 id="サイトのディスクリプションと記事のディスクリプションを分ける-追記">サイトのディスクリプションと記事のディスクリプションを分ける(追記)</h2>
 
 <p><code>{{ if .IsHome }}</code>でトップページかどうか判定できるので、トップページならば、configのディスクリプションを使い、記事内ならば記事に設定してあるディスクリプションを使う。</p>
 
 <p>html側は次のように記述する。</p>
-
-<pre><code class="language-html">{{ if .IsHome }}
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ if .IsHome }}
 {{ with .Site.Params.description }}
-&lt;meta name=&quot;description&quot; content=&quot;{{ . }}&quot;&gt;
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ . }}&#34;</span><span class="p">&gt;</span>
 {{ end }}
 {{ end }}
 
 {{ if .Description }}
-&lt;meta name=&quot;description&quot; content=&quot;{{ .Description }}&quot;&gt;
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ .Description }}&#34;</span><span class="p">&gt;</span>
 {{ else }}
-&lt;meta name=&quot;description&quot; content=&quot;{{ .Summary }}&quot;&gt;
-{{ end }}
-</code></pre>
-
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;{{ .Summary }}&#34;</span><span class="p">&gt;</span>
+{{ end }}</code></pre></div>
 <p>configに次のように記述する。</p>
-
-<pre><code class="language-yaml">[params]
-description=&quot;hogehoge&quot;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="p">[</span>params<span class="p">]</span><span class="w">
+</span><span class="w"></span>description=<span class="s2">&#34;hogehoge&#34;</span></code></pre></div>
 <p>configで任意の変数を指定するのは、paramsの中じゃないとだめなので注意。
 参考：<a href="https://gohugo.io/getting-started/configuration/" target="_blank">https://gohugo.io/getting-started/configuration/</a></p>
 

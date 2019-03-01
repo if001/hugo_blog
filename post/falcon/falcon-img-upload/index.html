@@ -9,7 +9,7 @@
     <meta name="description" content="はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
-image_name = &amp;quot;test.png&amp;qu">
+image_name = &amp;#34;test.png&amp;#34">
     
 
     
@@ -21,15 +21,20 @@ image_name = &amp;quot;test.png&amp;qu">
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>falconでアップロードサーバーを作る | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -113,14 +118,11 @@ falconをつかったのは、flaskやbottleは使ったことあったので、
 
 <p>fileにタプルでファイル名を明示的に渡せる。
 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。</p>
-
-<pre><code class="language-python">image_name = &quot;test.png&quot;
-with open(image_file_path, &quot;rb&quot;) as image:
-	files = {'file': (image_name, image)}
-	response = requests.post(url, files=files)
-	print(response.text)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image_name</span> <span class="o">=</span> <span class="s2">&#34;test.png&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">image_file_path</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">image</span><span class="p">:</span>
+	<span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">image_name</span><span class="p">,</span> <span class="n">image</span><span class="p">)}</span>
+	<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span></code></pre></div>
 <h2 id="サーバー">サーバー</h2>
 
 <p>falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、
@@ -129,51 +131,45 @@ with open(image_file_path, &quot;rb&quot;) as image:
 <p>なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。</p>
 
 <p>fileは次のようにrequestから取得できる</p>
-
-<pre><code class="language-python">image = req.get_param('file')
-raw = image.file.read()
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">image</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">)</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span></code></pre></div>
 <p>ファイル名は次のように取得</p>
 
 <pre><code>image_name = image.filename
 </code></pre>
 
 <p>実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">falcon_multipart.middleware</span> <span class="kn">import</span> <span class="n">MultipartMiddleware</span>
+<span class="kn">import</span> <span class="nn">falcon</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
-<pre><code class="language-python">from falcon_multipart.middleware import MultipartMiddleware
-import falcon
-import json
-
-class UploadImage(object):
-    def on_post(self, req, resp):
-        image = req.get_param('file')
-        raw = image.file.read()
-        image_name = image.filename
-        filepath = os.path.join(BASE_DIR, &quot;static&quot;, image_name)
-        try:
-            with open(filepath, 'wb') as f:
-                f.write(raw)
-        except IOError:
-            print(&quot;save file faild :&quot; + filepath)
-			resp.body = to_resp(200, &quot;save img &quot; + filepath)
+<span class="k">class</span> <span class="nc">UploadImage</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get_param</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">)</span>
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">image_name</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">filename</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s2">&#34;static&#34;</span><span class="p">,</span> <span class="n">image_name</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&#34;save file faild :&#34;</span> <span class="o">+</span> <span class="n">filepath</span><span class="p">)</span>
+			<span class="n">resp</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">to_resp</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&#34;save img &#34;</span> <span class="o">+</span> <span class="n">filepath</span><span class="p">)</span>
 			
-def to_resp(status_code, contents):
-    resp = {
-        &quot;status&quot;: status_code,
-        &quot;contents&quot;: contents
-    }
-    return json.dumps(resp)
+<span class="k">def</span> <span class="nf">to_resp</span><span class="p">(</span><span class="n">status_code</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;status&#34;</span><span class="p">:</span> <span class="n">status_code</span><span class="p">,</span>
+        <span class="s2">&#34;contents&#34;</span><span class="p">:</span> <span class="n">contents</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
 
-app = falcon.API(middleware=[MultipartMiddleware()])
-app.add_route(&quot;/image&quot;, UploadImage())
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">middleware</span><span class="o">=</span><span class="p">[</span><span class="n">MultipartMiddleware</span><span class="p">()])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s2">&#34;/image&#34;</span><span class="p">,</span> <span class="n">UploadImage</span><span class="p">())</span>
 
-if __name__ == &quot;__main__&quot;:
-    from wsgiref import simple_server
-    httpd = simple_server.make_server(&quot;0.0.0.0&quot;, 8000, app)
-    httpd.serve_forever()
-</code></pre>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&#34;0.0.0.0&#34;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></code></pre></div>
   </div>
   <footer>
     <div class="article-footer">

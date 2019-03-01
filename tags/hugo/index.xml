@@ -18,12 +18,12 @@
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
-image_name = &amp;quot;test.png&amp;quot; with open(image_file_path, &amp;quot;rb&amp;quot;) as image: files = {&#39;file&#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text)  サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
+image_name = &amp;#34;test.png&amp;#34; with open(image_file_path, &amp;#34;rb&amp;#34;) as image: files = {&amp;#39;file&amp;#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text) サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
 なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
 fileは次のようにrequestから取得できる
-image = req.get_param(&#39;file&#39;) raw = image.file.read()  ファイル名は次のように取得
+image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() ファイル名は次のように取得
 image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
-from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&#39;file&#39;) raw = image.file.read() image_name = image.filename filepath = os.</description>
+from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() image_name = image.filename filepath = os.path.join(BASE_DIR, &amp;#34;static&amp;#34;, image_name) try: with open(filepath, &amp;#39;wb&amp;#39;) as f: f.</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@ cat content/post/test.md --- title: &amp;quot;Test&amp;quot; date: 2018-10-15T18
       <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo-href-to-target-blank/</guid>
       <description>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
-[blackfriday] hrefTargetBlank = true  簡単！
+[blackfriday] hrefTargetBlank = true 簡単！
 参考：
  https://gohugo.io/getting-started/configuration/ https://www.meganii.com/blog/2017/02/25/hugo-markdown-href-target-blank/  </description>
     </item>
@@ -75,7 +75,13 @@ https化 let&amp;rsquo;s encryptを使ってhttps化しようと思っていた�
 https-portal
 自動で証明書の更新も行ってくれます。すごい。便利。
 親切にdocker-composeが公式に載せてあるので、参考にします。 docker-composeのインストールはpipなどで行ってください。
-https-portal: image: steveltn/https-portal:1 ports: - &#39;80:80&#39; - &#39;443:443&#39; links: - wordpress restart: always environment: DOMAINS: &#39;wordpress.example.com -&amp;gt; http://wordpress:80&#39; # STAGE: &#39;production&#39; # FORCE_RENEW: &#39;true&#39; wordpress: image: wordpress links: - db:mysql db: image: mariadb environment: MYSQL_ROOT_PASSWORD: &#39;&amp;lt;a secure password&amp;gt;&#39;  imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</description>
+https-portal:image:steveltn/https-portal:1ports:-&amp;#39;80:80&amp;#39;-&amp;#39;443:443&amp;#39;links:-wordpressrestart:alwaysenvironment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39;# STAGE: &amp;#39;production&amp;#39;# FORCE_RENEW: &amp;#39;true&amp;#39;wordpress:image:wordpresslinks:-db:mysqldb:image:mariadbenvironment:MYSQL_ROOT_PASSWORD:&amp;#39;&amp;lt;a secure password&amp;gt;&amp;#39; imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。
+image: steveltn/https-portal:1  1.2以下だと、let&amp;rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。
+links:-wordpress linksで公開するサービス名を指定しましょう。
+environment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39; 環境変数のDMAINSでは、リクエストを受けるドメイン -&amp;gt; https化したいエンドポイントを指定します。
+linksで指定したエイリアスで指定できます。また、-&amp;gt;を=&amp;gt;に変更することでリダイレクトができます。
+STAGEは、次の3つが指定できます。
+ STAGE: &#39;local&#39;でオレオレ証明書を作成します。テストなどに STAGE: &#39;staging&#39;でテスト用の証明書を作成します。 STAGE: &#39;production&#39;で本番用に、Let&amp;rsquo;s Encryptで正式な証明書を作成します。  その他、環境変数も指定できます。この辺りを参考しながら、設定を行います。 https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf</description>
     </item>
     
     <item>
@@ -98,16 +104,16 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
       <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo-add-site-description/</guid>
       <description>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 html側で次のように書くと、markdownに書いたdescriptionが参照できます。
-{{ .Description }}  markdown側では、ヘッダーに次のように記述します。
+{{ .Description }} markdown側では、ヘッダーに次のように記述します。
 description=&amp;quot;hogehoge&amp;quot;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。
 次のようにサイトサマリーを参照することも可能です
-{{ .Summary }}  ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。
-hasCJKLanguage = true  こうすることでサマリーがいい感じのサイズになります。
+{{ .Summary }} ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。
+hasCJKLanguage=true こうすることでサマリーがいい感じのサイズになります。
 参考：https://blog.awm.jp/2016/01/02/hugo/
 最終的に、header.htmlなどに次のように記述しておけば、descriptionを書いておくとそちらが使われるようになります。
-{{ if .Description }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ .Description }}&amp;quot;&amp;gt; {{ else }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ .Summary }}&amp;quot;&amp;gt; {{ end }}  サイトのディスクリプションと記事のディスクリプションを分ける(追記) {{ if .IsHome }}でトップページかどうか判定できるので、トップページならば、configのディスクリプションを使い、記事内ならば記事に設定してあるディスクリプションを使う。
+{{ if .Description }} &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;{{ .Description }}&amp;#34;&amp;gt; {{ else }} &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;{{ .Summary }}&amp;#34;&amp;gt; {{ end }} サイトのディスクリプションと記事のディスクリプションを分ける(追記) {{ if .IsHome }}でトップページかどうか判定できるので、トップページならば、configのディスクリプションを使い、記事内ならば記事に設定してあるディスクリプションを使う。
 html側は次のように記述する。
-{{ if .IsHome }} {{ with .Site.Params.description }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ . }}&amp;quot;&amp;gt; {{ end }} {{ end }} {{ if .</description>
+{{ if .IsHome }} {{ with .Site.Params.description }} &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;{{ . }}&amp;#34;&amp;gt; {{ end }} {{ end }} {{ if .Description }} &amp;lt;meta name=&amp;#34;description&amp;#34; content=&amp;#34;{{ .</description>
     </item>
     
     <item>
@@ -132,7 +138,7 @@ html側は次のように記述する。
       <guid>https://if001.github.io/hugo_blog/public/post/hugo/katex-introduction/</guid>
       <description>これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
 以下を加えるだけでおk
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;quot; /&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;quot;[[&amp;quot;, right: &amp;quot;]]&amp;quot;, display: true},{left: &amp;quot;$&amp;quot;, right: &amp;quot;$&amp;quot;, display: false}]})});&amp;lt;/script&amp;gt;  MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;#34;[[&amp;#34;, right: &amp;#34;]]&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false}]})});&amp;lt;/script&amp;gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。
 参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</description>
     </item>
     
