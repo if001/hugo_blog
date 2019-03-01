@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Seqgan on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/tags/seqgan/</link>
+    <link>https://if001.github.io/tags/seqgan/</link>
     <description>Recent content in Seqgan on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,10 +10,10 @@
     
     <item>
       <title>SeqGANの論文を読む</title>
-      <link>http://www.if-blog.site/post/nlp/seqgan-paper/</link>
+      <link>https://if001.github.io/post/nlp/seqgan-paper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/nlp/seqgan-paper/</guid>
+      <guid>https://if001.github.io/post/nlp/seqgan-paper/</guid>
       <description>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
 https://arxiv.org/pdf/1609.05473.pdf
 SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
