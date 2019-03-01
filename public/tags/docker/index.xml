@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docker on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/tags/docker/</link>
+    <link>https://if001.github.io/hugo_blog/public/tags/docker/</link>
     <description>Recent content in Docker on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/docker/" rel="self" type="application/rss+xml" />
+    <atom:link href="/hugo_blog/public/tags/docker/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hugoで作ったwebサイトを公開する</title>
-      <link>https://if001.github.io/post/others/http-portal-for-blog/</link>
+      <link>https://if001.github.io/hugo_blog/public/post/others/http-portal-for-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/post/others/http-portal-for-blog/</guid>
+      <guid>https://if001.github.io/hugo_blog/public/post/others/http-portal-for-blog/</guid>
       <description>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
 いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
 インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。

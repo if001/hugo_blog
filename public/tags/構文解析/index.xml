@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>構文解析 on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</link>
+    <link>https://if001.github.io/hugo_blog/public/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/</link>
     <description>Recent content in 構文解析 on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" rel="self" type="application/rss+xml" />
+    <atom:link href="/hugo_blog/public/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>自然言語処理シリーズの構文解析を読む（概要）</title>
-      <link>https://if001.github.io/post/nlp/nlp-parse-overview-1/</link>
+      <link>https://if001.github.io/hugo_blog/public/post/nlp/nlp-parse-overview-1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/post/nlp/nlp-parse-overview-1/</guid>
+      <guid>https://if001.github.io/hugo_blog/public/post/nlp/nlp-parse-overview-1/</guid>
       <description>はじめに 自然言語処理シリーズの構文解析を読んでいきます。   全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
 概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人の知恵を学習できる。
 この本では以下のような構成となっている。
