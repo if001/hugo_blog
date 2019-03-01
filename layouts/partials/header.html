@@ -43,11 +43,11 @@
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     {{ end }}
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}hugo_blog/public/css/style.css }}">
-    <!-- <link rel="stylesheet" type="text/css" href="{{ "/hugo_blog/public/css/style.css" | relURL }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}css/style.css }}">
+    <link rel="stylesheet" type="text/css" href="{{ "css/style.css" | relURL }}">
     
-    <!-- <link rel="stylesheet" href="/hugo_blog/public/css/myset.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}hugo_blog/public/css/myset.css }}">
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}css/myset.css }}">
+    <link rel="stylesheet" href="{{ "css/myset.css" | relURL }}">
     <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   </head>
   <body>
@@ -56,9 +56,8 @@
       <header class="site-header-myset">
         <div class="site-header-left">
           <!-- <a class="site-header-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a> -->
-	    <!-- <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a> -->
-	    <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="{{.Site.BaseURL}}hugo_blog/public/images/title/title1.jpeg" width="600"></a>
-	    <!-- <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="/hugo_blog/public/images/title/title1.jpeg" width="600"></a>  -->
+	    <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a>
+	    <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="{{.Site.BaseURL}}images/title/title1.jpeg" width="600"></a>
         </div>
       </header>
       <div class="container">
