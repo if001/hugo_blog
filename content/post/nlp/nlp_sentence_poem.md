@@ -1,7 +1,9 @@
-title=文字から文章へのフラクタル性
-slug= char_to_sentences_fractal
-tags=[nlp, ポエム]
-
++++
+title="文字から文章へのフラクタル性"
+slug="char_to_sentences_fractal"
+tags=["nlp","ポエム"]
+draft="true"
++++
 文を生成させたいし、文の集合である文章を書かせたいのだが、そのポエム  
 文字の集まりが単語になり、単語の集まりが文になり、文の集まりが文章になる。  
 

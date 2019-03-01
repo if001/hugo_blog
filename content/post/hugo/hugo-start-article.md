@@ -1,6 +1,8 @@
-title=Hugoでブログを作る
-slug=hugo-start-article
-tags=[Hugo]
++++
+title="Hugoでブログを作る"
+slug="hugo-start-article"
+tags=["Hugo"]
++++
 ## はじめに
 [Hugo](https://gohugo.io/)とは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。
 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。

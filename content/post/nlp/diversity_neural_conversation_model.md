@@ -1,6 +1,8 @@
-title=ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数
-slug=diversity_neural_conversation_model
-tags=[Deeplearning, seq2seq, NLP,論文]
++++
+title="ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数"
+slug="diversity_neural_conversation_model"
+tags=["Deeplearning", "seq2seq","NLP","論文"]
++++
 Qiitaに投稿した記事、[kerasでHREDを構築してみる](https://qiita.com/iss-f/items/0b5a2766e789213b42c1)の記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
 
 A Diversity-Promoting Objective Function for Neural Conversation Models

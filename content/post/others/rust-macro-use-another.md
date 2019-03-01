@@ -1,7 +1,8 @@
-title=Rustでmodule間にまたがるmacro呼び出し
-slug=rust-macro-use-another
-tags=[rust]
-
++++
+title="Rustでmodule間にまたがるmacro呼び出し"
+slug="rust-macro-use-another"
+tags=["rust"]
++++
 Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
 
 日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。

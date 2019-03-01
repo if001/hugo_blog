@@ -1,6 +1,8 @@
-title=kerasでモデルを結合する
-slug=combine_model
-tags=[keras,neuralnet]
++++
+title="kerasでモデルを結合する"
+slug="combine_model"
+tags=["keras","neuralnet"]
++++
 autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
 
 autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。

@@ -2,7 +2,6 @@
 title="falconを使ってみた"
 slug="falcon-tips"
 tags=["python", "falcon"]
-date="2018-10-16T20:48:42+09:00"
 +++
 ## はじめに
 Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとして[falcon](https://falconframework.org/)を使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。

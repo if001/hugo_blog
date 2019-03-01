@@ -1,7 +1,8 @@
-title=GoogleAnalyticsのPV、セッション、ユーザーの定義
-slug=ga-define
-tags=[google-analytics]
-
++++
+title="GoogleAnalyticsのPV、セッション、ユーザーの定義"
+slug="ga-define"
+tags=["google-analytics"]
++++
 ## ユーザー
 PV:ページ毎に閲覧された回数
 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元

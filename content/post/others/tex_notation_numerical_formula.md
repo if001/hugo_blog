@@ -1,7 +1,8 @@
-title=機械学習系の数式によく出てくる記号などのTex表記まとめ
-slug=tex_notation_numerical_formula
-tags=[Tex]
-
++++
+title="機械学習系の数式によく出てくる記号などのTex表記まとめ"
+slug="tex_notation_numerical_formula"
+tags=["Tex"]
++++
 すぐ忘れるのでTex表記をまとめて起きます。
 Qiitaが使っているという[Easy Copy MathJax](https://www.mathjax.org/)を用います。
 

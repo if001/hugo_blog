@@ -1,7 +1,8 @@
-title=Hugoの記事にdescriptionを追加する
-slug=hugo-add-site-description
-tags=[Hugo]
-
++++
+title="Hugoの記事にdescriptionを追加する"
+slug="hugo-add-site-description"
+tags=["Hugo"]
++++
 Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。
 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 

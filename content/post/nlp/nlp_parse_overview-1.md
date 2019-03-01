@@ -1,6 +1,8 @@
-title=自然言語処理シリーズの構文解析を読む（概要）
-slug=nlp-parse-overview-1
-tags=[nlp,構文解析]
++++
+title="自然言語処理シリーズの構文解析を読む（概要）"
+slug="nlp-parse-overview-1"
+tags=["nlp","構文解析"]
++++
 ## はじめに
 自然言語処理シリーズの構文解析を読んでいきます。
 {{<figure src="/images/parse_front_cover.jpg" title="">}}

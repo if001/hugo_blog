@@ -1,7 +1,8 @@
-title=Hugoでリンクを新しいウィンドウで開く
-slug=hugo-href-to-target-blank
-tags=[Hugo]
-
++++
+title="Hugoでリンクを新しいウィンドウで開く"
+slug="hugo-href-to-target-blank"
+tags=["Hugo"]
++++
 リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 
 hrefでは`target='_blank'`を指定すれば良いのだが、markdownでどうすれば良いのか調べた。

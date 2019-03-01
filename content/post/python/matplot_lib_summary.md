@@ -1,6 +1,8 @@
-title=matplotlibのよく使う記法まとめ
-slug=python-matplotlib_base
-tags=[python]
++++
+title="matplotlibのよく使う記法まとめ"
+slug="python-matplotlib_base"
+tags=["python"]
++++
 すぐ忘れるので、matplotlibのよく使う記法をまとめておく  
 公式：https://matplotlib.org/gallery.html  
 

@@ -1,7 +1,8 @@
-title=SeqGANの論文を読む
-slug=seqgan-paper
-tags=[nlp,SeqGAN,論文]
-
++++
+title="SeqGANの論文を読む"
+slug="seqgan-paper"
+tags=["nlp","SeqGAN","論文"]
++++
 SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
 
 https://arxiv.org/pdf/1609.05473.pdf

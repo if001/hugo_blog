@@ -1,6 +1,8 @@
-title=Hugoで作ったwebサイトを公開する
-slug=http-portal-for-blog
-tags=[Hugo, docker]
++++
+title="Hugoで作ったwebサイトを公開する"
+slug="http-portal-for-blog"
+tags=["Hugo", "docker"]
++++
 ## はじめに
 GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
 

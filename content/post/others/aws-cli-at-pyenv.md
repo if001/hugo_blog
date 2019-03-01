@@ -1,6 +1,8 @@
-title=pyenv環境でaws cli入れたらコマンドが見つからない
-slug=aws-cli-at-pyenv
-tags=[python,aws]
++++
+title="pyenv環境でaws cli入れたらコマンドが見つからない"
+slug="aws-cli-at-pyenv"
+tags=["python","aws"]
++++
 
 pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 

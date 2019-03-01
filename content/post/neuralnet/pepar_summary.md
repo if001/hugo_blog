@@ -1,7 +1,8 @@
-title=Deeplearningまわりの最新論文を浅く広くみてまわる
-slug=pepar_summary
-tags=[neuralnet]
-
++++
+title="Deeplearningまわりの最新論文を浅く広くみてまわる"
+slug="pepar_summary"
+tags=["neuralnet"]
++++
 最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。  
 おすすめがあれば教えてください。
 

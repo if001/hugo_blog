@@ -1,6 +1,8 @@
-title=word2vecでベクトルから単語を出力する
-slug=word2vec_output_word
-tags=[python, word2vec]
++++
+title="word2vecでベクトルから単語を出力する"
+slug="word2vec_output_word"
+tags=["python", "word2vec"]
++++
 
 word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。
 stack overflowにあった。

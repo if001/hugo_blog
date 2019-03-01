@@ -1,7 +1,8 @@
-title=KaTeXを使ってみる
-slug=katex-introduction
-tags=[katex]
-
++++
+title="KaTeXを使ってみる"
+slug="katex-introduction"
+tags=["Hugo","katex"]
++++
 これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。
 KaTeX:https://katex.org/
 
