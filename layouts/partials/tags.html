@@ -5,7 +5,8 @@
     {{ range .Params.tags }}
     <li>
 	<!-- <a href="{{$ctx.Site.BaseURL}}{{"/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a> -->
-	<a href="{{$ctx.Site.BaseURL}}{{"/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+	<!-- <a href="{{$ctx.Site.BaseURL}}{{"/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a> -->
+	<a href="{{"/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
     </li>
     {{ end }}
   </ul>
