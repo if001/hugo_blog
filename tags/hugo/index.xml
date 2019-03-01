@@ -97,6 +97,27 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
     </item>
     
     <item>
+      <title>Hugoの記事でコードハイライトする</title>
+      <link>https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight/</guid>
+      <description>Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting
+config.tomlに以下のように記述
+pygmentsCodefences = true pygmentsUseClasses = true 以下のコマンドでcssを生成する。
+$hugo gen chromastyles --style=monokai &amp;gt; syntax.css 生成したcssをindex.htmlなどから読み込むと反映される。
+--styleオプションの指定は、pygmentsから探す。
+highlightjsを使う highlightjs
+対応言語が多いのがメリット。
+以下のようにcdnからとってくるようにしておくと良い。
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css&amp;#34;&amp;gt; &amp;lt;script src=&amp;#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;hljs.initHighlightingOnLoad();&amp;lt;/script&amp;gt; 一行目の記述を以下のように書き換えることでテーマを選択できる。
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;//cdnjs.</description>
+    </item>
+    
+    <item>
       <title>Hugoの記事にdescriptionを追加する</title>
       <link>https://if001.github.io/hugo_blog/public/post/hugo/hugo-add-site-description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

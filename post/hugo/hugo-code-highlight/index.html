@@ -6,13 +6,19 @@
     
 
     
-    <meta name="description" content="">
+    <meta name="description" content="Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting
+config.tomlに以下のように記述
+pygmentsCodefences = true pygmentsUseClasses = true 以下のコマンドでcssを生成する。
+$hugo gen chromastyles --style=monokai &amp;gt; syntax.css 生成したc">
     
 
     
     
     <link rel="shortcut icon" href="/hugo_blog/public/images/favicon/favicon1.jpeg">
-    <link href="https://if001.github.io/hugo_blog/public/tags/tex/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    <link href="https://if001.github.io/hugo_blog/public/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
@@ -34,7 +40,7 @@
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
     
    
-    <title>Tex | アンドロイドは推理小説を描くか?</title>
+    <title>Hugoの記事でコードハイライトする | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -63,20 +69,14 @@ if (!doNotTrack) {
       <div class="container">
         <div id="main">
 
-<div id="article-list">
-  
-  <div id="articles-list-header">
-      <h1>Tags: <span id="archive-value">Tex</span></h1>
-  </div>
-  
-  
-  
-  <div class="article">
-    <h2><a href="https://if001.github.io/hugo_blog/public/post/others/tex_notation_numerical_formula/">機械学習系の数式によく出てくる記号などのTex表記まとめ</a></h2>
-    <div class="article-meta">
-	
-	<span class="posttime">2019/03/01</span>
-      
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>Hugoの記事でコードハイライトする</h1>
+      <div class="article-meta">
+          
+	  <span class="posttime">0001/01/01</span>
+          
 
 <div class="tags">
   <ul>
@@ -84,23 +84,100 @@ if (!doNotTrack) {
     <li>
 	
 	
-	<a href="/hugo_blog/public/tags/tex/">Tex</a>
+	<a href="/hugo_blog/public/tags/hugo/">Hugo</a>
     </li>
     
   </ul>
 </div>
 
 
+      </div>
     </div>
-  </div>
-  
-  <nav>
-    <div id="pager">
-      
-      
+    
+  </header>
+  <div class="content">
+    
 
+<p>Hugoでコードのシンタックスハイライトする場合のメモ<br />
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。</p>
+
+<h2 id="hugo自体の機能使う">Hugo自体の機能使う</h2>
+
+<p>Hugo 0.28からGo機能でシンタックスハイライトが可能になった。<br />
+<a href="https://gohugo.io/content-management/syntax-highlighting/" target="_blank">Syntax Highlighting</a><br />
+config.tomlに以下のように記述</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">pygmentsCodefences</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">pygmentsUseClasses</span> <span class="p">=</span> <span class="kc">true</span></code></pre></div>
+<p>以下のコマンドでcssを生成する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$hugo</span> gen chromastyles --style<span class="o">=</span>monokai &gt; syntax.css</code></pre></div>
+<p>生成したcssをindex.htmlなどから読み込むと反映される。<br />
+<code>--style</code>オプションの指定は、<a href="https://help.farbox.com/pygments.html" target="_blank">pygments</a>から探す。</p>
+
+<h2 id="highlightjsを使う">highlightjsを使う</h2>
+
+<p><a href="https://highlightjs.org/" target="_blank">highlightjs</a><br />
+対応言語が多いのがメリット。</p>
+
+<p>以下のようにcdnからとってくるようにしておくと良い。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span>
+      <span class="na">href</span><span class="o">=</span><span class="s">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">hljs</span><span class="p">.</span><span class="nx">initHighlightingOnLoad</span><span class="p">();&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
+<p>一行目の記述を以下のように書き換えることでテーマを選択できる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css&#34;</span><span class="p">&gt;</span></code></pre></div>
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight//" class="hatena-bookmark-button" data-hatena-bookmark-title="Hugoの記事でコードハイライトする" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="https://if001.github.io/hugo_blog/public/post/hugo/hugo-add-site-description/">Hugoの記事にdescriptionを追加する</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="https://if001.github.io/hugo_blog/public/post/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a>
+        </div>
+        
+      </div>
+      
     </div>
-  </nav>
+  </footer>
 </div>
         </div>
         <div class="sidebar">
