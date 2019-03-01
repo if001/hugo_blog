@@ -5,19 +5,20 @@
     <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
   </div>
   {{ end }}
-  {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+  {{ $paginator := .Paginate (where .Data.Pages "Type" "post") 10 }}
   {{ range $paginator.Pages }}
   <div class="article">
     <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
     <div class="article-meta">
-      <span class="posttime">{{ .Date.Format "2006/01/02" }}</span>
+	<!-- <span class="posttime">{{ .Date.Format "2006/01/02" }}</span> -->
+	<span class="posttime">{{ .Lastmod.Format "2006/01/02" }}</span>
       {{ partial "tags.html" . }}
     </div>
   </div><!-- .article -->
   {{ end }}
   <nav>
     <div id="pager">
-      {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
+      {{ $paginator := .Paginate (where .Data.Pages "Type" "post") 10 }}
       {{ template "_internal/pagination.html" . }}
     </div>
   </nav>
