@@ -107,10 +107,10 @@ code{
     color: #424242;
 }
 .article .tags a {
-    font-size: 12px;
+    font-size: 12px; !important;
 }
 .article .tags a:hover {
-  font-size: 12px;
+  font-size: 12px;  !important;
 }
 .article .content {
     clear: left;
