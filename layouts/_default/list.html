@@ -2,7 +2,7 @@
 <div id="article-list">
   {{ if not .IsHome }}
   <div id="articles-list-header">
-    <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
+      <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
   </div>
   {{ end }}
   {{ $paginator := .Paginate (where .Data.Pages "Type" "post") 10 }}

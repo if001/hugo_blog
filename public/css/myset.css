@@ -109,6 +109,9 @@ code{
 .article .tags a {
     font-size: 12px;
 }
+.article .tags a:hover {
+  font-size: 12px;
+}
 .article .content {
     clear: left;
     color: #424242;
