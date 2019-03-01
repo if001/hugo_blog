@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Falcon on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/falcon/</link>
+    <description>Recent content in Falcon on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Oct 2018 20:48:42 +0900</lastBuildDate>
+    <atom:link href="/tags/falcon/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>falconでアップロードサーバーを作る</title>
+      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
+      
+      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
+クライアント クライアントにはpythonのrequestsを使います。
+fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
+image_name = &amp;quot;test.png&amp;quot; with open(image_file_path, &amp;quot;rb&amp;quot;) as image: files = {&#39;file&#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text)  サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
+なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
+fileは次のようにrequestから取得できる
+image = req.get_param(&#39;file&#39;) raw = image.file.read()  ファイル名は次のように取得
+image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
+from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&#39;file&#39;) raw = image.file.read() image_name = image.filename filepath = os.</description>
+    </item>
+    
+    <item>
+      <title>falconを使ってみた</title>
+      <link>http://www.if-blog.site/post/falcon/falcon-tips/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/falcon/falcon-tips/</guid>
+      <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;quot;&amp;quot;&amp;quot;Handles GET requests&amp;quot;&amp;quot;&amp;quot; quote = { &#39;quote&#39;: ( &amp;quot;I&#39;ve always been more interested in &amp;quot; &amp;quot;the future than in the past.&amp;quot; ), &#39;author&#39;: &#39;Grace Hopper&#39; } resp.media = quote api = falcon.API() api.add_route(&#39;/quote&#39;, QuoteResource())  処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
+Middleware&#39;s process_request Middleware&#39;s process_resource Hook&#39;s before Resource&#39;s on_**** Hook&#39;s after Middleware&#39;s process_response  引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836
+middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。
+hooks hooksは以下のように使う。(公式)</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -8,11 +8,11 @@ title-img{
 }
 
 .container{
-    width:1200px;
+    /* width:1200px; */
 }
 
 .article{
-    width:741px;
+    /* width:741px; */
 }
 
 .site-header-myset {
@@ -21,24 +21,24 @@ title-img{
   margin-bottom: 40px;
 }
 .site-header-left{
-    width:1200px;
+    /* width:1200px; */
 }
 
 h1 {
   font-size: 28px;
   border-bottom: 5px double #cccccc;
-  color: black;
+  color: #424242;
 }
 
 h2 {
   font-size: 24px;
   border-bottom: 1px solid #cccccc;
-  color: black;
+  color: #424242;
 }
 
 h3 {
     font-size: 18px;
-    color: black;
+    color: #424242;
 }
 
 h2:before {
@@ -97,14 +97,22 @@ code{
 #article-list .article{
     /* margin-top:30px; */
     margin-top:0px;
-    margin-bottom:60px;
-    padding-bottom:40px;
+    margin-bottom:30px;
+    padding-bottom:20px;
 }
 #article-list h2{
     font-size:20px;
 }
-
-
+#article-list h2 a{
+    color: #424242;
+}
+.article .tags a {
+    font-size: 12px;
+}
+.article .content {
+    clear: left;
+    color: #424242;
+}
 #pager .pagination .active a{
     height:12px;
 }
@@ -136,3 +144,7 @@ table {
       margin-top: 0; }
     table tr th :last-child, table tr td :last-child {
       margin-bottom: 0; }
+
+#author span {
+    color: #424242;
+}

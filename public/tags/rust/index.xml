@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rust on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/rust/</link>
+    <description>Recent content in Rust on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/rust/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Rustでmodule間にまたがるmacro呼び出し</title>
+      <link>http://www.if-blog.site/post/others/rust-macro-use-another/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/others/rust-macro-use-another/</guid>
+      <description>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
+日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
+rustのバージョンは1.27.0
+参考 https://github.com/rust-lang/book/issues/401
+マクロの書き方とか、rustのimport周りは意外と日本語記事があったので、そっちを参考に
+ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。
+crate/ src/ main.rs lib.rs mod1/ mod.rs macro.rs mod2/ mod.rs macro_run.rs  この時、main.rsを実行すると、macro_run.rsの中の関数が呼ばれ、この関数内でmacro.rsに定義してあるマクロが呼び出されるとする。
+簡単に言うと、モジュール間に跨ったマクロ呼び出しが行いたい。
+書き方 main.rsでは、macro_run内にあるrun関数を呼ぶ。
+// main.rs extern crate rust_test2; use rust_test2::mod2::macro_run; fn main() { macro_run::run(); }  run関数内では、foo!というマクロを使う。
+// macro_run.rs #[macro_use] use mod1::macro_test::*; pub fn run() { let foo = foo!(1); println!(&amp;quot;{}&amp;quot;,foo); }  fooマクロは、引数をそのまま返す単純なマクロ。
+// macro.rs #[macro_use] macro_rules! foo { ($e: expr) =&amp;gt; { $e } }  macro_useをつける。</description>
+    </item>
+    
+  </channel>
+</rss>

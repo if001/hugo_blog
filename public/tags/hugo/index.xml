@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/hugo/</link>
+    <description>Recent content in Hugo on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 16 Oct 2018 20:48:42 +0900</lastBuildDate>
+    <atom:link href="/tags/hugo/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>falconでアップロードサーバーを作る</title>
+      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
+      
+      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
+クライアント クライアントにはpythonのrequestsを使います。
+fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
+image_name = &amp;quot;test.png&amp;quot; with open(image_file_path, &amp;quot;rb&amp;quot;) as image: files = {&#39;file&#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text)  サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
+なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
+fileは次のようにrequestから取得できる
+image = req.get_param(&#39;file&#39;) raw = image.file.read()  ファイル名は次のように取得
+image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
+from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&#39;file&#39;) raw = image.file.read() image_name = image.filename filepath = os.</description>
+    </item>
+    
+    <item>
+      <title>Hugoでブログを作る</title>
+      <link>http://www.if-blog.site/post/hugo/hugo-start-article/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo-start-article/</guid>
+      <description>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
+サイトの作成 インストール brew install hugo  テンプレートの作成 hugo new site hugo-test  これで、次のようにテンプレートが作成されます。
+$ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/  テーマの適応 https://themes.gohugo.io/ ここからテーマを探す。
+例として、https://themes.gohugo.io/hugo-theme-learn/ を使います。
+$ cd hugo-test/themes $ git clone https://github.com/matcornic/hugo-theme-learn.git  テーマを適応させるために、config.tomlにthemeを記述します。
+theme = &amp;quot;hugo-theme-learn&amp;quot;  サーバーの起動 $ hugo server -D -t hugo-theme-learn  オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。 cloneしてきたtheme内の、layoutとstaticなどを、作成したテンプレート内のlayout、staticに移動しておくと、templateのマイナーチェンジが行えます。
+デフォルトでhttp://localhost:1313/で起動するのでアクセスしてみる。
+記事の追加 記事の作成
+$ hugo new post/test.md hugo_test/content/post/test.md created  以下のようなmarkdownファイルが作成される
+cat content/post/test.md --- title: &amp;quot;Test&amp;quot; date: 2018-10-15T18:51:47+09:00 draft: true ---  ここで、draftは記事を後悔するかのフラグ この出力フォーマットも、独自に設定が可能</description>
+    </item>
+    
+    <item>
+      <title>Hugoでリンクを新しいウィンドウで開く</title>
+      <link>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</guid>
+      <description>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
+hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
+[blackfriday] hrefTargetBlank = true  簡単！
+参考：
+ https://gohugo.io/getting-started/configuration/ https://www.meganii.com/blog/2017/02/25/hugo-markdown-href-target-blank/  </description>
+    </item>
+    
+    <item>
+      <title>Hugoで作ったwebサイトを公開する</title>
+      <link>http://www.if-blog.site/post/others/http-portal-for-blog/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/others/http-portal-for-blog/</guid>
+      <description>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
+ドメイン ドメインは、お名前.comで取得します。これは特に説明なしでいけます。
+DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。
+Google Cloud Consoleから、「ネットワークサービス」→「Cloud DNS」を選択します。
+任意のゾーン名、取得したドメイン、(説明)を入力して作成。
+  Aレコードの登録 DNS名には、www.取得したドメイン、リソースタイプにはAレコードを設定し、作成します。   レジストラへの登録 生成されるNSレコードのns-cloud-c1.googledomains.com.をお名前.com側に登録します。
+https化 let&amp;rsquo;s encryptを使ってhttps化しようと思っていたところ便利なものを発見したのでこちらを使います。
+https-portal
+自動で証明書の更新も行ってくれます。すごい。便利。
+親切にdocker-composeが公式に載せてあるので、参考にします。 docker-composeのインストールはpipなどで行ってください。
+https-portal: image: steveltn/https-portal:1 ports: - &#39;80:80&#39; - &#39;443:443&#39; links: - wordpress restart: always environment: DOMAINS: &#39;wordpress.example.com -&amp;gt; http://wordpress:80&#39; # STAGE: &#39;production&#39; # FORCE_RENEW: &#39;true&#39; wordpress: image: wordpress links: - db:mysql db: image: mariadb environment: MYSQL_ROOT_PASSWORD: &#39;&amp;lt;a secure password&amp;gt;&#39;  imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。</description>
+    </item>
+    
+    <item>
+      <title>Hugoにgoogle analyticsを導入する</title>
+      <link>http://www.if-blog.site/post/hugo/hugo-ga/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo-ga/</guid>
+      <description>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。</description>
+    </item>
+    
+    <item>
+      <title>Hugoの記事にdescriptionを追加する</title>
+      <link>http://www.if-blog.site/post/hugo/hugo-add-site-description/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo-add-site-description/</guid>
+      <description>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ .Description }}  markdown側では、ヘッダーに次のように記述します。
+description=&amp;quot;hogehoge&amp;quot;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。
+次のようにサイトサマリーを参照することも可能です
+{{ .Summary }}  ただし、デフォルトでサマリーが大きくなりすぎるので、config.tomlに次のような記述を追加します。
+hasCJKLanguage = true  こうすることでサマリーがいい感じのサイズになります。
+参考：https://blog.awm.jp/2016/01/02/hugo/
+最終的に、header.htmlなどに次のように記述しておけば、descriptionを書いておくとそちらが使われるようになります。
+{{ if .Description }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ .Description }}&amp;quot;&amp;gt; {{ else }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ .Summary }}&amp;quot;&amp;gt; {{ end }}  サイトのディスクリプションと記事のディスクリプションを分ける(追記) {{ if .IsHome }}でトップページかどうか判定できるので、トップページならば、configのディスクリプションを使い、記事内ならば記事に設定してあるディスクリプションを使う。
+html側は次のように記述する。
+{{ if .IsHome }} {{ with .Site.Params.description }} &amp;lt;meta name=&amp;quot;description&amp;quot; content=&amp;quot;{{ . }}&amp;quot;&amp;gt; {{ end }} {{ end }} {{ if .</description>
+    </item>
+    
+    <item>
+      <title>Hugoの記事に画像を載せる</title>
+      <link>http://www.if-blog.site/post/hugo/hugo_on_image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo_on_image/</guid>
+      <description>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
+画像の場合は、static/media以下に画像ファイルが置いてある状態で、次のように書く。
+\{{&amp;lt; figure src=&amp;quot;/media/spf13.jpg&amp;quot; title=&amp;quot;Steve Francia&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  画像のサイズも指定可能。
+ここでは、shortcodesをエスケープさせるために、/*を使っている。
+{{&amp;lt; code &amp;gt;}}  すると、次のようなHTMLが出力される。
+&amp;lt;figure&amp;gt; &amp;lt;img src=&amp;quot;/media/spf13.jpg&amp;quot; /&amp;gt; &amp;lt;figcaption&amp;gt; &amp;lt;h4&amp;gt;Steve Francia&amp;lt;/h4&amp;gt; &amp;lt;/figcaption&amp;gt; &amp;lt;/figure&amp;gt;  </description>
+    </item>
+    
+    <item>
+      <title>KaTeXを使ってみる</title>
+      <link>http://www.if-blog.site/post/hugo/katex-introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/katex-introduction/</guid>
+      <description>これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
+以下を加えるだけでおk
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;quot; /&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;quot;[[&amp;quot;, right: &amp;quot;]]&amp;quot;, display: true},{left: &amp;quot;$&amp;quot;, right: &amp;quot;$&amp;quot;, display: false}]})});&amp;lt;/script&amp;gt;  MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。
+参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</description>
+    </item>
+    
+  </channel>
+</rss>

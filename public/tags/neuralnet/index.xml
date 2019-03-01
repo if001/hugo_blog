@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Neuralnet on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/neuralnet/</link>
+    <description>Recent content in Neuralnet on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/neuralnet/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deeplearningまわりの最新論文を浅く広くみてまわる</title>
+      <link>http://www.if-blog.site/post/neuralnet/pepar_summary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/neuralnet/pepar_summary/</guid>
+      <description>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
+おすすめがあれば教えてください。
+Google Scholar: https://scholar.google.com/schhp?hl=ja
+研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
+いろいろ論文の検索エンジン使ってたけど、結局これが残った。texの引用が楽
+arXiv arXiv https://arxiv.org/
+トップページは慣れないとちょっと見づらい。有名な研究者で検索したものや分野で絞り込んだものをチェックするのが使いやすそう。
+arXivTimes https://medium.com/@arxivtimes
+日本語、arXivのまとめ系、ツイッター
+論文まとめてくれてるGitHub https://github.com/dennybritz/deeplearning-papernotes
+arXivのまとめ。古いものは2011年から、新しいものは2018まで更新がある。
+企業の論文 DeepMind https://deepmind.com/research/publications/
+Microsoft Research Publications http://research.microsoft.com/apps/catalog/default.aspx?t=publications&amp;amp;ra=47200
+Google Research Publications http://research.google.com/pubs/ArtificialIntelligenceandMachineLearning.html
+Yahoo! Labs http://labs.yahoo.com/publication/?area=machine-learning</description>
+    </item>
+    
+    <item>
+      <title>kerasでモデルを結合する</title>
+      <link>http://www.if-blog.site/post/neuralnet/combine_model/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/neuralnet/combine_model/</guid>
+      <description>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
+autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
+Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
+Kerasのバージョンは、2.1.1
+まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。
+def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.summary() return model def model2(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.summary() return model  まず、model1へのインプットを作る。model1のアウトプットをmodel2のインプットにし、Modelのインスタンスを作る。
+m1 = model1() m2 = model2() inp = Input(shape=(None, 10)) model1_output = m1(inp) out = m2(model1_output) model = Model(inp, out) model.summary()  すると、こんな感じでモデルが結合できたのが確認できる。
+Using TensorFlow backend. _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_1 (InputLayer) (None, None, 10) 0 _________________________________________________________________ dense_1 (Dense) (None, None, 10) 110 ================================================================= Total params: 110 Trainable params: 110 Non-trainable params: 0 _________________________________________________________________ _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_2 (InputLayer) (None, None, 10) 0 _________________________________________________________________ dense_2 (Dense) (None, None, 10) 110 ================================================================= Total params: 110 Trainable params: 110 Non-trainable params: 0 _________________________________________________________________ _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_3 (InputLayer) (None, None, 10) 0 _________________________________________________________________ model_1 (Model) (None, None, 10) 110 _________________________________________________________________ model_2 (Model) (None, None, 10) 110 ================================================================= Total params: 220 Trainable params: 220 Non-trainable params: 0 _________________________________________________________________  コード全体はこんな感じ。</description>
+    </item>
+    
+  </channel>
+</rss>

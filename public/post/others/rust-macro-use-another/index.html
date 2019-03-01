@@ -6,13 +6,12 @@
     
 
     
-    <meta name="description" content="title=Rustでmodule間にまたがるmacro呼び出し slug=rust-macro-use-another tags=[rust]
-Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
+    <meta name="description" content="Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
 日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
 rustのバージョンは1.27.0
 参考 https://github.com/rust-lang/book/issues/401
 マクロの書き方とか、rustのimport周りは意外と日本語記事があったので、そっちを参考に
-ファイル構成 lib.rsでmodをまとめて、main.rs">
+ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやす">
     
 
     
@@ -30,7 +29,7 @@ rustのバージョンは1.27.0
     
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" href="/css/myset.css">
-    <title> | アンドロイドは推理小説を描くか?</title>
+    <title>Rustでmodule間にまたがるmacro呼び出し | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -60,10 +59,22 @@ if (!doNotTrack) {
 <div class="article">
   <header>
     <div class="article-header">
-      <h1></h1>
+      <h1>Rustでmodule間にまたがるmacro呼び出し</h1>
       <div class="article-meta">
-        <span class="posttime">0001/01/01</span>
+          
+	  <span class="posttime">2019/03/01</span>
         
+<div class="tags">
+  <ul>
+    
+    <li>
+      <a href="http://www.if-blog.site/tags/rust/">rust</a>
+      
+    </li>
+    
+  </ul>
+</div>
+
 
       </div>
     </div>
@@ -71,10 +82,6 @@ if (!doNotTrack) {
   </header>
   <div class="content">
     
-
-<p>title=Rustでmodule間にまたがるmacro呼び出し
-slug=rust-macro-use-another
-tags=[rust]</p>
 
 <p>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。</p>
 
@@ -203,7 +210,7 @@ pub mod mod1;
     
     
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/others/rust-macro-use-another//" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/others/rust-macro-use-another//" class="hatena-bookmark-button" data-hatena-bookmark-title="Rustでmodule間にまたがるmacro呼び出し" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     
     
@@ -224,13 +231,13 @@ pub mod mod1;
         
         <div id="pagenavigation-next">
           <span class="pagenav-label">Previous</span>
-          <a href="http://www.if-blog.site/post/others/tex_notation_numerical_formula/"></a>
+          <a href="http://www.if-blog.site/post/nlp/seqgan-paper/">SeqGANの論文を読む</a>
         </div>
         
         
         <div id="pagenavigation-prev">
           <span class="pagenav-label">Next</span>
-          <a href="http://www.if-blog.site/post/others/http-portal-for-blog/"></a>
+          <a href="http://www.if-blog.site/post/hugo/katex-introduction/">KaTeXを使ってみる</a>
         </div>
         
       </div>
@@ -277,9 +284,333 @@ pub mod mod1;
           <li>
 
 	      
-	      <a href="http://www.if-blog.site/tags/hoge/" style="font-size: 14px;"><span></span> hoge </a>
+	      <a href="http://www.if-blog.site/tags/aws/" style="font-size: 14px;"><span></span> aws </a>
 	      
 	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/deeplearning/" style="font-size: 14px;"><span></span> deeplearning </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/docker/" style="font-size: 14px;"><span></span> docker </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/falcon/" style="font-size: 17px;"><span></span> falcon </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/google-analytics/" style="font-size: 17px;"><span></span> google-analytics </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/hugo/" style="font-size: 20px;"><span></span> hugo </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/katex/" style="font-size: 14px;"><span></span> katex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/keras/" style="font-size: 14px;"><span></span> keras </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/neuralnet/" style="font-size: 17px;"><span></span> neuralnet </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/nlp/" style="font-size: 17px;"><span></span> nlp </a>
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	  
+	      
+	      <a href="http://www.if-blog.site/tags/python/" style="font-size: 20px;"><span></span> python </a>
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/rust/" style="font-size: 14px;"><span></span> rust </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seq2seq/" style="font-size: 14px;"><span></span> seq2seq </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/seqgan/" style="font-size: 14px;"><span></span> seqgan </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/test/" style="font-size: 14px;"><span></span> test </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/tex/" style="font-size: 14px;"><span></span> tex </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/word2vec/" style="font-size: 14px;"><span></span> word2vec </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" style="font-size: 14px;"><span></span> 構文解析 </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+	
+          <li>
+
+	      
+	      
+	      
+	      <a href="http://www.if-blog.site/tags/%E8%AB%96%E6%96%87/" style="font-size: 17px;"><span></span> 論文 </a>
 	      
 	  
 	      
@@ -320,7 +651,7 @@ pub mod mod1;
             <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
             <span>
               
-              Copyright (c) 0001, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              Copyright (c) 2019, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
               
             </span>
           </div>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/python/</link>
+    <description>Recent content in Python on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Mar 2019 20:48:42 +0900</lastBuildDate>
+    <atom:link href="/tags/python/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>pythonで拡張子を取得する</title>
+      <link>http://www.if-blog.site/post/python-get-extn/</link>
+      <pubDate>Fri, 01 Mar 2019 20:48:42 +0900</pubDate>
+      
+      <guid>http://www.if-blog.site/post/python-get-extn/</guid>
+      <description>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
+import os file_path = &amp;quot;hoge/test.md&amp;quot; root, ext = os.path.splitext(file_path) print(root, ext)  出力
+hoge/test .md  </description>
+    </item>
+    
+    <item>
+      <title>falconでアップロードサーバーを作る</title>
+      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
+      
+      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
+クライアント クライアントにはpythonのrequestsを使います。
+fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
+image_name = &amp;quot;test.png&amp;quot; with open(image_file_path, &amp;quot;rb&amp;quot;) as image: files = {&#39;file&#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text)  サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
+なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
+fileは次のようにrequestから取得できる
+image = req.get_param(&#39;file&#39;) raw = image.file.read()  ファイル名は次のように取得
+image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
+from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&#39;file&#39;) raw = image.file.read() image_name = image.filename filepath = os.</description>
+    </item>
+    
+    <item>
+      <title>falconを使ってみた</title>
+      <link>http://www.if-blog.site/post/falcon/falcon-tips/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/falcon/falcon-tips/</guid>
+      <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;quot;&amp;quot;&amp;quot;Handles GET requests&amp;quot;&amp;quot;&amp;quot; quote = { &#39;quote&#39;: ( &amp;quot;I&#39;ve always been more interested in &amp;quot; &amp;quot;the future than in the past.&amp;quot; ), &#39;author&#39;: &#39;Grace Hopper&#39; } resp.media = quote api = falcon.API() api.add_route(&#39;/quote&#39;, QuoteResource())  処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
+Middleware&#39;s process_request Middleware&#39;s process_resource Hook&#39;s before Resource&#39;s on_**** Hook&#39;s after Middleware&#39;s process_response  引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836
+middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。
+hooks hooksは以下のように使う。(公式)</description>
+    </item>
+    
+    <item>
+      <title>matplotlibでよく使う記法まとめ</title>
+      <link>http://www.if-blog.site/post/python/python-matplotlib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/python/python-matplotlib/</guid>
+      <description>matplotlibでよく使う記法をまとめておきます。</description>
+    </item>
+    
+    <item>
+      <title>matplotlibのよく使う記法まとめ</title>
+      <link>http://www.if-blog.site/post/python/python-matplotlib_base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/python/python-matplotlib_base/</guid>
+      <description>すぐ忘れるので、matplotlibのよく使う記法をまとめておく
+公式：https://matplotlib.org/gallery.html
+普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
+matplotlib,pyplot,pylabの違い matplotlibがパッケージ全体
+pyplotはそのモジュール、スクリプトで作図するときに使う
+pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい
+基本的には、import matplotlib.pyplot as pltのように使う
+参考： https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot
+グラフを描く シンプルな例は以下
+import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.show()  macでmatplotlibを呼ぶとValueError: unknown locale: UTF-8で怒られることがある。
+locale周りの設定がおかしいため。以下を参考に直す。
+Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい
+https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html
+インスタンス化する plt.figure()でインスタンス化し、axesに対してプロットしていく
+多分この使い方が多いと思う
+import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.</description>
+    </item>
+    
+    <item>
+      <title>pyenv環境でaws cli入れたらコマンドが見つからない</title>
+      <link>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</guid>
+      <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
+バージョン：pyenv:1.0.10
+公式通りにインストールする。
+$ pip3 install awscli --upgrade --user  すると、
+$ aws -bash: aws: command not found  コマンドが見つからない&amp;hellip;.
+調べると、$HOME/.localにインストールされるらしいので、パスを通す。
+aws --version aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19  できた！
+pyenvが問題なのかはわからん&amp;hellip;.</description>
+    </item>
+    
+    <item>
+      <title>word2vecでベクトルから単語を出力する</title>
+      <link>http://www.if-blog.site/post/nlp/word2vec_output_word/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/nlp/word2vec_output_word/</guid>
+      <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
+結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0]  ただし、第3引数は出力する類似単語数を表す。
+使用例 青空文庫：江戸川乱歩の解析をしたので、その例を示す。
+model.wv[&amp;quot;ベクトル化したい単語&amp;quot;]  で単語をベクトル化できる。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;quot;犯罪&amp;quot;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word)  上記のようなコードを実行すると、
+[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&#39;犯罪&#39;, 1.0000001192092896)]  となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
+出力数を変更 vector = model.wv[&amp;quot;明智&amp;quot;] word = model.</description>
+    </item>
+    
+  </channel>
+</rss>

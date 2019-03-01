@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Analytics on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/google-analytics/</link>
+    <description>Recent content in Google Analytics on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/google-analytics/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>GoogleAnalyticsのPV、セッション、ユーザーの定義</title>
+      <link>http://www.if-blog.site/post/others/ga-define/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/others/ga-define/</guid>
+      <description> ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
+GDPRにより以下のものから保持期間を選択できる
+ 14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン </description>
+    </item>
+    
+    <item>
+      <title>Hugoにgoogle analyticsを導入する</title>
+      <link>http://www.if-blog.site/post/hugo/hugo-ga/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo-ga/</guid>
+      <description>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。</description>
+    </item>
+    
+  </channel>
+</rss>
