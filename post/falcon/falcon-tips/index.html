@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    
+
+    
+    <meta name="description" content="title=falconを使ってみた slug=falcon-tips tags=[python, falcon]
+はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(s">
+    
+
+    
+    
+    <link rel="shortcut icon" href="/images/favicon/favicon1.jpeg">
+    <link href="http://www.if-blog.site/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/myset.css">
+    <title> | アンドロイドは推理小説を描くか?</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+      <header class="site-header-myset">
+        <div class="site-header-left">
+          
+	  <a class="site-header-title" href="http://www.if-blog.site"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a> 
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1></h1>
+      <div class="article-meta">
+        <span class="posttime">0001/01/01</span>
+        
+
+      </div>
+    </div>
+    
+  </header>
+  <div class="content">
+    
+
+<p>title=falconを使ってみた
+slug=falcon-tips
+tags=[python, falcon]</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとして<a href="https://falconframework.org/" target="_blank">falcon</a>を使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。</p>
+
+<p>簡単なtipsをメモしておく。</p>
+
+<h2 id="シンプルな例">シンプルな例</h2>
+
+<p>falconの公式に乗っているように、シンプルな例は次のようになる。</p>
+
+<pre><code class="language-python"># sample.py
+
+import falcon
+
+class QuoteResource:
+    def on_get(self, req, resp):
+        &quot;&quot;&quot;Handles GET requests&quot;&quot;&quot;
+        quote = {
+            'quote': (
+                &quot;I've always been more interested in &quot;
+                &quot;the future than in the past.&quot;
+            ),
+            'author': 'Grace Hopper'
+        }
+
+        resp.media = quote
+
+api = falcon.API()
+api.add_route('/quote', QuoteResource())
+</code></pre>
+
+<h2 id="処理シーケンス">処理シーケンス</h2>
+
+<p>falconにはmiddlewareの他に、hooksというものが使える。
+hooksを含めた処理シーケンスは次のようになる。</p>
+
+<pre><code>Middleware's process_request
+Middleware's process_resource
+Hook's before
+Resource's on_****
+Hook's after
+Middleware's process_response
+</code></pre>
+
+<p>引用：<a href="https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836" target="_blank">https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836</a></p>
+
+<p>middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。</p>
+
+<h2 id="hooks">hooks</h2>
+
+<p>hooksは以下のように使う。(<a href="https://falcon.readthedocs.io/en/stable/api/hooks.html" target="_blank">公式</a>)</p>
+
+<pre><code class="language-python">def validate_image_type(req, resp, resource, params):
+	....
+
+@falcon.before(validate_image_type)
+def on_post(self, req, resp):
+    pass
+</code></pre>
+
+<p>処理を差し込みたいメソッドにでコレーターでつけるだけ。</p>
+
+<h2 id="middleware">middleware</h2>
+
+<p>corsくらいしか使わなかったが、dbのconnection poolとかに使うようのものとかあるんだろう。(<a href="https://falcon.readthedocs.io/en/stable/api/middleware.html" target="_blank">公式</a>)</p>
+
+<pre><code class="language-python">class CORSMiddleware:
+    def process_request(self, req, resp):
+        resp.set_header('Access-Control-Allow-Origin', '*')
+</code></pre>
+
+<h2 id="エラーハンドリング">エラーハンドリング</h2>
+
+<p>routeが見つからなかった時に、エラーリスポンスを返したいときは以下のようにする。(<a href="https://falcon.readthedocs.io/en/stable/api/errors.html" target="_blank">公式</a>)</p>
+
+<pre><code class="language-python">class Index(object):
+    def on_get(self, req, resp):
+        resp.body = json.dumps({&quot;message&quot;:&quot;ok&quot;})
+
+app = falcon.API()
+app.add_route(&quot;/&quot;, Index())
+app.add_sink(handle_404, '')
+
+if __name__ == &quot;__main__&quot;:
+    from wsgiref import simple_server
+    httpd = simple_server.make_server(&quot;127.0.0.7&quot;, 8000, app)
+    httpd.serve_forever()
+
+</code></pre>
+
+<p>exceptionなどが起きた場合でも、200のリスポンスを返し、レスポンスボディの中でエラーコードとメッセージを返したかったが、うまく行かなかったので、これは次の機会にやる。</p>
+
+<h2 id="requestの取得">requestの取得</h2>
+
+<p>requsetの取得は以下のようになる。(<a href="https://falcon.readthedocs.io/en/stable/api/request_and_response.html" target="_blank">公式</a>)</p>
+
+<pre><code class="language-python">class HealthCheck(object):
+def on_get(self, req, resp):
+	print(req.headers) # headerの取得
+	print(req.params['name']) # request paramの取得
+
+   # request bodyの取得
+    body = req.stream.read().decode(&quot;utf-8&quot;)
+    data = json.loads(body)
+    name = data['name']
+
+app = falcon.API()
+app.add_route(&quot;/&quot;, index())
+
+if __name__ == &quot;__main__&quot;:
+    from wsgiref import simple_server
+    httpd = simple_server.make_server(&quot;127.0.0.7&quot;, 8000, app)
+    httpd.serve_forever()
+</code></pre>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/falcon/falcon-tips//" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="http://www.if-blog.site/post/hugo/hugo-add-site-description/"></a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="http://www.if-blog.site/post/falcon/falcon-image-upload/"></a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <p><span>いふ</span></p>
+      <p><span>自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。</span></p>
+      <div>
+        
+        <a href="https://twitter.com/if_004" target="_black"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        <a href="https://github.com/if001" target="_black"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/hoge/" style="font-size: 14px;"><span></span> hoge </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+      </ul>
+    </div>
+  </div>
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 0001, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+
+
+
+</html>
+
+
+

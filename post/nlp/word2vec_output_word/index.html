@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    
+
+    
+    <meta name="description" content="title=word2vecでベクトルから単語を出力する slug=word2vec_output_word tags=[python, word2vec]
+word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
+結論 結論から言うと、以下のように適当にモデルを作">
+    
+
+    
+    
+    <link rel="shortcut icon" href="/images/favicon/favicon1.jpeg">
+    <link href="http://www.if-blog.site/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/myset.css">
+    <title> | アンドロイドは推理小説を描くか?</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+      <header class="site-header-myset">
+        <div class="site-header-left">
+          
+	  <a class="site-header-title" href="http://www.if-blog.site"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a> 
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1></h1>
+      <div class="article-meta">
+        <span class="posttime">0001/01/01</span>
+        
+
+      </div>
+    </div>
+    
+  </header>
+  <div class="content">
+    
+
+<p>title=word2vecでベクトルから単語を出力する
+slug=word2vec_output_word
+tags=[python, word2vec]</p>
+
+<p>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。
+stack overflowにあった。
+<a href="https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec" target="_blank">https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec</a></p>
+
+<h2 id="結論">結論</h2>
+
+<p>結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。</p>
+
+<pre><code class="language-python">sentences = gensim.models.word2vec.Text8Corpus(filename)
+model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4)
+model.most_similar( [ vector ], [], 1)[0][0]
+</code></pre>
+
+<p>ただし、第3引数は出力する類似単語数を表す。</p>
+
+<h2 id="使用例">使用例</h2>
+
+<p><a href="http://www.aozora.gr.jp/index_pages/person1779.html" target="_blank">青空文庫：江戸川乱歩</a>の解析をしたので、その例を示す。</p>
+
+<pre><code class="language-python">model.wv[&quot;ベクトル化したい単語&quot;]
+</code></pre>
+
+<p>で単語をベクトル化できる。</p>
+
+<pre><code class="language-python">sentences = gensim.models.word2vec.Text8Corpus(filename)
+model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4)
+vector = model.wv[&quot;犯罪&quot;]
+word = model.most_similar( [ vector ], [], 1)
+print(vector)
+print(word)
+</code></pre>
+
+<p>上記のようなコードを実行すると、</p>
+
+<pre><code class="language-bash">[-0.01494294 -0.1509463   0.06123272 ...,  0.01335443  0.03439184
+  0.05130962]
+[('犯罪', 1.0000001192092896)]
+</code></pre>
+
+<p>となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。</p>
+
+<h3 id="出力数を変更">出力数を変更</h3>
+
+<pre><code class="language-python">vector = model.wv[&quot;明智&quot;]
+word = model.most_similar( [ vector ], [], 5)
+</code></pre>
+
+<p>以下のような結果が得られる。</p>
+
+<pre><code class="language-bash">[('明智', 1.0000001192092896), ('名', 0.8110731840133667), ('博士',　0.8006758093833923), ('氏', 0.7667115330696106), ('殿村', 0.7487545609474182)]
+</code></pre>
+
+<h3 id="単語のみを出力">単語のみを出力</h3>
+
+<p>単語のみを出力するために、以下のようにしておくとよい</p>
+
+<pre><code class="language-python">model.most_similar( [ vector ], [], 1)[0][0]
+</code></pre>
+
+<h3 id="任意のベクトル入力">任意のベクトル入力</h3>
+
+<p>以下のようにして、任意のベクトルができる。</p>
+
+<pre><code class="language-python">vec = np.zeros(3000)
+vec[2] = 1
+vec = np.array(vec,dtype='f')
+word = model.most_similar( [ vector ], [], 5)
+</code></pre>
+
+<p>出力結果</p>
+
+<pre><code class="language-bash">[('点い', 0.04825586825609207), ('ワハハハハハハハハ', 0.04788881167769432), ('珍奇', 0.04669386148452759), ('憎らしい', 0.04500409588217735), ('な', 0.04486800357699394)]
+</code></pre>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p><code>most_similar</code>使えばいける。ちなみに公式には、<code>model.wv.most_similar</code>って書いてあったけど、wvなくてもできた。公式には、ベクトルは、<code>model.wv</code>のKeyedVectorsインスタンスに保存されてるって書いてあったけどよくわかってない。
+今回は総単語数19002だったのだが、実行時間は1分ほど。word2vec高速すごい。</p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/nlp/word2vec_output_word//" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="http://www.if-blog.site/post/others/aws-cli-at-pyenv/"></a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="http://www.if-blog.site/post/nlp/seqgan_paper/"></a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <p><span>いふ</span></p>
+      <p><span>自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。</span></p>
+      <div>
+        
+        <a href="https://twitter.com/if_004" target="_black"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        <a href="https://github.com/if001" target="_black"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/hoge/" style="font-size: 14px;"><span></span> hoge </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+      </ul>
+    </div>
+  </div>
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 0001, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+
+
+
+</html>
+
+
+
