@@ -8,9 +8,9 @@
     
     <meta name="description" content="リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
-[blackfriday] hrefTargetBlank = true  簡単！
+[blackfriday] hrefTargetBlank = true 簡単！
 参考：
- https://gohugo.io/getting-started/configuration/ https://www.meganii.com/blog/2017/02/25/hugo-markdown-href-ta">
+ https://gohugo.io/getting-started/configuration/ https://www.meganii.com/blog/2017/02/25/hugo-markdown-href-tar">
     
 
     
@@ -22,15 +22,20 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>Hugoでリンクを新しいウィンドウで開く | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -92,11 +97,8 @@ if (!doNotTrack) {
 
 <p>hrefでは<code>target='_blank'</code>を指定すれば良いのだが、markdownでどうすれば良いのか調べた。
 Hugoでは次のようにconfig.tomlするといける。</p>
-
-<pre><code class="language-toml">[blackfriday]
-   hrefTargetBlank = true
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">blackfriday</span><span class="p">]</span>
+   <span class="nx">hrefTargetBlank</span> <span class="p">=</span> <span class="kc">true</span></code></pre></div>
 <p>簡単！</p>
 
 <p>参考：</p>

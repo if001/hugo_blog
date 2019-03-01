@@ -7,7 +7,7 @@
 
     
     <meta name="description" content="ファイルの拡張子を取得する方法をいつも忘れるのでメモ
-import os file_path = &amp;quot;hoge/test.md&amp;quot; root, ext = os.path.splitext(file_path) print(root, ext)  出力
+import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
 hoge/test .md  ">
     
 
@@ -20,15 +20,20 @@ hoge/test .md  ">
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>pythonで拡張子を取得する | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -87,13 +92,10 @@ if (!doNotTrack) {
   </header>
   <div class="content">
     <p>ファイルの拡張子を取得する方法をいつも忘れるのでメモ</p>
-
-<pre><code class="language-python">import os
-file_path = &quot;hoge/test.md&quot;
-root, ext = os.path.splitext(file_path)
-print(root, ext)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&#34;hoge/test.md&#34;</span>
+<span class="n">root</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">ext</span><span class="p">)</span></code></pre></div>
 <p>出力</p>
 
 <pre><code>hoge/test .md

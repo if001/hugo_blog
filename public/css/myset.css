@@ -1,5 +1,6 @@
 body{
-    font-size:16px;
+    font-size:15px;
+    line-height: 1.6;
 }
 title-img{
     width:100%;
@@ -88,10 +89,11 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 code{
-    background:#e1e1e1;
-    padding-left:5px;
-    padding-right:5px;
-    margin:5px;
+    /* background:#e1e1e1; */
+    /* padding-left:5px; */
+    /* padding-right:5px; */
+    padding:8px;
+    /* margin:5px; */
 }
 
 #article-list .article{

@@ -20,15 +20,20 @@ sentences = gensim.models.word2vec.Text8Corpus(filen">
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>word2vecでベクトルから単語を出力する | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -101,73 +106,46 @@ stack overflowにあった。
 <h2 id="結論">結論</h2>
 
 <p>結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。</p>
-
-<pre><code class="language-python">sentences = gensim.models.word2vec.Text8Corpus(filename)
-model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4)
-model.most_similar( [ vector ], [], 1)[0][0]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sentences</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">word2vec</span><span class="o">.</span><span class="n">Text8Corpus</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span> <span class="p">[</span> <span class="n">vector</span> <span class="p">],</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></code></pre></div>
 <p>ただし、第3引数は出力する類似単語数を表す。</p>
 
 <h2 id="使用例">使用例</h2>
 
 <p><a href="http://www.aozora.gr.jp/index_pages/person1779.html" target="_blank">青空文庫：江戸川乱歩</a>の解析をしたので、その例を示す。</p>
-
-<pre><code class="language-python">model.wv[&quot;ベクトル化したい単語&quot;]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="s2">&#34;ベクトル化したい単語&#34;</span><span class="p">]</span></code></pre></div>
 <p>で単語をベクトル化できる。</p>
-
-<pre><code class="language-python">sentences = gensim.models.word2vec.Text8Corpus(filename)
-model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4)
-vector = model.wv[&quot;犯罪&quot;]
-word = model.most_similar( [ vector ], [], 1)
-print(vector)
-print(word)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sentences</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">word2vec</span><span class="o">.</span><span class="n">Text8Corpus</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="s2">&#34;犯罪&#34;</span><span class="p">]</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span> <span class="p">[</span> <span class="n">vector</span> <span class="p">],</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">word</span><span class="p">)</span></code></pre></div>
 <p>上記のようなコードを実行すると、</p>
-
-<pre><code class="language-bash">[-0.01494294 -0.1509463   0.06123272 ...,  0.01335443  0.03439184
-  0.05130962]
-[('犯罪', 1.0000001192092896)]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>-0.01494294 -0.1509463   <span class="m">0</span>.06123272 ...,  <span class="m">0</span>.01335443  <span class="m">0</span>.03439184
+  <span class="m">0</span>.05130962<span class="o">]</span>
+<span class="o">[(</span><span class="s1">&#39;犯罪&#39;</span>, <span class="m">1</span>.0000001192092896<span class="o">)]</span></code></pre></div>
 <p>となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。</p>
 
 <h3 id="出力数を変更">出力数を変更</h3>
-
-<pre><code class="language-python">vector = model.wv[&quot;明智&quot;]
-word = model.most_similar( [ vector ], [], 5)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">vector</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="s2">&#34;明智&#34;</span><span class="p">]</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span> <span class="p">[</span> <span class="n">vector</span> <span class="p">],</span> <span class="p">[],</span> <span class="mi">5</span><span class="p">)</span></code></pre></div>
 <p>以下のような結果が得られる。</p>
-
-<pre><code class="language-bash">[('明智', 1.0000001192092896), ('名', 0.8110731840133667), ('博士',　0.8006758093833923), ('氏', 0.7667115330696106), ('殿村', 0.7487545609474182)]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[(</span><span class="s1">&#39;明智&#39;</span>, <span class="m">1</span>.0000001192092896<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;名&#39;</span>, <span class="m">0</span>.8110731840133667<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;博士&#39;</span>,　<span class="m">0</span>.8006758093833923<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;氏&#39;</span>, <span class="m">0</span>.7667115330696106<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;殿村&#39;</span>, <span class="m">0</span>.7487545609474182<span class="o">)]</span></code></pre></div>
 <h3 id="単語のみを出力">単語のみを出力</h3>
 
 <p>単語のみを出力するために、以下のようにしておくとよい</p>
-
-<pre><code class="language-python">model.most_similar( [ vector ], [], 1)[0][0]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span> <span class="p">[</span> <span class="n">vector</span> <span class="p">],</span> <span class="p">[],</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span></code></pre></div>
 <h3 id="任意のベクトル入力">任意のベクトル入力</h3>
 
 <p>以下のようにして、任意のベクトルができる。</p>
-
-<pre><code class="language-python">vec = np.zeros(3000)
-vec[2] = 1
-vec = np.array(vec,dtype='f')
-word = model.most_similar( [ vector ], [], 5)
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+<span class="n">word</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span> <span class="p">[</span> <span class="n">vector</span> <span class="p">],</span> <span class="p">[],</span> <span class="mi">5</span><span class="p">)</span></code></pre></div>
 <p>出力結果</p>
-
-<pre><code class="language-bash">[('点い', 0.04825586825609207), ('ワハハハハハハハハ', 0.04788881167769432), ('珍奇', 0.04669386148452759), ('憎らしい', 0.04500409588217735), ('な', 0.04486800357699394)]
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[(</span><span class="s1">&#39;点い&#39;</span>, <span class="m">0</span>.04825586825609207<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;ワハハハハハハハハ&#39;</span>, <span class="m">0</span>.04788881167769432<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;珍奇&#39;</span>, <span class="m">0</span>.04669386148452759<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;憎らしい&#39;</span>, <span class="m">0</span>.04500409588217735<span class="o">)</span>, <span class="o">(</span><span class="s1">&#39;な&#39;</span>, <span class="m">0</span>.04486800357699394<span class="o">)]</span></code></pre></div>
 <h2 id="まとめ">まとめ</h2>
 
 <p><code>most_similar</code>使えばいける。ちなみに公式には、<code>model.wv.most_similar</code>って書いてあったけど、wvなくてもできた。公式には、ベクトルは、<code>model.wv</code>のKeyedVectorsインスタンスに保存されてるって書いてあったけどよくわかってない。

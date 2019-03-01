@@ -23,15 +23,20 @@ rustのバージョンは1.27.0
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>Rustでmodule間にまたがるmacro呼び出し | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -126,69 +131,57 @@ if (!doNotTrack) {
 <h2 id="書き方">書き方</h2>
 
 <p>main.rsでは、macro_run内にあるrun関数を呼ぶ。</p>
-
-<pre><code class="language-rust">// main.rs
-
-extern crate rust_test2;
-use rust_test2::mod2::macro_run;
-
-fn main() {
-    macro_run::run();
-}
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// main.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">rust_test2</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">rust_test2</span>::<span class="n">mod2</span>::<span class="n">macro_run</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">macro_run</span>::<span class="n">run</span><span class="p">();</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <p>run関数内では、foo!というマクロを使う。</p>
-
-<pre><code class="language-rust">// macro_run.rs
-
-#[macro_use]
-use mod1::macro_test::*;
-
-pub fn run() {
-    let foo = foo!(1);
-    println!(&quot;{}&quot;,foo);
-}
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// macro_run.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="cp">#[macro_use]</span><span class="w">
+</span><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">mod1</span>::<span class="n">macro_test</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">run</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">foo</span><span class="o">!</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">
+</span><span class="w">    </span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;{}&#34;</span><span class="p">,</span><span class="n">foo</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <p>fooマクロは、引数をそのまま返す単純なマクロ。</p>
-
-<pre><code class="language-rust">// macro.rs
-
-#[macro_use]
-macro_rules! foo {
-      ($e: expr) =&gt; {
-             $e
-         }
-     }
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// macro.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="cp">#[macro_use]</span><span class="w">
+</span><span class="w"></span><span class="n">macro_rules</span><span class="o">!</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">      </span><span class="p">(</span><span class="cp">$e</span>: <span class="nc">expr</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">             </span><span class="cp">$e</span><span class="w">
+</span><span class="w">         </span><span class="p">}</span><span class="w">
+</span><span class="w">     </span><span class="p">}</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <p>macro_useをつける。</p>
-
-<pre><code class="language-rust">// mod1/lib.rs
-
-#[macro_use]
-pub mod macro_test;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// mod1/lib.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="cp">#[macro_use]</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">macro_test</span><span class="p">;</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <p>ここのlibにもmacro_useが必要。</p>
-
-<pre><code class="language-rust">// lib.rs
-
-#[macro_use]
-pub mod mod1;
-pub mod mod2;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// lib.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="cp">#[macro_use]</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">mod1</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">mod2</span><span class="p">;</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <p>次のように#[macro use]の順番が入れ変わるとだめ
 (参考：<a href="https://www.ncameron.org/blog/macros-in-rust-pt4/" target="_blank">https://www.ncameron.org/blog/macros-in-rust-pt4/</a>)</p>
-
-<pre><code class="language-rust">// lib.rs
-
-pub mod mod2;
-#[macro_use]
-pub mod mod1;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// lib.rs
+</span><span class="c1"></span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">mod2</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="cp">#[macro_use]</span><span class="w">
+</span><span class="w"></span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span> <span class="nn">mod1</span><span class="p">;</span><span class="w">
+</span><span class="w"></span></code></pre></div>
 <h2 id="まとめ">まとめ</h2>
 
 <ul>

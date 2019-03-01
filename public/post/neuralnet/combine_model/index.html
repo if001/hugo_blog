@@ -23,15 +23,20 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_o">
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>kerasでモデルを結合する | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -104,107 +109,95 @@ if (!doNotTrack) {
 <p>Kerasのバージョンは、2.1.1</p>
 
 <p>まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">model1</span><span class="p">():</span>
+    <span class="n">layer_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">layer_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">layer_input</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">layer_input</span><span class="p">,</span> <span class="n">layer_output</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span>
 
-<pre><code class="language-python">def model1():
-    layer_input = Input(shape=(None, 10))
-    layer_output = Dense(10)(layer_input)
-    model = Model(layer_input, layer_output)
-    model.summary()
-    return model
-
-def model2():
-    layer_input = Input(shape=(None, 10))
-    layer_output = Dense(10)(layer_input)
-    model = Model(layer_input, layer_output)
-    model.summary()
-    return model
-</code></pre>
-
+<span class="k">def</span> <span class="nf">model2</span><span class="p">():</span>
+    <span class="n">layer_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">layer_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">layer_input</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">layer_input</span><span class="p">,</span> <span class="n">layer_output</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span></code></pre></div>
 <p>まず、model1へのインプットを作る。model1のアウトプットをmodel2のインプットにし、Modelのインスタンスを作る。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">m1</span> <span class="o">=</span> <span class="n">model1</span><span class="p">()</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">model2</span><span class="p">()</span>
 
-<pre><code class="language-python">m1 = model1()
-m2 = model2()
-
-inp = Input(shape=(None, 10))
-model1_output = m1(inp)
-out = m2(model1_output)
-model = Model(inp, out)
-model.summary()
-</code></pre>
-
+<span class="n">inp</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">model1_output</span> <span class="o">=</span> <span class="n">m1</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">m2</span><span class="p">(</span><span class="n">model1_output</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span></code></pre></div>
 <p>すると、こんな感じでモデルが結合できたのが確認できる。</p>
-
-<pre><code class="language-bash">Using TensorFlow backend.
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Using TensorFlow backend.
 _________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_1 (InputLayer)         (None, None, 10)          0
+Layer <span class="o">(</span><span class="nb">type</span><span class="o">)</span>                 Output Shape              Param <span class="c1">#
+</span><span class="c1"></span><span class="o">=================================================================</span>
+input_1 <span class="o">(</span>InputLayer<span class="o">)</span>         <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="m">0</span>
 _________________________________________________________________
-dense_1 (Dense)              (None, None, 10)          110
-=================================================================
-Total params: 110
-Trainable params: 110
-Non-trainable params: 0
-_________________________________________________________________
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_2 (InputLayer)         (None, None, 10)          0
-_________________________________________________________________
-dense_2 (Dense)              (None, None, 10)          110
-=================================================================
-Total params: 110
-Trainable params: 110
-Non-trainable params: 0
+dense_1 <span class="o">(</span>Dense<span class="o">)</span>              <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="nv">110</span>
+<span class="o">=================================================================</span>
+Total params: <span class="m">110</span>
+Trainable params: <span class="m">110</span>
+Non-trainable params: <span class="m">0</span>
 _________________________________________________________________
 _________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-input_3 (InputLayer)         (None, None, 10)          0
+Layer <span class="o">(</span><span class="nb">type</span><span class="o">)</span>                 Output Shape              Param <span class="c1">#
+</span><span class="c1"></span><span class="o">=================================================================</span>
+input_2 <span class="o">(</span>InputLayer<span class="o">)</span>         <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="m">0</span>
 _________________________________________________________________
-model_1 (Model)              (None, None, 10)          110
+dense_2 <span class="o">(</span>Dense<span class="o">)</span>              <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="nv">110</span>
+<span class="o">=================================================================</span>
+Total params: <span class="m">110</span>
+Trainable params: <span class="m">110</span>
+Non-trainable params: <span class="m">0</span>
 _________________________________________________________________
-model_2 (Model)              (None, None, 10)          110
-=================================================================
-Total params: 220
-Trainable params: 220
-Non-trainable params: 0
 _________________________________________________________________
-</code></pre>
-
+Layer <span class="o">(</span><span class="nb">type</span><span class="o">)</span>                 Output Shape              Param <span class="c1">#
+</span><span class="c1"></span><span class="o">=================================================================</span>
+input_3 <span class="o">(</span>InputLayer<span class="o">)</span>         <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="m">0</span>
+_________________________________________________________________
+model_1 <span class="o">(</span>Model<span class="o">)</span>              <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="m">110</span>
+_________________________________________________________________
+model_2 <span class="o">(</span>Model<span class="o">)</span>              <span class="o">(</span>None, None, <span class="m">10</span><span class="o">)</span>          <span class="nv">110</span>
+<span class="o">=================================================================</span>
+Total params: <span class="m">220</span>
+Trainable params: <span class="m">220</span>
+Non-trainable params: <span class="m">0</span>
+_________________________________________________________________</code></pre></div>
 <p>コード全体はこんな感じ。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
 
-<pre><code class="language-python">from keras.layers import Dense
-from keras.models import Model
+<span class="k">def</span> <span class="nf">model1</span><span class="p">():</span>
+    <span class="n">layer_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">layer_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">layer_input</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">layer_input</span><span class="p">,</span> <span class="n">layer_output</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span>
 
-def model1():
-    layer_input = Input(shape=(None, 10))
-    layer_output = Dense(10)(layer_input)
-    model = Model(layer_input, layer_output)
-    model.summary()
-    return model
+<span class="k">def</span> <span class="nf">model2</span><span class="p">():</span>
+    <span class="n">layer_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">layer_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">layer_input</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">layer_input</span><span class="p">,</span> <span class="n">layer_output</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">model</span>
 
-def model2():
-    layer_input = Input(shape=(None, 10))
-    layer_output = Dense(10)(layer_input)
-    model = Model(layer_input, layer_output)
-    model.summary()
-    return model
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">model1</span><span class="p">()</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">model2</span><span class="p">()</span>
 
-def main():
-    m1 = model1()
-    m2 = model2()
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">m1</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">m2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
 
-    inp = Input(shape=(None, 10))
-    x = m1(inp)
-    out = m2(x)
-    model = Model(inp, out)
-    model.summary()
-
-if __name__ == '__main__':
-   main()
-</code></pre>
-
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+   <span class="n">main</span><span class="p">()</span></code></pre></div>
 <p>モデルインスタンスの再利用性が上がってて使いやすくなってる。</p>
 
   </div>

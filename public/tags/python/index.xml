@@ -16,7 +16,7 @@
       
       <guid>https://if001.github.io/hugo_blog/public/post/python-get-extn/</guid>
       <description>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
-import os file_path = &amp;quot;hoge/test.md&amp;quot; root, ext = os.path.splitext(file_path) print(root, ext)  出力
+import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
 hoge/test .md  </description>
     </item>
     
@@ -29,12 +29,12 @@ hoge/test .md  </description>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
-image_name = &amp;quot;test.png&amp;quot; with open(image_file_path, &amp;quot;rb&amp;quot;) as image: files = {&#39;file&#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text)  サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
+image_name = &amp;#34;test.png&amp;#34; with open(image_file_path, &amp;#34;rb&amp;#34;) as image: files = {&amp;#39;file&amp;#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text) サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
 なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
 fileは次のようにrequestから取得できる
-image = req.get_param(&#39;file&#39;) raw = image.file.read()  ファイル名は次のように取得
+image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() ファイル名は次のように取得
 image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
-from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&#39;file&#39;) raw = image.file.read() image_name = image.filename filepath = os.</description>
+from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() image_name = image.filename filepath = os.path.join(BASE_DIR, &amp;#34;static&amp;#34;, image_name) try: with open(filepath, &amp;#39;wb&amp;#39;) as f: f.</description>
     </item>
     
     <item>
@@ -46,7 +46,7 @@ from falcon_multipart.middleware import MultipartMiddleware import falcon import
       <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
 簡単なtipsをメモしておく。
 シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
-# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;quot;&amp;quot;&amp;quot;Handles GET requests&amp;quot;&amp;quot;&amp;quot; quote = { &#39;quote&#39;: ( &amp;quot;I&#39;ve always been more interested in &amp;quot; &amp;quot;the future than in the past.&amp;quot; ), &#39;author&#39;: &#39;Grace Hopper&#39; } resp.media = quote api = falcon.API() api.add_route(&#39;/quote&#39;, QuoteResource())  処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;#34;&amp;#34;&amp;#34;Handles GET requests&amp;#34;&amp;#34;&amp;#34; quote = { &amp;#39;quote&amp;#39;: ( &amp;#34;I&amp;#39;ve always been more interested in &amp;#34; &amp;#34;the future than in the past.&amp;#34; ), &amp;#39;author&amp;#39;: &amp;#39;Grace Hopper&amp;#39; } resp.media = quote api = falcon.API() api.add_route(&amp;#39;/quote&amp;#39;, QuoteResource()) 処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
 Middleware&#39;s process_request Middleware&#39;s process_resource Hook&#39;s before Resource&#39;s on_**** Hook&#39;s after Middleware&#39;s process_response  引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836
 middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。
 hooks hooksは以下のように使う。(公式)</description>
@@ -76,13 +76,13 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
 基本的には、import matplotlib.pyplot as pltのように使う
 参考： https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot
 グラフを描く シンプルな例は以下
-import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.show()  macでmatplotlibを呼ぶとValueError: unknown locale: UTF-8で怒られることがある。
+import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.show() macでmatplotlibを呼ぶとValueError: unknown locale: UTF-8で怒られることがある。
 locale周りの設定がおかしいため。以下を参考に直す。
 Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい
 https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html
 インスタンス化する plt.figure()でインスタンス化し、axesに対してプロットしていく
 多分この使い方が多いと思う
-import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.</description>
+import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) plt.</description>
     </item>
     
     <item>
@@ -109,12 +109,12 @@ pyenvが問題なのかはわからん&amp;hellip;.</description>
       <guid>https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/</guid>
       <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
 結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0]  ただし、第3引数は出力する類似単語数を表す。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0] ただし、第3引数は出力する類似単語数を表す。
 使用例 青空文庫：江戸川乱歩の解析をしたので、その例を示す。
-model.wv[&amp;quot;ベクトル化したい単語&amp;quot;]  で単語をベクトル化できる。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;quot;犯罪&amp;quot;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word)  上記のようなコードを実行すると、
-[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&#39;犯罪&#39;, 1.0000001192092896)]  となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
-出力数を変更 vector = model.wv[&amp;quot;明智&amp;quot;] word = model.</description>
+model.wv[&amp;#34;ベクトル化したい単語&amp;#34;] で単語をベクトル化できる。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;#34;犯罪&amp;#34;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word) 上記のようなコードを実行すると、
+[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&amp;#39;犯罪&amp;#39;, 1.0000001192092896)] となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
+出力数を変更 vector = model.wv[&amp;#34;明智&amp;#34;] word = model.most_similar( [ vector ], [], 5) 以下のような結果が得られる。</description>
     </item>
     
   </channel>

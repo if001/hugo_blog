@@ -8,7 +8,7 @@
     
     <meta name="description" content="これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
 以下を加えるだけでおk
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;quot; /&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.">
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#3">
     
 
     
@@ -20,15 +20,20 @@
     
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     
-    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/zenburn.min.css">
     <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     
     
+    
     <link rel="stylesheet" type="text/css" href="/hugo_blog/public/css/style.css">
     <link rel="stylesheet" href="/hugo_blog/public/css/myset.css">
+    
+    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/style.css }}">    
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
+    
    
     <title>KaTeXを使ってみる | アンドロイドは推理小説を描くか?</title>
   </head>
@@ -98,13 +103,10 @@ if (!doNotTrack) {
 KaTeX:<a href="https://katex.org/" target="_blank">https://katex.org/</a></p>
 
 <p>以下を加えるだけでおk</p>
-
-<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&quot; /&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &quot;[[&quot;, right: &quot;]]&quot;, display: true},{left: &quot;$&quot;, right: &quot;$&quot;, display: false}]})});&lt;/script&gt;
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">renderMathInElement</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">,{</span><span class="nx">delimiters</span><span class="o">:</span> <span class="p">[{</span><span class="nx">left</span><span class="o">:</span> <span class="s2">&#34;[[&#34;</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="s2">&#34;]]&#34;</span><span class="p">,</span> <span class="nx">display</span><span class="o">:</span> <span class="kc">true</span><span class="p">},{</span><span class="nx">left</span><span class="o">:</span> <span class="s2">&#34;$&#34;</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="s2">&#34;$&#34;</span><span class="p">,</span> <span class="nx">display</span><span class="o">:</span> <span class="kc">false</span><span class="p">}]})});&lt;/</span><span class="nt">script</span><span class="p">&gt;</span></code></pre></div>
 <p>MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。
 実際に入れてみた感じやっぱり早い。</p>
 
