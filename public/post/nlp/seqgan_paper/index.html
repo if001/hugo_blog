@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
+    
+
+    
+    <meta name="description" content="title=SeqGANの論文を読む slug=seqgan-paper tags=[nlp,SeqGAN,論文]
+SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf
+SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
+はじめに 文章生成では、LSTMcellを使ったRNNが優れたパフォーマンスを行う。一般的な学習法は対数尤度を最大化する方法だが、次のよう">
+    
+
+    
+    
+    <link rel="shortcut icon" href="/images/favicon/favicon1.jpeg">
+    <link href="http://www.if-blog.site/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/myset.css">
+    <title> | アンドロイドは推理小説を描くか?</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+      <header class="site-header-myset">
+        <div class="site-header-left">
+          
+	  <a class="site-header-title" href="http://www.if-blog.site"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a> 
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1></h1>
+      <div class="article-meta">
+        <span class="posttime">0001/01/01</span>
+        
+
+      </div>
+    </div>
+    
+  </header>
+  <div class="content">
+    
+
+<p>title=SeqGANの論文を読む
+slug=seqgan-paper
+tags=[nlp,SeqGAN,論文]</p>
+
+<p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient</p>
+
+<p><a href="https://arxiv.org/pdf/1609.05473.pdf" target="_blank">https://arxiv.org/pdf/1609.05473.pdf</a></p>
+
+<p>SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。
+結果などは余力があれば加筆します。</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>文章生成では、LSTMcellを使ったRNNが優れたパフォーマンスを行う。一般的な学習法は対数尤度を最大化する方法だが、次のような問題点がある。</p>
+
+<ul>
+<li>exposure bias(予測時には、自分の出力から次の語を予測することによるbias)</li>
+<li>BLEUを使っても良いけど、詩やchatbotだと難しい</li>
+</ul>
+
+<p>これらの問題に対して、General adversarial net(GAN)が有効そうである。ただし2つの問題がある。</p>
+
+<ul>
+<li>GANは連続データを生成するように設計されており、sequenceなどの離散データを直接生成するのは難しい。生成モデルGのパラメータの更新に識別モデルDの勾配を用いているが、微小な勾配により更新された生成モデルGに対応する出力値が離散のため存在しない可能性があるためである。</li>
+<li>GANは、生成された文全体に対して、score/lossのみを与えることができる。部分的に生成されたsequenceには、文全体としての現在と将来のscoreのバランスをどのようにうまく取れば良いかが自明でない。</li>
+</ul>
+
+<p>そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。</p>
+
+<h2 id="sequence-generative-adversarial-nets">Sequence Generative Adversarial Nets</h2>
+
+<p>生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。</p>
+
+<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s&rsquo;=Y_ {1:t}$に対して、$\delta^a_ {s,s&rsquo;}=1$である。そうでないなら、次の状態$s&rdquo;$に対して$\delta^a_ {s,s&rdquo;}=0$である。</p>
+
+<p>加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</p>
+
+<p>識別モデル$D_ \phi$は、正解文章と生成モデル$G_ \theta$から生成される不正解の文章を用いて学習する。同時に、生成モデル$G_ \theta$は、期待値と$D_ \phi$から得られる報酬に基づくMC searchにより学習する。</p>
+
+<h2 id="seqgan-via-policy-gradient">SeqGAN via Policy Gradient</h2>
+
+<p>生成モデル(方策)$G_ \theta(y_ t|Y_ {1:t-1})$の目的は、単語列$s_ 0$が与えら得た時に得られる期待値を最大化あすることである。</p>
+
+<p>$$ J(\theta) = E[R_ t|s_ 0,\theta ] = \sum_ {y_ 1 \in \it Y} G_ \theta (y_ 1|s_ 0)・Q^{G_ \theta}_ {D_ \phi}(s_ 0,y_ 1)$$</p>
+
+<p>ここで、$R_ t$は、完全な文章に対する報酬を表す。この報酬は、$D_ {\phi}$から得られる。これは後に記述する。$Q^{G_ \theta}_ {D_ \phi}(s_ 0,y_ 1)$は、方策$G_ \theta$に従うaction-value functionである。</p>
+
+<p>続いて、どのようにaction-value functionを推定するかだが、これには強化学習と識別モデル$D_ \phi$を報酬とし実際に推定される確率を用いる。</p>
+
+<p>式は次のように表される。
+$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(Y_ {1:T})$$</p>
+
+<p>ただし、終了した文章に対してのみを識別モデルが生成する報酬として扱う。我々は、ステップごとに、長い期間の報酬を気にしているので、1つ前の単語の適応(fitness)だけについて考慮すべきでなく、将来の報酬についても考慮する必要がある。これは、ちょうど囲碁やチェスをゲームするのに似ている。</p>
+
+<p>中間状態に対して、action-valueを評価することについてだが、まだ観測していない$T-t$の単語をサンプリングするために、roll-out policy$G_ \beta$を伴うMonte Carlo searchを適応する。</p>
+
+<p>N-time Monte Carlo searchは次のように定式化される。</p>
+
+<p>$$ { Y^1_ {1:T},&hellip;,Y^N_ {1:T} } = MC^{G_ \beta}(Y_ {1:t},N) $$</p>
+
+<p>実験では、$G_ \beta$は、生成器と同様にセットされた。(速度が必要ならば簡易版でも良い)</p>
+
+<p>分散を下げ、またaction-valueのより良い精度を得るため、現在の状態から文章の最後までのN回のroll-out pulicyを実行して、出力サンプルのbatchを得る。
+以上から、以下の定式化が行える。</p>
+
+<p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = \frac{1}{N} \sum_ {n=1}^N D_ \phi(T^n_ {1:T}, Y^n_ {1:T} \in MC^{G_ \beta}(Y_ {1:t};N)) \, {\rm for} \, t &lt; T$$</p>
+
+<p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(T^n_ {1:T}, Y^n_ {1:T}) \, {\rm for} \, t=T$$</p>
+
+<p>中間の報酬がないとき、関数は、状態$s&rsquo;=Y_ {1:t}$から始まりrole-outの終わりまでのnext-state valueとして繰り返し定義される。</p>
+
+<p>識別モデル$D_ {\phi}$を使った報酬は、生成モデルを繰り返し学習するために、動的に更新される。より現実的な文章のセットが生成されると、次のように識別モデルを更新する。</p>
+
+<p>$$
+min_ \phi - \mathbb E_ {Y〜p_ {data}}[log D_ {\phi}(Y)] - \mathbb  E_ {Y〜G_ {\theta}}[log (1 - D_ {\phi}(Y))]
+$$</p>
+
+<p>ようは、クロスエントロピーである。
+一方、生成モデルの目的関数$J(\theta)$は、以下のようになる。</p>
+
+<p>$\nabla_ {\theta}J(\theta) = \sum_ {t=1}^{T} \mathbb E_ {y_ {t}〜G_ {\theta}(y_ t|Y_ {1:t-1})}[\nabla_ {\theta}logG_ \theta(y_ t|Y_ {1:t-1})・Q_ {D_ \phi}^{G_ \theta}(Y_ {1:t-1,y_ t})]$</p>
+
+<p>ここで、$Y_ {1:t-1}$は生成モデル$G_ \theta$によりサンプリングされた観測される中間状態を表す。</p>
+
+<p>サンプリング手法で$\mathbb E[・]$は近似することができるので、生成モデルのパラメーターは次のように更新される。</p>
+
+<p>$$ \theta = \theta + \alpha \nabla_ \theta J(\theta)$$</p>
+
+<p>ここで、$\alpha_ h$は$h$ステップ目の学習率を表す。勾配法としては、AdamかRMSpropを使う。</p>
+
+<h2 id="the-generative-model-for-sequences">The Generative Model for Sequences</h2>
+
+<p>生成モデルとして、LSTMをつかう。</p>
+
+<h2 id="the-discriminative-model-for-sequences">The Discriminative Model for Sequences</h2>
+
+<p>識別モデルには、CNNをつかう。</p>
+
+<p>入力文章を次のように表す。
+$$ \varepsilon_ {1:T} = x_ 1 \otimes     x_ 2 \otimes \dots \otimes x_ t$$</p>
+
+<p>ここで、$x_ t \in \mathbb R^k$はk次元にembeddingされた単語、$\otimes$は行列$\epsilon \in \mathbb R^{T \times k}$ を生成するたのconcatenation operatorを表す。</p>
+
+<p>カーネル$ \boldsymbol{w} \in \mathbb R^{l \times k}$は、新しい特徴マップを生成するための$l$個の単語のwindow sizeへ適応する。(訳怪しい)</p>
+
+<p>$$c_ i = \rho ( \boldsymbol{w} \otimes \varepsilon_ {i:i+l-1}+b )$$</p>
+
+<p>ここで、$\otimes$は要素ごとの掛け算の和、$b$はバイアス、$\rho$は非線形関数を表す。異なるwindow sizeの様々なカーネルを適応し特徴量を抽出する。最後に、特徴マップ$\tilde{c}=max \lbrace c_ 1,\ldots,c_ {T-l+1} \rbrace $上にmax-over-timeプーリングを適応する。</p>
+
+<p>パフォーマンス向上のためにthe pooled feature mapsに基づく、the highway architecture (Srivastava, Greff, and Schmidhuber 2015)を追加する。
+最後に、活性化関数がシグモイド関数の全結合をつかい、正解か不正解の確率を出力する。
+詳しい式は、appendixにかく。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="http://hirotaka-hachiya.hatenablog.com/entry/2017/02/27/222611" target="_blank">http://hirotaka-hachiya.hatenablog.com/entry/2017/02/27/222611</a>
+<a href="https://mil-tokyo.github.io/paper-summary/papers/20170320-SeqGAN" target="_blank">https://mil-tokyo.github.io/paper-summary/papers/20170320-SeqGAN</a></p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/nlp/seqgan_paper//" class="hatena-bookmark-button" data-hatena-bookmark-title="" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="http://www.if-blog.site/post/nlp/word2vec_output_word/"></a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="http://www.if-blog.site/post/nlp/nlp_sentence_poem/"></a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <p><span>いふ</span></p>
+      <p><span>自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。</span></p>
+      <div>
+        
+        <a href="https://twitter.com/if_004" target="_black"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        <a href="https://github.com/if001" target="_black"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+	
+          <li>
+
+	      
+	      <a href="http://www.if-blog.site/tags/hoge/" style="font-size: 14px;"><span></span> hoge </a>
+	      
+	      
+	      
+	  
+	      
+	  
+	      
+	  
+	      
+
+          </li>
+	
+          
+      </ul>
+    </div>
+  </div>
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 0001, <a href="http://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
+<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
+
+
+
+</html>
+
+
+

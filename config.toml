@@ -1,0 +1,50 @@
+baseurl = "http://www.if-blog.site"
+languageCode = "en-us"
+title = "アンドロイドは推理小説を描くか?"
+theme = "hugo-theme-geppaku"
+googleAnalytics = "UA-127416809-1"
+disqusShortname = ""
+enableGitInfo = true
+
+# descriptionのsummaryを小さくする
+# #html側で指定するので一旦コメントアウト
+# hasCJKLanguage = true
+
+[author]
+    # If you want to display author information set these
+    # This is Optional values
+    name = "いふ"
+    onething = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。"
+    # Please set account ids
+    # This is Optional values
+    twitter  = "if_004"
+    # linkedin = "your linkedin id"
+    github   = "if001"
+    # tumblr   = "your tumblr id"
+
+[params]
+    description = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。主に使うのは、scala、angular、python、keras"
+
+    [params.sharebutton]
+        # If you want to display share buttons set these
+        # This is Optional values
+        twitter  = true
+        facebook = true
+        tumblr   = false
+        hatena   = true # hatena is Japanese social media
+        google   = false
+        pocket   = true
+        # Please set id when you want to display facebook
+        # facebookAppId = "your app id"
+
+    [params.adsense]
+        # If you want to display Google adsense set these
+        # This is Optional values
+        # 1. Create file written of the adsense tag into the directory "layouts/partials"
+        # 2. Please set file path name omitted "layouts/partials"
+        # sidebar = "adsense/sidebar.html"
+        # content = "adsense/content.html"
+
+[blackfriday]
+   # hrefを新しいタブで開く
+   hrefTargetBlank = true

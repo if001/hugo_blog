@@ -1,0 +1,12 @@
+{{if .Params.tags }}
+<div class="tags">
+  <ul>
+    {{ range .Params.tags }}
+    <li>
+      <a href="{{ "/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a>
+      <!-- <a href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . }}</a> -->
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

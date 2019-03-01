@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hoge on アンドロイドは推理小説を描くか?</title>
+    <link>http://www.if-blog.site/tags/hoge/</link>
+    <description>Recent content in Hoge on アンドロイドは推理小説を描くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="/tags/hoge/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hugoにgoogle analyticsを導入する</title>
+      <link>http://www.if-blog.site/post/hugo-ga/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo-ga/</guid>
+      <description>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。</description>
+    </item>
+    
+  </channel>
+</rss>
