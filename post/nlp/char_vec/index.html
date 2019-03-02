@@ -6,12 +6,8 @@
     
 
     
-    <meta name="description" content="Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像を配置するディクトリを以下のように作っておく。
-{root}/content/post/images/  以下のように記述すると表示できる。
-{{&amp;lt; figure src=&amp;quot;../../images/test.png&amp;quot; title=&amp;quot;test&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  相対パスで記述でき、width、heightも設定可能。
-生成されるHTMLは以下のようになる。
-&amp;lt;figure&amp;gt;">
+    <meta name="description" content="文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットの次元数(パラメータ数)が増えるのが原因の1つだと思う。また、日本語では文章を単語に区切り、単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。
+今回は、auto-enco">
     
 
     
@@ -39,7 +35,7 @@
     <link rel="stylesheet" type="text/css" href="http://www.if-blog.site/css/myset.css}}">
     
    
-    <title>Hugoの記事に画像を載せる | アンドロイドは推理小説を描くか?</title>
+    <title>文字をベクトル化する | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -71,10 +67,10 @@ if (!doNotTrack) {
 <div class="article">
   <header>
     <div class="article-header">
-      <h1>Hugoの記事に画像を載せる</h1>
+      <h1>文字をベクトル化する</h1>
       <div class="article-meta">
           
-	  <span class="posttime">2019/03/02</span>
+	  <span class="posttime">0001/01/01</span>
           
 
 <div class="tags">
@@ -83,7 +79,19 @@ if (!doNotTrack) {
     <li>
 	
 	
-	<a href="/tags/hugo/">Hugo</a>
+	<a href="/tags/nlp/">nlp</a>
+    </li>
+    
+    <li>
+	
+	
+	<a href="/tags/neuralnet/">neuralnet</a>
+    </li>
+    
+    <li>
+	
+	
+	<a href="/tags/python/">python</a>
     </li>
     
   </ul>
@@ -95,41 +103,49 @@ if (!doNotTrack) {
     
   </header>
   <div class="content">
-    <p>Hugoに画像を載せるときは、<a href="https://gohugo.io/content-management/shortcodes/" target="_blank">shortcodes</a>を使うと良いらしい。</p>
-
-<p>画像を配置するディクトリを以下のように作っておく。</p>
-
-<pre><code>{root}/content/post/images/
-</code></pre>
-
-<p>以下のように記述すると表示できる。</p>
-
-<pre><code>{{&lt; figure src=&quot;../../images/test.png&quot; title=&quot;test&quot; width=&quot;320&quot; height=&quot;640&quot; &gt;}}
-</code></pre>
-
-<p>相対パスで記述でき、width、heightも設定可能。<br />
-生成されるHTMLは以下のようになる。</p>
-
-<pre><code>&lt;figure&gt;
-  &lt;img src=&quot;../../images/test.png&quot;  /&gt;
-  &lt;figcaption&gt;
-      &lt;h4&gt;test&lt;/h4&gt;
-  &lt;/figcaption&gt;
-&lt;/figure&gt;
-</code></pre>
-
-<p>画像を実際に表示<br />
-
-<figure>
     
-        <img src="../../images/pa14039476984952.jpg" width="100" height="100" />
-    
-    
-</figure>
-</p>
 
-<p>記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。<br />
-画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな&hellip;</p>
+<p>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットの次元数(パラメータ数)が増えるのが原因の1つだと思う。また、日本語では文章を単語に区切り、単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。<br />
+今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。</p>
+
+<p>以下の3工程で行う。</p>
+
+<ul>
+<li>フォントファイルからフォント画像を生成</li>
+<li>文字列とフォント画像をマッピング</li>
+<li>フォント画像から特徴量を生成</li>
+</ul>
+
+<h2 id="フォントファイルからフォント画像を生成">フォントファイルからフォント画像を生成</h2>
+
+<p>フォントの読み込みは、PILのImageFontで行う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageFont</span>
+<span class="n">font_size</span><span class="o">=</span><span class="mi">28</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="n">font_file</span><span class="p">,</span> <span class="n">font_size</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unic&#39;</span><span class="p">)</span></code></pre></div>
+<p>読み込んだフォントは下記のように保存する。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">pict_height</span><span class="o">=</span><span class="mi">28</span>
+<span class="n">pict_width</span><span class="o">=</span><span class="mi">28</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">pict_height</span><span class="p">,</span> <span class="n">pict_width</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+<span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">yomi</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;#000000&#39;</span><span class="p">)</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;./font&#34;</span><span class="p">,</span> <span class="s1">&#39;PNG&#39;</span><span class="p">)</span></code></pre></div>
+<p>また、保存するファイル名は、以下のように読み仮名を16進数変換したものを使う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">yomi</span><span class="o">=</span><span class="s2">&#34;歩&#34;</span>
+<span class="n">bytes_yomi</span> <span class="o">=</span> <span class="n">yomi</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;UTF-8&#34;</span><span class="p">)</span><span class="o">.</span><span class="nb">hex</span><span class="p">()</span></code></pre></div>
+<h2 id="文字列とフォント画像をマッピング">文字列とフォント画像をマッピング</h2>
+
+<p>ファイル名を読み仮名を16進数変換し保存しているので、毎回画像ファイルを読み込んでも良いが、高速に呼び出せるように、読み仮名と画像をファイルとkvsを使ってマッピングしておく。<br />
+kvsにはplyvelを使う。
+以下のようにインスタンス化しておき、</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">plyvel</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">plyvel</span><span class="o">.</span><span class="n">DB</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">create_if_missing</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></div>
+<p>以下のように、保存と取り出しを行う。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">db</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="c1"># 保存</span>
+<span class="n">db</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="c1"># 取り出す</span></code></pre></div>
+<h2 id="フォント画像から特徴量を生成">フォント画像から特徴量を生成</h2>
+
+<p>auto-encoderを使い、保存した画像から特徴量を抽出する。</p>
 
   </div>
   <footer>
@@ -150,7 +166,7 @@ if (!doNotTrack) {
     
     
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/hugo/hugo_on_image//" class="hatena-bookmark-button" data-hatena-bookmark-title="Hugoの記事に画像を載せる" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/nlp/char_vec//" class="hatena-bookmark-button" data-hatena-bookmark-title="文字をベクトル化する" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     
     
@@ -171,15 +187,15 @@ if (!doNotTrack) {
 <h3>See Also</h3>
 <ul>
     
+    <li><a href="/post/python-get-extn/">pythonで拡張子を取得する</a></li>
+    
     <li><a href="/post/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
-    <li><a href="/post/hugo/hugo-href-to-target-blank/">Hugoでリンクを新しいウィンドウで開く</a></li>
+    <li><a href="/post/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
     
-    <li><a href="/post/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
+    <li><a href="/post/neuralnet/combine_model/">kerasでモデルを結合する</a></li>
     
-    <li><a href="/post/hugo/hugo-add-site-description/">Hugoの記事にdescriptionを追加する</a></li>
-    
-    <li><a href="/post/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
+    <li><a href="/post/neuralnet/pepar_summary/">Deeplearningまわりの最新論文を浅く広くみてまわる</a></li>
     
 </ul>
 
