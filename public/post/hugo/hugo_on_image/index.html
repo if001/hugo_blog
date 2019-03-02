@@ -7,10 +7,11 @@
 
     
     <meta name="description" content="Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像の場合は、static/media以下に画像ファイルが置いてある状態で、次のように書く。
-\{{&amp;lt; figure src=&amp;quot;/media/spf13.jpg&amp;quot; title=&amp;quot;Steve Francia&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  画像のサイズも指定可能。
-ここでは、shortcodesをエスケープさせるために、/*を使っている。
-{{&amp;lt; code &amp;gt;}}  すると、次のようなHTML">
+画像を配置するディクトリを以下のように作っておく。
+{root}/content/post/images/  以下のように記述すると表示できる。
+{{&amp;lt; figure src=&amp;quot;../../images/test.png&amp;quot; title=&amp;quot;test&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  相対パスで記述でき、width、heightも設定可能。
+生成されるHTMLは以下のようになる。
+&amp;lt;figure&amp;gt;">
     
 
     
@@ -73,7 +74,7 @@ if (!doNotTrack) {
       <h1>Hugoの記事に画像を載せる</h1>
       <div class="article-meta">
           
-	  <span class="posttime">2019/03/01</span>
+	  <span class="posttime">2019/03/02</span>
           
 
 <div class="tags">
@@ -96,27 +97,39 @@ if (!doNotTrack) {
   <div class="content">
     <p>Hugoに画像を載せるときは、<a href="https://gohugo.io/content-management/shortcodes/" target="_blank">shortcodes</a>を使うと良いらしい。</p>
 
-<p>画像の場合は、static/media以下に画像ファイルが置いてある状態で、次のように書く。</p>
+<p>画像を配置するディクトリを以下のように作っておく。</p>
 
-<pre><code>\{{&lt; figure src=&quot;/media/spf13.jpg&quot; title=&quot;Steve Francia&quot; width=&quot;320&quot; height=&quot;640&quot; &gt;}}
+<pre><code>{root}/content/post/images/
 </code></pre>
 
-<p>画像のサイズも指定可能。</p>
+<p>以下のように記述すると表示できる。</p>
 
-<p>ここでは、shortcodesをエスケープさせるために、/*を使っている。</p>
-
-<pre><code>{{&lt; code &gt;}}
+<pre><code>{{&lt; figure src=&quot;../../images/test.png&quot; title=&quot;test&quot; width=&quot;320&quot; height=&quot;640&quot; &gt;}}
 </code></pre>
 
-<p>すると、次のようなHTMLが出力される。</p>
+<p>相対パスで記述でき、width、heightも設定可能。<br />
+生成されるHTMLは以下のようになる。</p>
 
 <pre><code>&lt;figure&gt;
-  &lt;img src=&quot;/media/spf13.jpg&quot;  /&gt;
+  &lt;img src=&quot;../../images/test.png&quot;  /&gt;
   &lt;figcaption&gt;
-      &lt;h4&gt;Steve Francia&lt;/h4&gt;
+      &lt;h4&gt;test&lt;/h4&gt;
   &lt;/figcaption&gt;
 &lt;/figure&gt;
 </code></pre>
+
+<p>画像を実際に表示<br />
+
+<figure>
+    
+        <img src="../../images/pa14039476984952.jpg" width="100" height="100" />
+    
+    
+</figure>
+</p>
+
+<p>記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。<br />
+画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな&hellip;</p>
 
   </div>
   <footer>
@@ -158,7 +171,7 @@ if (!doNotTrack) {
         
         <div id="pagenavigation-next">
           <span class="pagenav-label">Previous</span>
-          <a href="https://if001.github.io/hugo_blog/public/post/hugo/katex-introduction/">KaTeXを使ってみる</a>
+          <a href="https://if001.github.io/hugo_blog/public/post/hugo/hugo-date-sort/">Hugoの記事を更新順にソートする</a>
         </div>
         
         
@@ -305,9 +318,9 @@ if (!doNotTrack) {
 	      
 	  
 	      
-	      <a href="/hugo_blog/public/tags/hugo/" style="font-size: 20px;"><span></span> hugo </a>
-	      
 	  
+	      
+	      <a href="/hugo_blog/public/tags/hugo/" style="font-size: 23px;"><span></span> hugo </a>
 	      
 	  
 	      
