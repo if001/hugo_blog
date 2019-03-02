@@ -122,6 +122,24 @@ gh-pagesという新しいブランチを作成し、public以下のファイル
 $ git push origin gh-pages:gh-pages</code></pre></div>
 <p>GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。</p>
 
+<p>それでもうまくいかないときは、エラー文のcommitのハッシュを使って無理やりpushしてとりあえず回避してます。</p>
+
+<p>例</p>
+
+<pre><code>$ git subtree push --prefix public/ . gh-pages
+git push using:  . gh-pages
+To .     59 (58)
+ ! [rejected]        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -&gt; gh-pages (non-fast-forward)
+error: failed to push some refs to '.'
+hint: Updates were rejected because a pushed branch tip is behind its remote
+hint: counterpart. Check out this branch and integrate the remote changes
+hint: (e.g. 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+
+<pre><code>$ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages
+</code></pre>
+
 <h2 id="独自ドメインの設定">独自ドメインの設定</h2>
 
 <p>今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。<br />
