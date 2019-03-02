@@ -64,8 +64,6 @@
       {{ template "_internal/google_analytics.html" . }}
       <header class="site-header-myset">
           <div class="site-header-left">
-	      <p>{{.Site.BaseURL}}</p>
-	      
             <!-- <a class="site-header-title" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a> -->
 	    {{ if in .Site.BaseURL "localhost" }}
 	    <a class="site-header-title" href="{{ .Site.BaseURL }}"><img class="title-img" src="/images/title/title1.jpeg" width="600"></a>
