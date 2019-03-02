@@ -5,7 +5,8 @@
       <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
   </div>
   {{ end }}
-  {{ $paginator := .Paginate (where .Data.Pages "Type" "post") 10 }}
+
+  {{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
   {{ range $paginator.Pages }}
   <div class="article">
     <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
@@ -18,7 +19,7 @@
   {{ end }}
   <nav>
     <div id="pager">
-      {{ $paginator := .Paginate (where .Data.Pages "Type" "post") 10 }}
+	{{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
       {{ template "_internal/pagination.html" . }}
     </div>
   </nav>
