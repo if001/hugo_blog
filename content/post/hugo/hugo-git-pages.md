@@ -12,7 +12,7 @@ GitHub Pagesを使ってHugoを公開する手順をメモ
 
 の3つです。
 
-### GitHub Pagesで公開
+## GitHub Pagesで公開
 まずは、Hugoのプロジェクトルートをgitで管理します。  
 GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、
 
@@ -28,7 +28,10 @@ $ git subtree push --prefix public/ . gh-pages
 $ git push origin gh-pages:gh-pages
 ```
 
-### 独自ドメインの設定
+GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。
+
+
+## 独自ドメインの設定
 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。  
 GitHub Pagesのドメインは
 
