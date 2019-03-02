@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Word2vec on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/hugo_blog/public/tags/word2vec/</link>
+    <link>http://www.if-blog.site/tags/word2vec/</link>
     <description>Recent content in Word2vec on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/hugo_blog/public/tags/word2vec/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/word2vec/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>word2vecでベクトルから単語を出力する</title>
-      <link>https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/</link>
+      <link>http://www.if-blog.site/post/nlp/word2vec_output_word/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/</guid>
+      <guid>http://www.if-blog.site/post/nlp/word2vec_output_word/</guid>
       <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
 結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
 sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0] ただし、第3引数は出力する類似単語数を表す。

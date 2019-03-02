@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aws on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/hugo_blog/public/tags/aws/</link>
+    <link>http://www.if-blog.site/tags/aws/</link>
     <description>Recent content in Aws on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/hugo_blog/public/tags/aws/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/aws/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>pyenv環境でaws cli入れたらコマンドが見つからない</title>
-      <link>https://if001.github.io/hugo_blog/public/post/others/aws-cli-at-pyenv/</link>
+      <link>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/others/aws-cli-at-pyenv/</guid>
+      <guid>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</guid>
       <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 バージョン：pyenv:1.0.10
 公式通りにインストールする。
