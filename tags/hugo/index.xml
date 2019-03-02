@@ -189,6 +189,25 @@ lastmod以外にも並び替えが行えます。
     </item>
     
     <item>
+      <title>HugoをGitHub Pagesで公開する</title>
+      <link>http://www.if-blog.site/post/hugo/hugo_git_pages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
+      <description>GitHub Pagesを使ってHugoを公開する手順をメモ
+やりたいこととしては、
+ Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクトルートをgitで管理します。
+GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、
+https://{ユーザー名}.github.io/{リポジトリ名}/{public}  というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。
+gh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。
+$ git subtree push --prefix public/ . gh-pages $ git push origin gh-pages:gh-pages 独自ドメインの設定 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。
+GitHub Pagesのドメインは
+https://{ユーザー名}.github.io/{リポジトリ名}  なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。
+GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。</description>
+    </item>
+    
+    <item>
       <title>KaTeXを使ってみる</title>
       <link>http://www.if-blog.site/post/hugo/katex-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
