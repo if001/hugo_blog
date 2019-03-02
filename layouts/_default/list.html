@@ -5,7 +5,6 @@
       <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
   </div>
   {{ end }}
-
   {{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
   {{ range $paginator.Pages }}
   <div class="article">
