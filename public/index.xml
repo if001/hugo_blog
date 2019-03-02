@@ -234,6 +234,25 @@ lastmod以外にも並び替えが行えます。
     </item>
     
     <item>
+      <title>HugoをGitHub Pagesで公開する</title>
+      <link>http://www.if-blog.site/post/hugo/hugo_git_pages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
+      <description>GitHub Pagesを使ってHugoを公開する手順をメモ
+やりたいこととしては、
+ Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
+GitHub Pagesで公開 まずは、Hugoのプロジェクトルートをgitで管理します。
+GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、
+https://{ユーザー名}.github.io/{リポジトリ名}/{public}  というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。
+gh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。
+$ git subtree push --prefix public/ . gh-pages $ git push origin gh-pages:gh-pages 独自ドメインの設定 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。
+GitHub Pagesのドメインは
+https://{ユーザー名}.github.io/{リポジトリ名}  なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。
+GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。</description>
+    </item>
+    
+    <item>
       <title>KaTeXを使ってみる</title>
       <link>http://www.if-blog.site/post/hugo/katex-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -243,29 +262,6 @@ lastmod以外にも並び替えが行えます。
 以下を加えるだけでおk
 &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;#34;[[&amp;#34;, right: &amp;#34;]]&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false}]})});&amp;lt;/script&amp;gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。
 参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</description>
-    </item>
-    
-    <item>
-      <title>Rustでmodule間にまたがるmacro呼び出し</title>
-      <link>http://www.if-blog.site/post/others/rust-macro-use-another/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.if-blog.site/post/others/rust-macro-use-another/</guid>
-      <description>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
-日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
-rustのバージョンは1.27.0
-参考 https://github.com/rust-lang/book/issues/401
-マクロの書き方とか、rustのimport周りは意外と日本語記事があったので、そっちを参考に
-ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。
-crate/ src/ main.rs lib.rs mod1/ mod.rs macro.rs mod2/ mod.rs macro_run.rs  この時、main.rsを実行すると、macro_run.rsの中の関数が呼ばれ、この関数内でmacro.rsに定義してあるマクロが呼び出されるとする。
-簡単に言うと、モジュール間に跨ったマクロ呼び出しが行いたい。
-書き方 main.rsでは、macro_run内にあるrun関数を呼ぶ。
-// main.rs externcraterust_test2;userust_test2::mod2::macro_run;fn main(){macro_run::run();} run関数内では、foo!というマクロを使う。
-// macro_run.rs #[macro_use]usemod1::macro_test::*;pubfn run(){letfoo=foo!(1);println!(&amp;#34;{}&amp;#34;,foo);} fooマクロは、引数をそのまま返す単純なマクロ。
-// macro.rs #[macro_use]macro_rules!foo{($e: expr)=&amp;gt;{$e}} macro_useをつける。
-// mod1/lib.rs #[macro_use]pubmod macro_test; ここのlibにもmacro_useが必要。
-// lib.rs #[macro_use]pubmod mod1;pubmod mod2; 次のように#[macro use]の順番が入れ変わるとだめ (参考：https://www.ncameron.org/blog/macros-in-rust-pt4/)
-// lib.rs pubmod mod2;#[macro_use]pubmod mod1; まとめ  #[macro_use]をいっぱいかく lib.rsに書く順番が大切 コードの一部はネットの情報としてあったが、コードの全体がわからずハマったので全体をgithubにあげておく  https://github.com/if001/rust_macro_test</description>
     </item>
     
   </channel>
