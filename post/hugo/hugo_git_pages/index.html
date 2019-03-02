@@ -108,7 +108,7 @@ if (!doNotTrack) {
 
 <p>の3つです。</p>
 
-<h3 id="github-pagesで公開">GitHub Pagesで公開</h3>
+<h2 id="github-pagesで公開">GitHub Pagesで公開</h2>
 
 <p>まずは、Hugoのプロジェクトルートをgitで管理します。<br />
 GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、</p>
@@ -120,7 +120,9 @@ GitHub Pagesで公開するために、GitHubのリポジトリの設定からPa
 gh-pagesという新しいブランチを作成し、public以下のファイルのみをpushしています。github pagesではgh-pagesを公開するよう設定します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git subtree push --prefix public/ . gh-pages
 $ git push origin gh-pages:gh-pages</code></pre></div>
-<h3 id="独自ドメインの設定">独自ドメインの設定</h3>
+<p>GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNAMEファイルが追加、commitされるのですが、この変更をローカルのmasterに取り込めないという問題が発生しました。このため、ローカルで記事を追加したときなど、non-fast-forwardでpush、pullもできなくなりました。そこで、しょうがなくmaster側にローカルからCNAMEファイルを追加しました。</p>
+
+<h2 id="独自ドメインの設定">独自ドメインの設定</h2>
 
 <p>今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。<br />
 GitHub Pagesのドメインは</p>
