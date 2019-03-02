@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nlp on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/hugo_blog/public/tags/nlp/</link>
+    <link>http://www.if-blog.site/tags/nlp/</link>
     <description>Recent content in Nlp on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/hugo_blog/public/tags/nlp/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/nlp/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>SeqGANの論文を読む</title>
-      <link>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</link>
+      <link>http://www.if-blog.site/post/nlp/seqgan-paper/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</guid>
+      <guid>http://www.if-blog.site/post/nlp/seqgan-paper/</guid>
       <description>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
 https://arxiv.org/pdf/1609.05473.pdf
 SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
@@ -27,10 +27,10 @@ Sequence Generative Adversarial Nets 生成モデル$G_ \theta $はパラメー�
     
     <item>
       <title>ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</title>
-      <link>https://if001.github.io/hugo_blog/public/post/nlp/diversity_neural_conversation_model/</link>
+      <link>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/nlp/diversity_neural_conversation_model/</guid>
+      <guid>http://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</guid>
       <description>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
 A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.org/abs/1510.03055
 会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。 モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。
@@ -50,10 +50,10 @@ $${\log p(T|S) - \log p(T)} = \frac{\log p(S,T)}{\log p(S) \log p(T)}$$
     
     <item>
       <title>自然言語処理シリーズの構文解析を読む（概要）</title>
-      <link>https://if001.github.io/hugo_blog/public/post/nlp/nlp-parse-overview-1/</link>
+      <link>http://www.if-blog.site/post/nlp/nlp-parse-overview-1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/nlp/nlp-parse-overview-1/</guid>
+      <guid>http://www.if-blog.site/post/nlp/nlp-parse-overview-1/</guid>
       <description>はじめに 自然言語処理シリーズの構文解析を読んでいきます。   全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
 概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人の知恵を学習できる。
 この本では以下のような構成となっている。

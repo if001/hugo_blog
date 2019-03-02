@@ -1,4 +1,4 @@
-baseurl = "http://www.if-blog.site/public"
+baseurl = "http://www.if-blog.site"
 # baseurl = "https://if001.github.io/hugo_blog/public/"
 languageCode = "en-us"
 title = "アンドロイドは推理小説を描くか?"
@@ -9,6 +9,7 @@ enableGitInfo = true
 
 pygmentsCodefences = true # ```で囲んだコードをハイライトする設定
 pygmentsUseClasses = true # <span stype="xxxx">で色付けをするのではなく、<span class="className">classで分ける
+publishdir = "public"
 
 # descriptionのsummaryを小さくする
 # #html側で指定するので一旦コメントアウト

@@ -2,145 +2,145 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/hugo_blog/public/tags/</link>
+    <link>http://www.if-blog.site/tags/</link>
     <description>Recent content in Tags on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 16 Oct 2018 20:48:42 +0900</lastBuildDate>
-    <atom:link href="/hugo_blog/public/tags/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Aws</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/aws/</link>
+      <link>http://www.if-blog.site/tags/aws/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/aws/</guid>
+      <guid>http://www.if-blog.site/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Deeplearning</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/deeplearning/</link>
+      <link>http://www.if-blog.site/tags/deeplearning/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/deeplearning/</guid>
+      <guid>http://www.if-blog.site/tags/deeplearning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/docker/</link>
+      <link>http://www.if-blog.site/tags/docker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/docker/</guid>
+      <guid>http://www.if-blog.site/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Falcon</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/falcon/</link>
+      <link>http://www.if-blog.site/tags/falcon/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/falcon/</guid>
+      <guid>http://www.if-blog.site/tags/falcon/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Google Analytics</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/google-analytics/</link>
+      <link>http://www.if-blog.site/tags/google-analytics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/google-analytics/</guid>
+      <guid>http://www.if-blog.site/tags/google-analytics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hugo</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/hugo/</link>
+      <link>http://www.if-blog.site/tags/hugo/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/hugo/</guid>
+      <guid>http://www.if-blog.site/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Katex</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/katex/</link>
+      <link>http://www.if-blog.site/tags/katex/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/katex/</guid>
+      <guid>http://www.if-blog.site/tags/katex/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Keras</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/keras/</link>
+      <link>http://www.if-blog.site/tags/keras/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/keras/</guid>
+      <guid>http://www.if-blog.site/tags/keras/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Neuralnet</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/neuralnet/</link>
+      <link>http://www.if-blog.site/tags/neuralnet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/neuralnet/</guid>
+      <guid>http://www.if-blog.site/tags/neuralnet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nlp</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/nlp/</link>
+      <link>http://www.if-blog.site/tags/nlp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/nlp/</guid>
+      <guid>http://www.if-blog.site/tags/nlp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/python/</link>
+      <link>http://www.if-blog.site/tags/python/</link>
       <pubDate>Fri, 01 Mar 2019 20:48:42 +0900</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/python/</guid>
+      <guid>http://www.if-blog.site/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rust</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/rust/</link>
+      <link>http://www.if-blog.site/tags/rust/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/rust/</guid>
+      <guid>http://www.if-blog.site/tags/rust/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Seq2seq</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/seq2seq/</link>
+      <link>http://www.if-blog.site/tags/seq2seq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/seq2seq/</guid>
+      <guid>http://www.if-blog.site/tags/seq2seq/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Seqgan</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/seqgan/</link>
+      <link>http://www.if-blog.site/tags/seqgan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/seqgan/</guid>
+      <guid>http://www.if-blog.site/tags/seqgan/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://if001.github.io/hugo_blog/public/tags/test/</link>
+      <link>http://www.if-blog.site/tags/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/tags/test/</guid>
+      <guid>http://www.if-blog.site/tags/test/</guid>
       <description></description>
     </item>
     

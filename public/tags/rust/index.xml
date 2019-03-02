@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rust on アンドロイドは推理小説を描くか?</title>
-    <link>https://if001.github.io/hugo_blog/public/tags/rust/</link>
+    <link>http://www.if-blog.site/tags/rust/</link>
     <description>Recent content in Rust on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="/hugo_blog/public/tags/rust/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/rust/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Rustでmodule間にまたがるmacro呼び出し</title>
-      <link>https://if001.github.io/hugo_blog/public/post/others/rust-macro-use-another/</link>
+      <link>http://www.if-blog.site/post/others/rust-macro-use-another/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://if001.github.io/hugo_blog/public/post/others/rust-macro-use-another/</guid>
+      <guid>http://www.if-blog.site/post/others/rust-macro-use-another/</guid>
       <description>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
 日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
 rustのバージョンは1.27.0
