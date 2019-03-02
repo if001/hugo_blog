@@ -5,28 +5,32 @@ tags=["Hugo"]
 +++
 Hugoに画像を載せるときは、[shortcodes](https://gohugo.io/content-management/shortcodes/)を使うと良いらしい。
 
-画像の場合は、static/media以下に画像ファイルが置いてある状態で、次のように書く。
+画像を配置するディクトリを以下のように作っておく。
 
 ```
-\{{</* figure src="/media/spf13.jpg" title="Steve Francia" width="320" height="640" */>}}
+{root}/content/post/images/
 ```
 
-画像のサイズも指定可能。
-
-ここでは、shortcodesをエスケープさせるために、/*を使っている。
+以下のように記述すると表示できる。   
 
 ```
-{{</* code */>}}
+{{</* figure src="../../images/test.png" title="test" width="320" height="640" */>}}
 ```
 
-
-すると、次のようなHTMLが出力される。
+相対パスで記述でき、width、heightも設定可能。  
+生成されるHTMLは以下のようになる。
 
 ```
 <figure>
-  <img src="/media/spf13.jpg"  />
+  <img src="../../images/test.png"  />
   <figcaption>
-      <h4>Steve Francia</h4>
+      <h4>test</h4>
   </figcaption>
 </figure>
 ```
+
+画像を実際に表示  
+{{< figure src="../../images/pa14039476984952.jpg" width="100" height="100">}}
+
+記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。  
+画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな...  
