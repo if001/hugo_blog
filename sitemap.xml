@@ -84,6 +84,11 @@
   </url>
   
   <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-long-time-no-see/</loc>
+    <lastmod>2019-03-02T18:15:56+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight/</loc>
     <lastmod>2019-03-02T02:55:12+09:00</lastmod>
   </url>
@@ -95,7 +100,12 @@
   
   <url>
     <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo_on_image/</loc>
-    <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+    <lastmod>2019-03-02T18:34:42+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://if001.github.io/hugo_blog/public/post/hugo/hugo-date-sort/</loc>
+    <lastmod>2019-03-02T18:03:56+09:00</lastmod>
   </url>
   
   <url>

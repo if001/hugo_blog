@@ -142,6 +142,21 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
     </item>
     
     <item>
+      <title>Hugoのディレクトリ構造やデプロイ方法の備忘録</title>
+      <link>https://if001.github.io/hugo_blog/public/post/hugo/hugo-long-time-no-see/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo-long-time-no-see/</guid>
+      <description>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
+ディレクトリ 基本的なディレクトリは以下
+markdownを書いたりと普段触るのはcontentディレクトリになる。
+デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。
+archetypes/ ・・・ markdown記事を生成する際のテンプレートなど config.toml ・・・ 設定ファイル content/ ・・・　markdownの記事を配置 layouts/　・・・ Htmlの共通部分 public/ ・・・ デプロイ後に生成される静的ファイル群 static/ ・・・ cssなどの静的ファイルを配置 themes/ ・・・ テーマを配置  デプロイ hugoのプロジェクトルートで以下のコマンドを打つ
+$ hugo -t ./ 記事を書くときには以下のコマンドを使う。
+$ hugo server -t ./  localにサーバーが立ち上がり、markdownを書きながら生成される記事を確認できる。</description>
+    </item>
+    
+    <item>
       <title>Hugoの記事でコードハイライトする</title>
       <link>https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -189,11 +204,33 @@ html側は次のように記述する。
       
       <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo_on_image/</guid>
       <description>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
-画像の場合は、static/media以下に画像ファイルが置いてある状態で、次のように書く。
-\{{&amp;lt; figure src=&amp;quot;/media/spf13.jpg&amp;quot; title=&amp;quot;Steve Francia&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  画像のサイズも指定可能。
-ここでは、shortcodesをエスケープさせるために、/*を使っている。
-{{&amp;lt; code &amp;gt;}}  すると、次のようなHTMLが出力される。
-&amp;lt;figure&amp;gt; &amp;lt;img src=&amp;quot;/media/spf13.jpg&amp;quot; /&amp;gt; &amp;lt;figcaption&amp;gt; &amp;lt;h4&amp;gt;Steve Francia&amp;lt;/h4&amp;gt; &amp;lt;/figcaption&amp;gt; &amp;lt;/figure&amp;gt;  </description>
+画像を配置するディクトリを以下のように作っておく。
+{root}/content/post/images/  以下のように記述すると表示できる。
+{{&amp;lt; figure src=&amp;quot;../../images/test.png&amp;quot; title=&amp;quot;test&amp;quot; width=&amp;quot;320&amp;quot; height=&amp;quot;640&amp;quot; &amp;gt;}}  相対パスで記述でき、width、heightも設定可能。
+生成されるHTMLは以下のようになる。
+&amp;lt;figure&amp;gt; &amp;lt;img src=&amp;quot;../../images/test.png&amp;quot; /&amp;gt; &amp;lt;figcaption&amp;gt; &amp;lt;h4&amp;gt;test&amp;lt;/h4&amp;gt; &amp;lt;/figcaption&amp;gt; &amp;lt;/figure&amp;gt;  画像を実際に表示
+  記事と同じディレクトリに画像を配置しておくと、シンプルなパスで記述できるので、その辺は好みで。
+画像が多くなりすぎるとgitで管理したくないので、クラウドストレージとかに移行するとかしないとな&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>Hugoの記事を更新順にソートする</title>
+      <link>https://if001.github.io/hugo_blog/public/post/hugo/hugo-date-sort/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://if001.github.io/hugo_blog/public/post/hugo/hugo-date-sort/</guid>
+      <description>Hugoの記事を更新順にソートするメモです。
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
+そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/
+config.tomlに以下のように記述します。
+enableGitInfo=true 以下のように使う。
+{{ .Lastmod.Format &amp;quot;2006/01/02&amp;quot; }}  この更新事項を使って、記事を並び替えます。
+記事のリストを表示するhtmlはもともと以下のように記述してありました。
+{{ $paginator := .Paginate (where .Data.Pages &amp;quot;Type&amp;quot; &amp;quot;post&amp;quot;) 10 }} {{ range $paginator.Pages }}  以下のリンクを参考にします。
+https://gohugo.io/templates/lists/
+lastmod以外にも並び替えが行えます。
+結局、以下のように記述しました。
+{{ $paginator := .Paginate (where .Data.Pages &amp;quot;Type&amp;quot; &amp;quot;post&amp;quot;).ByLastmod.Reverse 10 }} {{ range $paginator.Pages }}  </description>
     </item>
     
     <item>
@@ -229,38 +266,6 @@ crate/ src/ main.rs lib.rs mod1/ mod.rs macro.rs mod2/ mod.rs macro_run.rs  こ�
 // mod1/lib.rs #[macro_use]pubmod macro_test; ここのlibにもmacro_useが必要。
 // lib.rs #[macro_use]pubmod mod1;pubmod mod2; 次のように#[macro use]の順番が入れ変わるとだめ (参考：https://www.ncameron.org/blog/macros-in-rust-pt4/)
 // lib.rs pubmod mod2;#[macro_use]pubmod mod1; まとめ  #[macro_use]をいっぱいかく lib.rsに書く順番が大切 コードの一部はネットの情報としてあったが、コードの全体がわからずハマったので全体をgithubにあげておく  https://github.com/if001/rust_macro_test</description>
-    </item>
-    
-    <item>
-      <title>SeqGANの論文を読む</title>
-      <link>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://if001.github.io/hugo_blog/public/post/nlp/seqgan-paper/</guid>
-      <description>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
-https://arxiv.org/pdf/1609.05473.pdf
-SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。 結果などは余力があれば加筆します。
-はじめに 文章生成では、LSTMcellを使ったRNNが優れたパフォーマンスを行う。一般的な学習法は対数尤度を最大化する方法だが、次のような問題点がある。
- exposure bias(予測時には、自分の出力から次の語を予測することによるbias) BLEUを使っても良いけど、詩やchatbotだと難しい  これらの問題に対して、General adversarial net(GAN)が有効そうである。ただし2つの問題がある。
- GANは連続データを生成するように設計されており、sequenceなどの離散データを直接生成するのは難しい。生成モデルGのパラメータの更新に識別モデルDの勾配を用いているが、微小な勾配により更新された生成モデルGに対応する出力値が離散のため存在しない可能性があるためである。 GANは、生成された文全体に対して、score/lossのみを与えることができる。部分的に生成されたsequenceには、文全体としての現在と将来のscoreのバランスをどのようにうまく取れば良いかが自明でない。  そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。
-Sequence Generative Adversarial Nets 生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。
-学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s&amp;rsquo;=Y_ {1:t}$に対して、$\delta^a_ {s,s&amp;rsquo;}=1$である。そうでないなら、次の状態$s&amp;rdquo;$に対して$\delta^a_ {s,s&amp;rdquo;}=0$である。
-加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</description>
-    </item>
-    
-    <item>
-      <title>falconを使ってみた</title>
-      <link>https://if001.github.io/hugo_blog/public/post/falcon/falcon-tips/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://if001.github.io/hugo_blog/public/post/falcon/falcon-tips/</guid>
-      <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
-簡単なtipsをメモしておく。
-シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
-# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;#34;&amp;#34;&amp;#34;Handles GET requests&amp;#34;&amp;#34;&amp;#34; quote = { &amp;#39;quote&amp;#39;: ( &amp;#34;I&amp;#39;ve always been more interested in &amp;#34; &amp;#34;the future than in the past.&amp;#34; ), &amp;#39;author&amp;#39;: &amp;#39;Grace Hopper&amp;#39; } resp.media = quote api = falcon.API() api.add_route(&amp;#39;/quote&amp;#39;, QuoteResource()) 処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
-Middleware&#39;s process_request Middleware&#39;s process_resource Hook&#39;s before Resource&#39;s on_**** Hook&#39;s after Middleware&#39;s process_response  引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836
-middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。
-hooks hooksは以下のように使う。(公式)</description>
     </item>
     
   </channel>

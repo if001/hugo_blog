@@ -6,13 +6,17 @@
     
 
     
-    <meta name="description" content="">
+    <meta name="description" content="久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
+ディレクトリ 基本的なディレクトリは以下
+markdownを書いたりと普段触るのはcontentディレクトリになる。
+デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。
+archetypes/ ・・・ markdown記事を生成する際のテンプレートなど config.toml ・・・ 設定ファイル content/ ・・・　markdownの記事を配置 layouts/　・・・ Htmlの共通部分 public/ ・・・ デプロイ後に生成される">
     
 
     
     
     <link rel="shortcut icon" href="/hugo_blog/public/images/favicon/favicon1.jpeg">
-    <link href="https://if001.github.io/hugo_blog/public/tags/word2vec/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
+    <link href="https://if001.github.io/hugo_blog/public/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     
@@ -34,7 +38,7 @@
     <link rel="stylesheet" type="text/css" href="https://if001.github.io/hugo_blog/public/css/myset.css }}">
     
    
-    <title>Word2vec | アンドロイドは推理小説を描くか?</title>
+    <title>Hugoのディレクトリ構造やデプロイ方法の備忘録 | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -63,20 +67,14 @@ if (!doNotTrack) {
       <div class="container">
         <div id="main">
 
-<div id="article-list">
-  
-  <div id="articles-list-header">
-      <h1>Tags: <span id="archive-value">Word2vec</span></h1>
-  </div>
-  
-  
-  
-  <div class="article">
-    <h2><a href="https://if001.github.io/hugo_blog/public/post/nlp/word2vec_output_word/">word2vecでベクトルから単語を出力する</a></h2>
-    <div class="article-meta">
-	
-	<span class="posttime">2019/03/01</span>
-      
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>Hugoのディレクトリ構造やデプロイ方法の備忘録</h1>
+      <div class="article-meta">
+          
+	  <span class="posttime">2019/03/02</span>
+          
 
 <div class="tags">
   <ul>
@@ -84,29 +82,101 @@ if (!doNotTrack) {
     <li>
 	
 	
-	<a href="/hugo_blog/public/tags/python/">python</a>
-    </li>
-    
-    <li>
-	
-	
-	<a href="/hugo_blog/public/tags/word2vec/">word2vec</a>
+	<a href="/hugo_blog/public/tags/hugo/">Hugo</a>
     </li>
     
   </ul>
 </div>
 
 
+      </div>
     </div>
-  </div>
-  
-  <nav>
-    <div id="pager">
-	
-      
+    
+  </header>
+  <div class="content">
+    
 
+<p>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。</p>
+
+<h2 id="ディレクトリ">ディレクトリ</h2>
+
+<p>基本的なディレクトリは以下<br />
+markdownを書いたりと普段触るのはcontentディレクトリになる。<br />
+デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。</p>
+
+<pre><code>archetypes/ ・・・ markdown記事を生成する際のテンプレートなど
+config.toml ・・・ 設定ファイル
+content/ ・・・　markdownの記事を配置
+layouts/　・・・ Htmlの共通部分
+public/ ・・・ デプロイ後に生成される静的ファイル群
+static/ ・・・ cssなどの静的ファイルを配置
+themes/ ・・・ テーマを配置
+</code></pre>
+
+<h2 id="デプロイ">デプロイ</h2>
+
+<p>hugoのプロジェクトルートで以下のコマンドを打つ</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hugo -t ./</code></pre></div>
+<p>記事を書くときには以下のコマンドを使う。</p>
+
+<pre><code>$ hugo server -t ./
+</code></pre>
+
+<p>localにサーバーが立ち上がり、markdownを書きながら生成される記事を確認できる。</p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/https://if001.github.io/hugo_blog/public/post/hugo/hugo-long-time-no-see//" class="hatena-bookmark-button" data-hatena-bookmark-title="Hugoのディレクトリ構造やデプロイ方法の備忘録" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    <li>
+      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="https://if001.github.io/hugo_blog/public/post/hugo/hugo-code-highlight/">Hugoの記事でコードハイライトする</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="https://if001.github.io/hugo_blog/public/post/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a>
+        </div>
+        
+      </div>
+      
     </div>
-  </nav>
+  </footer>
 </div>
         </div>
         <div class="sidebar">
