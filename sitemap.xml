@@ -41,6 +41,12 @@
   </url>
   
   <url>
+    <loc>http://www.if-blog.site/tags/emacs/</loc>
+    <lastmod>2019-03-03T23:07:08+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://www.if-blog.site/tags/falcon/</loc>
     <lastmod>2019-03-01T21:17:40+09:00</lastmod>
     <priority>0</priority>
@@ -204,6 +210,11 @@
     <loc>http://www.if-blog.site/tags/word2vec/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/emacs/emacs-hinamatsuri/</loc>
+    <lastmod>2019-03-03T23:07:08+09:00</lastmod>
   </url>
   
   <url>
