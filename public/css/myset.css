@@ -96,6 +96,10 @@ code{
     /* margin:5px; */
 }
 
+.hljs{
+    font-family:sans-serif;
+}
+
 #article-list .article{
     /* margin-top:30px; */
     margin-top:0px;
