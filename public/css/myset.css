@@ -124,10 +124,14 @@ code{
 }
 #pager .pagination .active a{
     height:12px;
+    margin:5px;
 }
+
 #pager .pagination a{
     height:12px;
+    margin:5px;
 }
+
 
 table {
   padding: 0; }
