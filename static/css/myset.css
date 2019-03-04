@@ -131,7 +131,10 @@ code{
     height:12px;
     margin:5px;
 }
-
+#pager .pagination a:hover {
+    height:12px;
+    margin:5px;
+}
 
 table {
   padding: 0; }
