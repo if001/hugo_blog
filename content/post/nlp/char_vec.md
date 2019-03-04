@@ -82,8 +82,43 @@ auto-encoderを使って、保存した画像から特徴量を抽出する。
 
 各層の次元は以下のようにした。
 
-```
-pass
+```python
+font_size = 32
+input_img = Input(shape=(font_size, font_size, 1))
+
+x = Conv2D(16, (3, 3), padding='same')(input_img)
+x = BatchNormalization()(x)
+x = ReLU()(x)
+x = MaxPooling2D((2, 2), padding='same')(x)
+
+x = Conv2D(8, (3, 3), padding='same')(x)
+x = BatchNormalization()(x)
+x = ReLU()(x)
+x = MaxPooling2D((2, 2), padding='same')(x)
+
+x = Conv2D(self.hidden_dim, (3, 3),
+           padding='same')(x)
+x = ReLU()(x)
+encoded = MaxPooling2D((2, 2), padding='same', name="encoder")(x)
+
+x = Conv2D(8, (3, 3), padding='same', name="decoder")(encoded)
+x = ReLU()(x)
+x = UpSampling2D((2, 2))(x)
+
+x = Conv2D(8, (3, 3), padding='same')(x)
+x = BatchNormalization()(x)
+x = ReLU()(x)
+x = UpSampling2D((2, 2))(x)
+
+x = Conv2D(16, (3, 3), padding='same')(x)
+x = BatchNormalization()(x)
+x = ReLU()(x)
+x = UpSampling2D((2, 2))(x)
+
+decoded = Conv2D(1, (3, 3), activation='sigmoid', padding='same')(x)
+
+autoencoder = Model(input_img, decoded)
+autoencoder.summary()
 ```
 
 ### 学習
