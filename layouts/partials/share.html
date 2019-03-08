@@ -8,6 +8,9 @@
     </li>
     {{ end }}
     {{ if .Site.Params.sharebutton.facebook }}
+    <li>
+	<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+    </li>
     {{ with .Site.Params.sharebutton.facebookAppId }}
     <li>
       <iframe src="https://www.facebook.com/plugins/share_button.php?href={{ $.Permalink | safeURL }}&layout=button_count&mobile_iframe=true&appId={{ . }}&width=89&height=20" width="89" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -24,18 +27,19 @@
       <div class="g-plusone" data-size="medium"></div>
     </li>
     {{ end }}
-    {{ if .Site.Params.sharebutton.pocket }}
-    <li>
-      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
-      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
-    </li>
-    {{ end }}
     {{ if .Site.Params.sharebutton.tumblr }}
     <li>
         <a class="tumblr-share-button" data-color="blue" data-notes="right" href="https://embed.tumblr.com/share"></a>
         <script>!function(d,s,id){var js,ajs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://assets.tumblr.com/share-button.js";ajs.parentNode.insertBefore(js,ajs);}}(document, "script", "tumblr-js");</script>
     </li>
     {{ end }}
+    {{ if .Site.Params.sharebutton.pocket }}
+    <li  style="width:90px;">
+	<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    {{ end }}
+
   </ul>
 </div>
 {{ end }}
