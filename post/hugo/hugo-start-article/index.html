@@ -202,6 +202,9 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
     </li>
     
     
+    <li>
+	<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+    </li>
     
     
     
@@ -211,12 +214,13 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
     
     
     
-    <li>
-      <a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
-      <script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    
+    <li  style="width:90px;">
+	<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
     </li>
     
-    
+
   </ul>
 </div>
 
@@ -229,13 +233,13 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
     
     <li><a href="/post/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
-    <li><a href="/post/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
+    <li><a href="/post/hugo/hugo-date-sort/">Hugoの記事を更新順にソートする</a></li>
+    
+    <li><a href="/post/hugo/hugo_on_image/">Hugoの記事に画像を載せる</a></li>
     
     <li><a href="/post/hugo/hugo_git_pages/">HugoをGitHub Pagesで公開する</a></li>
     
-    <li><a href="/post/hugo/katex-introduction/">KaTeXを使ってみる</a></li>
-    
-    <li><a href="/post/hugo/hugo-date-sort/">Hugoの記事を更新順にソートする</a></li>
+    <li><a href="/post/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
     
 </ul>
 
@@ -685,7 +689,8 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
 <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
 <script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
-
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2"></script>
 
 
 </html>

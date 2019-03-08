@@ -164,3 +164,9 @@ table {
 #author span {
     color: #424242;
 }
+
+
+.fb_iframe_widget span 
+{
+    vertical-align: baseline !important;
+}
