@@ -3,6 +3,7 @@ title="lsp-modeを導入する"
 slug="lsp-mode"
 tags=["emacs"]
 +++
+
 大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。  
 
 lsp-mode  
