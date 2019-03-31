@@ -25,10 +25,11 @@
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     <!-- syntax highlight -->
     <!-- <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css"> -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css">
-    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>    
-    <script>hljs.initHighlightingOnLoad();</script>
+    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css"> -->
+    <!-- <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>     -->
+    <!-- <script>hljs.initHighlightingOnLoad();</script> -->
+    
     <!-- syntax highlight -->
     {{ if .Site.Params.mathjax }}
     <script type="text/x-mathjax-config">
@@ -49,11 +50,12 @@
     
     <link rel="stylesheet" type="text/css" href="{{ "css/style.css" | relURL }}">
     <link rel="stylesheet" href="{{ "css/myset.css" | relURL }}">
-    <!-- <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
        --><!-- <link rel="stylesheet" href="{{ "css/syntax_perldoc.css" | relURL }}"> -->
     
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/style.css}}">    
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/myset.css}}">
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax.css}}">
     <!-- <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax.css }}">
        --><!-- <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax_perldoc.css}}"> -->
    
