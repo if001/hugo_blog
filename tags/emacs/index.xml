@@ -54,5 +54,35 @@ http://emacs.rubikitch.com/ripgrep/
 感想 もっとゴリゴリな変態emacs使い(褒め言葉)ばかりかと思ってたけど、実用性の高い話が聞けてよかったです。emacs歴は7,8年ほどですが普段はpythonやmarkdownなどちょっとした開発にemacsを使う程度で、scalaやhtml、jsや規模の大きいプロジェクトなどではIDEを使っています。今回ので良い知見が得られたのでこれからはしっかりemacs使っていこうと思います。 ORGモード人気。</description>
     </item>
     
+    <item>
+      <title>lsp-modeを導入する</title>
+      <link>http://www.if-blog.site/post/emacs/lsp-mode/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/emacs/lsp-mode/</guid>
+      <description>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
+lsp-mode
+https://github.com/emacs-lsp/lsp-mode
+language server protocolとは language server protocol(lsp)とは、IDEやエディタとIDEが提供する機能(補間、定義jump、ドキュメントの表示など)の間で使用されるプロトコルを定義したものである。
+これまで、IDEなどの提供する機能(補間、定義へのjump、ドキュメントの表示など)は言語ごと、IDEごとに提供されていた。
+それを取りまとめるプロトコルが定義されることで、IDEごとの格差が緩和され、emacsでもIDEと同様の機能が実現でき流ようになるということです。
+詳しくは、以下が参考になると思う。
+https://microsoft.github.io/language-server-protocol/
+https://github.com/Microsoft/language-server-protocol
+https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4
+lsp-mode emacsでは、lsp-modeとeglotがlspをサポートしているみたい。今回はlsp-modeを導入する。
+lsp-mode: https://github.com/emacs-lsp/lsp-mode
+を見ながら設定していく。
+melpaからインストール
+M-x package-install [RET] lsp-mode [RET] 以下のように設定する。
+(use-package lsp-mode :custom (lsp-print-io t) (lsp-prefer-flymake &amp;#39;flymake) :commands lsp) lsp-print-ioで全てのログを*lsp-log*に表示する。今回はflymakeを使うので、(lsp-prefer-flymake &#39;flymake) を設定しておく。
+続いて、lsp-modeのバックエンドにcompanyを使うためにcompany-lspを、lsp-modeのUIをリッチにしてくれるlsp-uiを入れる。
+それぞれmelpaからインストールします。
+company-lsp https://github.com/tigersoldier/company-lsp
+companyのバックエンドに設定
+(use-package &amp;#39;company-lsp :after (lsp-mode company) :init (push &amp;#39;company-lsp company-backends) ) lsp-ui https://github.com/emacs-lsp/lsp-ui
+(use-package lsp-ui :custom ;; lsp-ui-doc (lsp-ui-doc-enable nil) (lsp-ui-doc-header t) (lsp-ui-doc-include-signature t) (lsp-ui-doc-position &amp;#39;at-point) ;; top, bottom, or at-point (lsp-ui-doc-max-width 150) (lsp-ui-doc-max-height 30) (lsp-ui-doc-use-childframe t) (lsp-ui-doc-use-webkit t) ;; lsp-ui-flycheck (lsp-ui-flycheck-enable nil) ;; lsp-ui-peek (lsp-ui-peek-enable t) (lsp-ui-peek-peek-height 20) (lsp-ui-peek-list-width 50) (lsp-ui-peek-fontify &amp;#39;on-demand) ;; never, on-demand, or always ;; lsp-ui-imenu (lsp-ui-imenu-enable nil) (lsp-ui-imenu-kind-position &amp;#39;top) ;; lsp-ui-sideline (lsp-ui-sideline-enable nil) :commands lsp-ui-mode :config (add-hook &amp;#39;lsp-mode-hook &amp;#39;lsp-ui-mode) (eval-after-load &amp;#34;flymake&amp;#34; (setq flymake-fringe-indicator-position nil) ) ) 主な機能は以下</description>
+    </item>
+    
   </channel>
 </rss>
