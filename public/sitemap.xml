@@ -42,7 +42,7 @@
   
   <url>
     <loc>http://www.if-blog.site/tags/emacs/</loc>
-    <lastmod>2019-03-31T18:12:25+09:00</lastmod>
+    <lastmod>2019-04-02T22:17:04+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -245,6 +245,11 @@
   <url>
     <loc>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</loc>
     <lastmod>2019-03-01T21:49:25+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.if-blog.site/post/emacs/emacs-use-package/</loc>
+    <lastmod>2019-04-02T22:17:04+09:00</lastmod>
   </url>
   
   <url>
