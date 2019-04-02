@@ -84,5 +84,26 @@ companyのバックエンドに設定
 (use-package lsp-ui :custom ;; lsp-ui-doc (lsp-ui-doc-enable nil) (lsp-ui-doc-header t) (lsp-ui-doc-include-signature t) (lsp-ui-doc-position &amp;#39;at-point) ;; top, bottom, or at-point (lsp-ui-doc-max-width 150) (lsp-ui-doc-max-height 30) (lsp-ui-doc-use-childframe t) (lsp-ui-doc-use-webkit t) ;; lsp-ui-flycheck (lsp-ui-flycheck-enable nil) ;; lsp-ui-peek (lsp-ui-peek-enable t) (lsp-ui-peek-peek-height 20) (lsp-ui-peek-list-width 50) (lsp-ui-peek-fontify &amp;#39;on-demand) ;; never, on-demand, or always ;; lsp-ui-imenu (lsp-ui-imenu-enable nil) (lsp-ui-imenu-kind-position &amp;#39;top) ;; lsp-ui-sideline (lsp-ui-sideline-enable nil) :commands lsp-ui-mode :config (add-hook &amp;#39;lsp-mode-hook &amp;#39;lsp-ui-mode) (eval-after-load &amp;#34;flymake&amp;#34; (setq flymake-fringe-indicator-position nil) ) ) 主な機能は以下</description>
     </item>
     
+    <item>
+      <title>use-packagesを使ってみる</title>
+      <link>http://www.if-blog.site/post/emacs/emacs-use-package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/emacs/emacs-use-package/</guid>
+      <description>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
+https://github.com/jwiegley/use-package
+use-packageとは、emacsのパッケージ管理を強化するパッケージです。
+use-packageのマクロを使用することで、
+ 統一した記述による可読性が向上 パッケージの遅延ロードの設定を簡潔にかけることによる起動の高速化  などのメリットがあります。
+シンプルな例 requireでのライブラリの読み込みは次のように書き換えることができます。
+(require &amp;#39;foo)(use-package foo) use-packageではキーワードを使うことで、パッケージロード時の振る舞いを指定することができます。
+:init パッケージが読み込まれる前に実行される。
+(use-package foo :init (setq foo-variable t)) :config パッケージがロードされた後に実行される。
+(use-package foo :init (setq foo-variable t) :config (foo-mode 1)) :commands auto-loadするコマンドを指定する。
+(use-package color-moccur :commands (isearch-moccur isearch-all) :bind ((&amp;#34;M-s O&amp;#34; . moccur) :map isearch-mode-map (&amp;#34;M-o&amp;#34; . isearch-moccur) (&amp;#34;M-O&amp;#34; . isearch-moccur-all)) :init (setq isearch-lazy-highlight t) :config (use-package moccur-edit)) この場合、isearch-moccurとisearch-allがcolor-moccur.elからauto-loadされる。
+key-binding :bindキーワードを使用し以下のように設定する。
+(use-package ace-jump-mode :bind (&amp;#34;C-.&amp;#34; . ace-jump-mode)) リストを使い以下のように複数のキーバインドを設定することも可能</description>
+    </item>
+    
   </channel>
 </rss>
