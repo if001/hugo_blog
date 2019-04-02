@@ -24,12 +24,14 @@
     <!-- google_analytics -->
     <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
     <!-- syntax highlight -->
-    <!-- <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css"> -->
+    <!-- <\!-- <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css"> -\-> -->
+    <!-- <\!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css"> -\-> -->
     <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/zenburn.min.css"> -->
-    <!-- <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script> -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>     -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script> -->
+    <!-- <\!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script> -\-> -->
     <!-- <script>hljs.initHighlightingOnLoad();</script> -->
-    
+    <!-- <\!-- <script>hljs.initLineNumbersOnLoad();</script> -\-> -->
+      
     <!-- syntax highlight -->
     {{ if .Site.Params.mathjax }}
     <script type="text/x-mathjax-config">
@@ -55,9 +57,8 @@
     
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/style.css}}">    
     <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/myset.css}}">
-    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax.css}}">
-    <!-- <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax.css }}">
-       --><!-- <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax_perldoc.css}}"> -->
+    <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax.css}}">    
+    <!-- <link rel="stylesheet" type="text/css" href="{{.Site.BaseURL }}/css/syntax_perldoc.css}}"> -->
    
     <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   </head>
