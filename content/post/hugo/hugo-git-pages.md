@@ -16,8 +16,8 @@ GitHub Pagesを使ってHugoを公開する手順をメモ
 まずは、Hugoのプロジェクトルートをgitで管理します。  
 GitHub Pagesで公開するために、GitHubのリポジトリの設定からPagesで公開するための設定を行います。このとき、そのまま公開すると、Hugoをビルドして生成されるファイルはプロジェクトルート直下のpublic以下に生成されるので、
 
-```
-https://{ユーザー名}.github.io/{リポジトリ名}/{public}
+```bash
+ https://{ユーザー名}.github.io/{リポジトリ名}/{public}
 ```
 
 というように、URLにpublicが付いてしまいます。これは嫌なので、git subtreeを使います。  
@@ -35,28 +35,28 @@ GitHubから独自ドメインの設定をすると、ブランチgh-pagesにCNA
 
 例
 
-```
-$ git subtree push --prefix public/ . gh-pages
-git push using:  . gh-pages
-To .     59 (58)
- ! [rejected]        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -> gh-pages (non-fast-forward)
-error: failed to push some refs to '.'
-hint: Updates were rejected because a pushed branch tip is behind its remote
-hint: counterpart. Check out this branch and integrate the remote changes
-hint: (e.g. 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```bash
+ $ git subtree push --prefix public/ . gh-pages
+ git push using:  . gh-pages
+ To .     59 (58)
+  ! [rejected]        95625bda7b4247ff0d05b2e76c8db1cbb7e87dad -> gh-pages (non-fast-forward)
+ error: failed to push some refs to '.'
+ hint: Updates were rejected because a pushed branch tip is behind its remote
+ hint: counterpart. Check out this branch and integrate the remote changes
+ hint: (e.g. 'git pull ...') before pushing again.
+ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 
-```
-$ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages
+```bash
+ $ git push origin 95625bda7b4247ff0d05b2e76c8db1cbb7e87dad:gh-pages
 ```
 
 ## 独自ドメインの設定
 今回は、お名前.comでドメインを取得しました。お名前.comでDNSの設定をします。  
 GitHub Pagesのドメインは
 
-```
-https://{ユーザー名}.github.io/{リポジトリ名}
+```bash
+ https://{ユーザー名}.github.io/{リポジトリ名}
 ```
 
 なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。  
