@@ -38,6 +38,18 @@ from falcon_multipart.middleware import MultipartMiddleware import falcon import
     </item>
     
     <item>
+      <title>Google ColaboratoryでGoogle driveをマウントする</title>
+      <link>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
+      <description>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} &amp;lt; /dev/null 2&amp;gt;&amp;amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント
+!mkdir -p drive !google-drive-ocamlfuse drive after from google.</description>
+    </item>
+    
+    <item>
       <title>falconを使ってみた</title>
       <link>http://www.if-blog.site/post/falcon/falcon-tips/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

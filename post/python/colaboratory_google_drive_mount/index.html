@@ -6,9 +6,9 @@
     
 
     
-    <meta name="description" content="はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
-サイトの作成 インストール brew install hugo  テンプレートの作成 hugo new site hugo-test  これで、次のようにテンプレートが作成されます。
-$ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/  テーマの適応 https://themes.gohugo.io/">
+    <meta name="description" content="久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq">
     
 
     
@@ -41,7 +41,7 @@ $ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/ 
     <link rel="stylesheet" type="text/css" href="http://www.if-blog.site/css/syntax.css}}">    
     
    
-    <title>Hugoでブログを作る | アンドロイドは推理小説を描くか?</title>
+    <title>Google ColaboratoryでGoogle driveをマウントする | アンドロイドは推理小説を描くか?</title>
   </head>
   <body>
     <div id="wrap">
@@ -73,10 +73,10 @@ if (!doNotTrack) {
 <div class="article">
   <header>
     <div class="article-header">
-      <h1>Hugoでブログを作る</h1>
+      <h1>Google ColaboratoryでGoogle driveをマウントする</h1>
       <div class="article-meta">
           
-	  <span class="posttime">2019/03/01</span>
+	  <span class="posttime">2019/04/06</span>
           
 
 <div class="tags">
@@ -85,7 +85,7 @@ if (!doNotTrack) {
     <li>
 	
 	
-	<a href="/tags/hugo/">Hugo</a>
+	<a href="/tags/python/">python</a>
     </li>
     
   </ul>
@@ -99,99 +99,29 @@ if (!doNotTrack) {
   <div class="content">
     
 
-<h2 id="はじめに">はじめに</h2>
+<p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。</p>
 
-<p><a href="https://gohugo.io/" target="_blank">Hugo</a>とは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。
-Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。</p>
+<h2 id="before">before</h2>
 
-<h2 id="サイトの作成">サイトの作成</h2>
-
-<h3 id="インストール">インストール</h3>
-
-<pre><code>brew install hugo
-</code></pre>
-
-<h3 id="テンプレートの作成">テンプレートの作成</h3>
-
-<pre><code>hugo new site hugo-test
-</code></pre>
-
-<p>これで、次のようにテンプレートが作成されます。</p>
-
-<pre><code>$ ls hugo-test/
-archetypes/  config.toml  content/     data/        layouts/     static/      themes/
-</code></pre>
-
-<h3 id="テーマの適応">テーマの適応</h3>
-
-<p><a href="https://themes.gohugo.io/" target="_blank">https://themes.gohugo.io/</a> ここからテーマを探す。</p>
-
-<p>例として、<a href="https://themes.gohugo.io/hugo-theme-learn/" target="_blank">https://themes.gohugo.io/hugo-theme-learn/</a> を使います。</p>
-
-<pre><code>$ cd hugo-test/themes
-$ git clone https://github.com/matcornic/hugo-theme-learn.git
-</code></pre>
-
-<p>テーマを適応させるために、config.tomlにthemeを記述します。</p>
-
-<pre><code>theme = &quot;hugo-theme-learn&quot;
-</code></pre>
-
-<h3 id="サーバーの起動">サーバーの起動</h3>
-
-<pre><code>$ hugo server -D -t hugo-theme-learn
-</code></pre>
-
-<p>オプションDでDraftフラグのついた記事の確認、オプションtでテーマの適応です。
-cloneしてきたtheme内の、layoutとstaticなどを、作成したテンプレート内のlayout、staticに移動しておくと、templateのマイナーチェンジが行えます。</p>
-
-<p>デフォルトで<code>http://localhost:1313/</code>で起動するのでアクセスしてみる。</p>
-
-<h2 id="記事の追加">記事の追加</h2>
-
-<p>記事の作成</p>
-
-<pre><code>$ hugo new post/test.md
-hugo_test/content/post/test.md created
-</code></pre>
-
-<p>以下のようなmarkdownファイルが作成される</p>
-
-<pre><code>cat content/post/test.md
----
-title: &quot;Test&quot;
-date: 2018-10-15T18:51:47+09:00
-draft: true
----
-</code></pre>
-
-<p>ここで、draftは記事を後悔するかのフラグ
-この出力フォーマットも、独自に設定が可能</p>
-
-<pre><code>$ hugo server --watch
-</code></pre>
-
-<p>watchフラグをつけると、mdファイルが更新されるたびに、web側に更新が反映される。
-markdownの記事を書きながら、フォーマットを確認するのに使えそう。</p>
-
-<h2 id="デプロイ">デプロイ</h2>
-
-<p>以下のコマンドで実際にpublic以下にstaticファイルが吐き出される</p>
-
-<pre><code>$ hugo -t hugo-theme-learn
-</code></pre>
-
-<pre><code>$ ls public/
-404.html    categories  css         fonts       images      index.html  index.xml   js          mermaid     sitemap.xml tags        webfonts
-</code></pre>
-
-<p>このpublicディレクトリをwebサーバーに与えるだけでおk。</p>
-
-<h2 id="まとめ">まとめ</h2>
-
-<p>Hugoのインストールからデプロイまでをまとめました。
-html内で使える変数や、数式、画像の表示はまた別でまとめます。</p>
-
+<p>認証</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">!</span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">qq</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span> <span class="n">python</span><span class="o">-</span><span class="n">software</span><span class="o">-</span><span class="n">properties</span> <span class="n">module</span><span class="o">-</span><span class="n">init</span><span class="o">-</span><span class="n">tools</span>
+<span class="err">!</span><span class="n">add</span><span class="o">-</span><span class="n">apt</span><span class="o">-</span><span class="n">repository</span> <span class="o">-</span><span class="n">y</span> <span class="n">ppa</span><span class="p">:</span><span class="n">alessandro</span><span class="o">-</span><span class="n">strada</span><span class="o">/</span><span class="n">ppa</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<span class="err">!</span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="o">-</span><span class="n">qq</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+<span class="err">!</span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="o">-</span><span class="n">qq</span> <span class="n">google</span><span class="o">-</span><span class="n">drive</span><span class="o">-</span><span class="n">ocamlfuse</span> <span class="n">fuse</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">auth</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">authenticate_user</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">oauth2client.client</span> <span class="kn">import</span> <span class="n">GoogleCredentials</span>
+<span class="n">creds</span> <span class="o">=</span> <span class="n">GoogleCredentials</span><span class="o">.</span><span class="n">get_application_default</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="err">!</span><span class="n">google</span><span class="o">-</span><span class="n">drive</span><span class="o">-</span><span class="n">ocamlfuse</span> <span class="o">-</span><span class="n">headless</span> <span class="o">-</span><span class="nb">id</span><span class="o">=</span><span class="p">{</span><span class="n">creds</span><span class="o">.</span><span class="n">client_id</span><span class="p">}</span> <span class="o">-</span><span class="n">secret</span><span class="o">=</span><span class="p">{</span><span class="n">creds</span><span class="o">.</span><span class="n">client_secret</span><span class="p">}</span> <span class="o">&lt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">URL</span>
+<span class="n">vcode</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">()</span>
+<span class="err">!</span><span class="n">echo</span> <span class="p">{</span><span class="n">vcode</span><span class="p">}</span> <span class="o">|</span> <span class="n">google</span><span class="o">-</span><span class="n">drive</span><span class="o">-</span><span class="n">ocamlfuse</span> <span class="o">-</span><span class="n">headless</span> <span class="o">-</span><span class="nb">id</span><span class="o">=</span><span class="p">{</span><span class="n">creds</span><span class="o">.</span><span class="n">client_id</span><span class="p">}</span> <span class="o">-</span><span class="n">secret</span><span class="o">=</span><span class="p">{</span><span class="n">creds</span><span class="o">.</span><span class="n">client_secret</span><span class="p">}</span></code></pre></div>
+<p>マウント</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="err">!</span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">drive</span>
+<span class="err">!</span><span class="n">google</span><span class="o">-</span><span class="n">drive</span><span class="o">-</span><span class="n">ocamlfuse</span> <span class="n">drive</span></code></pre></div>
+<h2 id="after">after</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/gdrive&#39;</span><span class="p">)</span></code></pre></div>
   </div>
   <footer>
     <div class="article-footer">
@@ -214,7 +144,7 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
     
     
     <li>
-      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/hugo/hugo-start-article//" class="hatena-bookmark-button" data-hatena-bookmark-title="Hugoでブログを作る" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+      <a href="http://b.hatena.ne.jp/entry/http://www.if-blog.site/post/python/colaboratory_google_drive_mount//" class="hatena-bookmark-button" data-hatena-bookmark-title="Google ColaboratoryでGoogle driveをマウントする" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     
     
@@ -236,15 +166,15 @@ html内で使える変数や、数式、画像の表示はまた別でまとめ�
 <h3>See Also</h3>
 <ul>
     
+    <li><a href="/post/python-get-extn/">pythonで拡張子を取得する</a></li>
+    
     <li><a href="/post/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
     
-    <li><a href="/post/hugo/hugo-ga/">Hugoにgoogle analyticsを導入する</a></li>
+    <li><a href="/post/python/python-matplotlib/">matplotlibでよく使う記法まとめ</a></li>
     
-    <li><a href="/post/hugo/hugo-add-site-description/">Hugoの記事にdescriptionを追加する</a></li>
+    <li><a href="/post/python/python-matplotlib_base/">matplotlibのよく使う記法まとめ</a></li>
     
-    <li><a href="/post/hugo/hugo-code-highlight/">Hugoの記事でコードハイライトする</a></li>
-    
-    <li><a href="/post/others/http-portal-for-blog/">Hugoで作ったwebサイトを公開する</a></li>
+    <li><a href="/post/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
     
 </ul>
 
