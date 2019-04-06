@@ -62,7 +62,3 @@ GitHub Pagesのドメインは
 なので、取得したドメインでGitHub PagesのドメインがひけるようにCNAMEの設定を行います。  
 
 GitHub側では、リポジトリの設定からCustom domainを取得したドメインで設定します。Custom domainを設定すると、Enforce HTTPSにチェックを入れることができるので、設定するとhttpsで通信が行えるようになります。  
-
-
-
-
