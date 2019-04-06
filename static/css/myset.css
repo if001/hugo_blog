@@ -170,3 +170,10 @@ table {
 {
     vertical-align: baseline !important;
 }
+
+.chroma{
+    padding:10px
+}
+code{
+    padding:0px
+}
