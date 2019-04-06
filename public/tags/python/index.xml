@@ -65,15 +65,6 @@ hooks hooksは以下のように使う。(公式)</description>
     </item>
     
     <item>
-      <title>matplotlibでよく使う記法まとめ</title>
-      <link>http://www.if-blog.site/post/python/python-matplotlib/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.if-blog.site/post/python/python-matplotlib/</guid>
-      <description>matplotlibでよく使う記法をまとめておきます。</description>
-    </item>
-    
-    <item>
       <title>matplotlibのよく使う記法まとめ</title>
       <link>http://www.if-blog.site/post/python/python-matplotlib_base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
