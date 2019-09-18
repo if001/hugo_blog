@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Emacs on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/tags/emacs/</link>
+    <link>https://www.if-blog.site/tags/emacs/</link>
     <description>Recent content in Emacs on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <atom:link href="/tags/emacs/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>emacsひな祭りいってきたのでためになったpackageなどをまとめておく</title>
-      <link>http://www.if-blog.site/post/emacs/emacs-hinamatsuri/</link>
+      <link>https://www.if-blog.site/post/emacs/emacs-hinamatsuri/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/emacs/emacs-hinamatsuri/</guid>
+      <guid>https://www.if-blog.site/post/emacs/emacs-hinamatsuri/</guid>
       <description>2019年3月3日に開催された東京Emacsひなまつりにいってきました。
 https://tokyo-emacs.connpass.com/event/121603/
 随時コメント追加していきます。
@@ -56,10 +56,10 @@ http://emacs.rubikitch.com/ripgrep/
     
     <item>
       <title>lsp-modeを導入する</title>
-      <link>http://www.if-blog.site/post/emacs/lsp-mode/</link>
+      <link>https://www.if-blog.site/post/emacs/lsp-mode/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/emacs/lsp-mode/</guid>
+      <guid>https://www.if-blog.site/post/emacs/lsp-mode/</guid>
       <description>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
 lsp-mode
 https://github.com/emacs-lsp/lsp-mode
@@ -86,10 +86,10 @@ companyのバックエンドに設定
     
     <item>
       <title>use-packagesを使ってみる</title>
-      <link>http://www.if-blog.site/post/emacs/emacs-use-package/</link>
+      <link>https://www.if-blog.site/post/emacs/emacs-use-package/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/emacs/emacs-use-package/</guid>
+      <guid>https://www.if-blog.site/post/emacs/emacs-use-package/</guid>
       <description>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
 https://github.com/jwiegley/use-package
 use-packageとは、emacsのパッケージ管理を強化するパッケージです。

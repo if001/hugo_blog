@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/post/</link>
+    <link>https://www.if-blog.site/post/</link>
     <description>Recent content in Posts on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Fri, 01 Mar 2019 20:48:42 +0900</lastBuildDate>
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>pythonで拡張子を取得する</title>
-      <link>http://www.if-blog.site/post/python-get-extn/</link>
+      <link>https://www.if-blog.site/post/python-get-extn/</link>
       <pubDate>Fri, 01 Mar 2019 20:48:42 +0900</pubDate>
       
-      <guid>http://www.if-blog.site/post/python-get-extn/</guid>
+      <guid>https://www.if-blog.site/post/python-get-extn/</guid>
       <description>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
 import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
 hoge/test .md  </description>
@@ -22,10 +22,10 @@ hoge/test .md  </description>
     
     <item>
       <title>falconでアップロードサーバーを作る</title>
-      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <link>https://www.if-blog.site/post/falcon/falcon-img-upload/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <guid>https://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
@@ -39,10 +39,10 @@ from falcon_multipart.middleware import MultipartMiddleware import falcon import
     
     <item>
       <title>Deeplearningまわりの最新論文を浅く広くみてまわる</title>
-      <link>http://www.if-blog.site/post/neuralnet/pepar_summary/</link>
+      <link>https://www.if-blog.site/post/neuralnet/pepar_summary/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/neuralnet/pepar_summary/</guid>
+      <guid>https://www.if-blog.site/post/neuralnet/pepar_summary/</guid>
       <description>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
 おすすめがあれば教えてください。
 Google Scholar: https://scholar.google.com/schhp?hl=ja
@@ -62,10 +62,10 @@ Yahoo! Labs http://labs.yahoo.com/publication/?area=machine-learning</descriptio
     
     <item>
       <title>Google ColaboratoryでGoogle driveをマウントする</title>
-      <link>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
+      <link>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
+      <guid>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
       <description>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
 before 認証
 !apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} &amp;lt; /dev/null 2&amp;gt;&amp;amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント
@@ -74,10 +74,10 @@ before 認証
     
     <item>
       <title>GoogleAnalyticsのPV、セッション、ユーザーの定義</title>
-      <link>http://www.if-blog.site/post/others/ga-define/</link>
+      <link>https://www.if-blog.site/post/others/ga-define/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/others/ga-define/</guid>
+      <guid>https://www.if-blog.site/post/others/ga-define/</guid>
       <description> ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
 GDPRにより以下のものから保持期間を選択できる
  14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン </description>
@@ -85,10 +85,10 @@ GDPRにより以下のものから保持期間を選択できる
     
     <item>
       <title>Hugoでブログを作る</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-start-article/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-start-article/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-start-article/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-start-article/</guid>
       <description>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
 サイトの作成 インストール brew install hugo  テンプレートの作成 hugo new site hugo-test  これで、次のようにテンプレートが作成されます。
 $ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/  テーマの適応 https://themes.gohugo.io/ ここからテーマを探す。
@@ -103,10 +103,10 @@ cat content/post/test.md --- title: &amp;quot;Test&amp;quot; date: 2018-10-15T18
     
     <item>
       <title>Hugoでリンクを新しいウィンドウで開く</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</guid>
       <description>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
 [blackfriday] hrefTargetBlank = true 簡単！
@@ -116,10 +116,10 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
     
     <item>
       <title>Hugoで作ったwebサイトを公開する</title>
-      <link>http://www.if-blog.site/post/others/http-portal-for-blog/</link>
+      <link>https://www.if-blog.site/post/others/http-portal-for-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/others/http-portal-for-blog/</guid>
+      <guid>https://www.if-blog.site/post/others/http-portal-for-blog/</guid>
       <description>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
 いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
 インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
@@ -143,10 +143,10 @@ STAGEは、次の3つが指定できます。
     
     <item>
       <title>Hugoにgoogle analyticsを導入する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-ga/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-ga/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-ga/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-ga/</guid>
       <description>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
 まず、gaアカウントを作成。
 config.tomlに
@@ -155,10 +155,10 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
     
     <item>
       <title>Hugoのディレクトリ構造やデプロイ方法の備忘録</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-long-time-no-see/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-long-time-no-see/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-long-time-no-see/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-long-time-no-see/</guid>
       <description>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
 ディレクトリ 基本的なディレクトリは以下
 markdownを書いたりと普段触るのはcontentディレクトリになる。
@@ -170,10 +170,10 @@ $ hugo server -t ./  localにサーバーが立ち上がり、markdownを書き�
     
     <item>
       <title>Hugoの記事でコードハイライトする</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-code-highlight/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-code-highlight/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-code-highlight/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-code-highlight/</guid>
       <description>Hugoでコードのシンタックスハイライトする場合のメモ
 Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
 Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
@@ -191,10 +191,10 @@ highlightjsを使う highlightjs
     
     <item>
       <title>Hugoの記事にdescriptionを追加する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-add-site-description/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-add-site-description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-add-site-description/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-add-site-description/</guid>
       <description>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 html側で次のように書くと、markdownに書いたdescriptionが参照できます。
 {{ .Description }} markdown側では、ヘッダーに次のように記述します。
@@ -211,10 +211,10 @@ html側は次のように記述する。
     
     <item>
       <title>Hugoの記事に画像を載せる</title>
-      <link>http://www.if-blog.site/post/hugo/hugo_on_image/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo_on_image/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo_on_image/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo_on_image/</guid>
       <description>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
 画像を配置するディクトリを以下のように作っておく。
 {root}/content/post/images/  以下のように記述すると表示できる。
@@ -227,10 +227,10 @@ html側は次のように記述する。
     
     <item>
       <title>Hugoの記事を更新順にソートする</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-date-sort/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-date-sort/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-date-sort/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-date-sort/</guid>
       <description>Hugoの記事を更新順にソートするメモです。
 まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
 そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/
@@ -247,10 +247,10 @@ lastmod以外にも並び替えが行えます。
     
     <item>
       <title>HugoをGitHub Pagesで公開する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo_git_pages/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo_git_pages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
       <description>GitHub Pagesを使ってHugoを公開する手順をメモ
 やりたいこととしては、
  Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。

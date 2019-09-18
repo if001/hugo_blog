@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/tags/hugo/</link>
+    <link>https://www.if-blog.site/tags/hugo/</link>
     <description>Recent content in Hugo on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Tue, 16 Oct 2018 20:48:42 +0900</lastBuildDate>
     <atom:link href="/tags/hugo/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>falconでアップロードサーバーを作る</title>
-      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <link>https://www.if-blog.site/post/falcon/falcon-img-upload/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <guid>https://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
@@ -28,10 +28,10 @@ from falcon_multipart.middleware import MultipartMiddleware import falcon import
     
     <item>
       <title>Hugoでブログを作る</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-start-article/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-start-article/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-start-article/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-start-article/</guid>
       <description>はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
 サイトの作成 インストール brew install hugo  テンプレートの作成 hugo new site hugo-test  これで、次のようにテンプレートが作成されます。
 $ ls hugo-test/ archetypes/ config.toml content/ data/ layouts/ static/ themes/  テーマの適応 https://themes.gohugo.io/ ここからテーマを探す。
@@ -46,10 +46,10 @@ cat content/post/test.md --- title: &amp;quot;Test&amp;quot; date: 2018-10-15T18
     
     <item>
       <title>Hugoでリンクを新しいウィンドウで開く</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-href-to-target-blank/</guid>
       <description>リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
 hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
 [blackfriday] hrefTargetBlank = true 簡単！
@@ -59,10 +59,10 @@ hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownで
     
     <item>
       <title>Hugoで作ったwebサイトを公開する</title>
-      <link>http://www.if-blog.site/post/others/http-portal-for-blog/</link>
+      <link>https://www.if-blog.site/post/others/http-portal-for-blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/others/http-portal-for-blog/</guid>
+      <guid>https://www.if-blog.site/post/others/http-portal-for-blog/</guid>
       <description>はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
 いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
 インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
@@ -86,10 +86,10 @@ STAGEは、次の3つが指定できます。
     
     <item>
       <title>Hugoにgoogle analyticsを導入する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-ga/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-ga/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-ga/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-ga/</guid>
       <description>Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
 まず、gaアカウントを作成。
 config.tomlに
@@ -98,10 +98,10 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
     
     <item>
       <title>Hugoのディレクトリ構造やデプロイ方法の備忘録</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-long-time-no-see/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-long-time-no-see/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-long-time-no-see/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-long-time-no-see/</guid>
       <description>久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
 ディレクトリ 基本的なディレクトリは以下
 markdownを書いたりと普段触るのはcontentディレクトリになる。
@@ -113,10 +113,10 @@ $ hugo server -t ./  localにサーバーが立ち上がり、markdownを書き�
     
     <item>
       <title>Hugoの記事でコードハイライトする</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-code-highlight/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-code-highlight/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-code-highlight/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-code-highlight/</guid>
       <description>Hugoでコードのシンタックスハイライトする場合のメモ
 Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
 Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
@@ -134,10 +134,10 @@ highlightjsを使う highlightjs
     
     <item>
       <title>Hugoの記事にdescriptionを追加する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-add-site-description/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-add-site-description/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-add-site-description/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-add-site-description/</guid>
       <description>Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
 html側で次のように書くと、markdownに書いたdescriptionが参照できます。
 {{ .Description }} markdown側では、ヘッダーに次のように記述します。
@@ -154,10 +154,10 @@ html側は次のように記述する。
     
     <item>
       <title>Hugoの記事に画像を載せる</title>
-      <link>http://www.if-blog.site/post/hugo/hugo_on_image/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo_on_image/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo_on_image/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo_on_image/</guid>
       <description>Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
 画像を配置するディクトリを以下のように作っておく。
 {root}/content/post/images/  以下のように記述すると表示できる。
@@ -170,10 +170,10 @@ html側は次のように記述する。
     
     <item>
       <title>Hugoの記事を更新順にソートする</title>
-      <link>http://www.if-blog.site/post/hugo/hugo-date-sort/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo-date-sort/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo-date-sort/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo-date-sort/</guid>
       <description>Hugoの記事を更新順にソートするメモです。
 まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
 そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/
@@ -190,10 +190,10 @@ lastmod以外にも並び替えが行えます。
     
     <item>
       <title>HugoをGitHub Pagesで公開する</title>
-      <link>http://www.if-blog.site/post/hugo/hugo_git_pages/</link>
+      <link>https://www.if-blog.site/post/hugo/hugo_git_pages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
+      <guid>https://www.if-blog.site/post/hugo/hugo_git_pages/</guid>
       <description>GitHub Pagesを使ってHugoを公開する手順をメモ
 やりたいこととしては、
  Hugoのプロジェクトを丸ごとgitで管理 プロジェクトの下に作られるpublicをGitHub Pagesで公開 独自ドメインの設定  の3つです。
@@ -209,10 +209,10 @@ $ git subtree push --prefix public/ . gh-pages git push using: . gh-pages To . 5
     
     <item>
       <title>KaTeXを使ってみる</title>
-      <link>http://www.if-blog.site/post/hugo/katex-introduction/</link>
+      <link>https://www.if-blog.site/post/hugo/katex-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/hugo/katex-introduction/</guid>
+      <guid>https://www.if-blog.site/post/hugo/katex-introduction/</guid>
       <description>これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
 以下を加えるだけでおk
 &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;#34;[[&amp;#34;, right: &amp;#34;]]&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false}]})});&amp;lt;/script&amp;gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。

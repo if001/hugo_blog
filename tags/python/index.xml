@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/tags/python/</link>
+    <link>https://www.if-blog.site/tags/python/</link>
     <description>Recent content in Python on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Fri, 01 Mar 2019 20:48:42 +0900</lastBuildDate>
     <atom:link href="/tags/python/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>pythonで拡張子を取得する</title>
-      <link>http://www.if-blog.site/post/python-get-extn/</link>
+      <link>https://www.if-blog.site/post/python-get-extn/</link>
       <pubDate>Fri, 01 Mar 2019 20:48:42 +0900</pubDate>
       
-      <guid>http://www.if-blog.site/post/python-get-extn/</guid>
+      <guid>https://www.if-blog.site/post/python-get-extn/</guid>
       <description>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
 import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
 hoge/test .md  </description>
@@ -22,10 +22,10 @@ hoge/test .md  </description>
     
     <item>
       <title>falconでアップロードサーバーを作る</title>
-      <link>http://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <link>https://www.if-blog.site/post/falcon/falcon-img-upload/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>http://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <guid>https://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
@@ -39,10 +39,10 @@ from falcon_multipart.middleware import MultipartMiddleware import falcon import
     
     <item>
       <title>Google ColaboratoryでGoogle driveをマウントする</title>
-      <link>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
+      <link>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
+      <guid>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
       <description>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
 before 認証
 !apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} &amp;lt; /dev/null 2&amp;gt;&amp;amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント
@@ -51,10 +51,10 @@ before 認証
     
     <item>
       <title>falconを使ってみた</title>
-      <link>http://www.if-blog.site/post/falcon/falcon-tips/</link>
+      <link>https://www.if-blog.site/post/falcon/falcon-tips/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/falcon/falcon-tips/</guid>
+      <guid>https://www.if-blog.site/post/falcon/falcon-tips/</guid>
       <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
 簡単なtipsをメモしておく。
 シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
@@ -66,10 +66,10 @@ hooks hooksは以下のように使う。(公式)</description>
     
     <item>
       <title>matplotlibのよく使う記法まとめ</title>
-      <link>http://www.if-blog.site/post/python/python-matplotlib_base/</link>
+      <link>https://www.if-blog.site/post/python/python-matplotlib_base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/python/python-matplotlib_base/</guid>
+      <guid>https://www.if-blog.site/post/python/python-matplotlib_base/</guid>
       <description>すぐ忘れるので、matplotlibのよく使う記法をまとめておく
 公式：https://matplotlib.org/gallery.html
 普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
@@ -90,10 +90,10 @@ import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = n
     
     <item>
       <title>pyenv環境でaws cli入れたらコマンドが見つからない</title>
-      <link>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</link>
+      <link>https://www.if-blog.site/post/others/aws-cli-at-pyenv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/others/aws-cli-at-pyenv/</guid>
+      <guid>https://www.if-blog.site/post/others/aws-cli-at-pyenv/</guid>
       <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 バージョン：pyenv:1.0.10
 公式通りにインストールする。
@@ -106,10 +106,10 @@ pyenvが問題なのかはわからん&amp;hellip;.</description>
     
     <item>
       <title>word2vecでベクトルから単語を出力する</title>
-      <link>http://www.if-blog.site/post/nlp/word2vec_output_word/</link>
+      <link>https://www.if-blog.site/post/nlp/word2vec_output_word/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/nlp/word2vec_output_word/</guid>
+      <guid>https://www.if-blog.site/post/nlp/word2vec_output_word/</guid>
       <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
 結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
 sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0] ただし、第3引数は出力する類似単語数を表す。
@@ -122,10 +122,10 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
     
     <item>
       <title>文字をベクトル化する</title>
-      <link>http://www.if-blog.site/post/nlp/char_vec/</link>
+      <link>https://www.if-blog.site/post/nlp/char_vec/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/nlp/char_vec/</guid>
+      <guid>https://www.if-blog.site/post/nlp/char_vec/</guid>
       <description>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。
 今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
 コードはここ、https://github.com/if001/fifc.git
