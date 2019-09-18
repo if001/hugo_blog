@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Neuralnet on アンドロイドは推理小説を描くか?</title>
-    <link>http://www.if-blog.site/tags/neuralnet/</link>
+    <link>https://www.if-blog.site/tags/neuralnet/</link>
     <description>Recent content in Neuralnet on アンドロイドは推理小説を描くか?</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <atom:link href="/tags/neuralnet/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deeplearningまわりの最新論文を浅く広くみてまわる</title>
-      <link>http://www.if-blog.site/post/neuralnet/pepar_summary/</link>
+      <link>https://www.if-blog.site/post/neuralnet/pepar_summary/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/neuralnet/pepar_summary/</guid>
+      <guid>https://www.if-blog.site/post/neuralnet/pepar_summary/</guid>
       <description>最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
 おすすめがあれば教えてください。
 Google Scholar: https://scholar.google.com/schhp?hl=ja
@@ -33,10 +33,10 @@ Yahoo! Labs http://labs.yahoo.com/publication/?area=machine-learning</descriptio
     
     <item>
       <title>kerasでモデルを結合する</title>
-      <link>http://www.if-blog.site/post/neuralnet/combine_model/</link>
+      <link>https://www.if-blog.site/post/neuralnet/combine_model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/neuralnet/combine_model/</guid>
+      <guid>https://www.if-blog.site/post/neuralnet/combine_model/</guid>
       <description>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
 autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
 Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
@@ -49,10 +49,10 @@ Using TensorFlow backend. ______________________________________________________
     
     <item>
       <title>文字をベクトル化する</title>
-      <link>http://www.if-blog.site/post/nlp/char_vec/</link>
+      <link>https://www.if-blog.site/post/nlp/char_vec/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://www.if-blog.site/post/nlp/char_vec/</guid>
+      <guid>https://www.if-blog.site/post/nlp/char_vec/</guid>
       <description>文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。
 今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
 コードはここ、https://github.com/if001/fifc.git
