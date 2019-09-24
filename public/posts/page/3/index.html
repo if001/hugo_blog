@@ -271,6 +271,55 @@
             
             
             <div class="post-wrapper white-bg post-card">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
+    <div class="post-header text-center">
+      <div class="px-4 post-heading">Hugoの記事にdescriptionを追加する</div>
+      <ul class="post-meta li-x mt-1">
+	
+        <li>2019-09-24</li>
+        
+        
+      </ul>
+    </div>
+    
+
+    
+      Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ .Description }} markdown側では、ヘッダーに次のように記述します。
+description=&#34;hogehoge&#34;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。......
+    
+  </a>
+
+  
+  
+  <div class="post-meta li-x mt-2 div-x">
+    <div>
+      
+      
+    </div>
+    
+    <div>
+      
+        
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
+      
+    
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+
+            
+            <div class="post-wrapper white-bg post-card">
   <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/">
     <div class="post-header text-center">
       <div class="px-4 post-heading">Hugoの記事でコードハイライトする</div>
@@ -721,60 +770,6 @@ before 認証
 </div>
 
             
-            <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/">
-    <div class="post-header text-center">
-      <div class="px-4 post-heading">emacsひな祭りいってきたのでためになったpackageなどをまとめておく</div>
-      <ul class="post-meta li-x mt-1">
-	
-        <li>2019-09-24</li>
-        
-        
-      </ul>
-    </div>
-    
-
-    
-      2019年3月3日に開催された東京Emacsひなまつりにいってきました。
-https://tokyo-emacs.connpass.com/event/121603/
-随時コメント追加していきます。
-ox-hugo
-https://ox-hugo.scripter.co/
-Ox-hugo
-https://sfus.net/blog/2018/12/org-mode-with-ox-hugo/
-Atomic-chrome
-https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f......
-    
-  </a>
-
-  
-  
-  <div class="post-meta li-x mt-2 div-x">
-    <div>
-      
-      
-    </div>
-    
-    <div>
-      
-        
-<div class="li-x div-x post-meta">
-  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
-  <div class="tags-sm">
-    
-      <li><a href="https://www.if-blog.site/tags/emacs" role="button">emacs </a></li>
-      
-    
-  </div>
-</div>
-
-      
-    </div>
-  </div>
-
-</div>
-
-            
         </div>
 	
 	<div class="pagination pagination-outline justify-content-center active-color">
@@ -942,6 +937,8 @@ https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f......
 
   
 
+  
+
 
 
 
@@ -996,10 +993,16 @@ https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f......
             <li><a href="https://www.if-blog.site/tags/docker" role="button"><span>docker (1)</span></a></li>
           
         
+            <li><a href="https://www.if-blog.site/tags/firebase" role="button"><span>firebase (1)</span></a></li>
+          
+        
             <li><a href="https://www.if-blog.site/tags/katex" role="button"><span>katex (1)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/keras" role="button"><span>keras (1)</span></a></li>
+          
+        
+            <li><a href="https://www.if-blog.site/tags/poem" role="button"><span>poem (1)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/rust" role="button"><span>rust (1)</span></a></li>
@@ -1015,12 +1018,6 @@ https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f......
           
         
             <li><a href="https://www.if-blog.site/tags/tex" role="button"><span>tex (1)</span></a></li>
-          
-        
-            <li><a href="https://www.if-blog.site/tags/word2vec" role="button"><span>word2vec (1)</span></a></li>
-          
-        
-            <li><a href="https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90" role="button"><span>構文解析 (1)</span></a></li>
           
         
       </div>

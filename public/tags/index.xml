@@ -72,6 +72,15 @@
     </item>
     
     <item>
+      <title>Firebase</title>
+      <link>https://www.if-blog.site/tags/firebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/tags/firebase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>google analytics</title>
       <link>https://www.if-blog.site/tags/google-analytics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -108,11 +117,20 @@
     </item>
     
     <item>
-      <title>NLP</title>
+      <title>nlp</title>
       <link>https://www.if-blog.site/tags/nlp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.if-blog.site/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Poem</title>
+      <link>https://www.if-blog.site/tags/poem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/tags/poem/</guid>
       <description></description>
     </item>
     
@@ -122,24 +140,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.if-blog.site/tags/rust/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>seq2seq</title>
-      <link>https://www.if-blog.site/tags/seq2seq/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/tags/seq2seq/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SeqGAN</title>
-      <link>https://www.if-blog.site/tags/seqgan/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/tags/seqgan/</guid>
       <description></description>
     </item>
     

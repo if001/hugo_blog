@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>WebApp on アンドロイドは推理小説を書くか?</title>
-    <link>https://www.if-blog.site/tags/webapp/</link>
-    <description>Recent content in WebApp on アンドロイドは推理小説を書くか?</description>
+    <title>Poem on アンドロイドは推理小説を書くか?</title>
+    <link>https://www.if-blog.site/tags/poem/</link>
+    <description>Recent content in Poem on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <atom:link href="/tags/webapp/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/poem/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>三行で読書感想文を書いて、SNSでシェアできるサービスを作った</title>

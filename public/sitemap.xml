@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://www.if-blog.site/posts/</loc>
-    <lastmod>2019-09-24T15:31:42+09:00</lastmod>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
   </url>
   
   <url>
@@ -19,12 +19,12 @@
   
   <url>
     <loc>https://www.if-blog.site/tags/</loc>
-    <lastmod>2019-09-24T15:31:42+09:00</lastmod>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.if-blog.site/</loc>
-    <lastmod>2019-09-24T15:31:42+09:00</lastmod>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
   </url>
   
   <url>
@@ -79,6 +79,11 @@
   <url>
     <loc>https://www.if-blog.site/posts/falcon/falcon-tips/</loc>
     <lastmod>2019-09-24T15:31:42+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.if-blog.site/tags/firebase/</loc>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
   </url>
   
   <url>
@@ -187,6 +192,11 @@
   </url>
   
   <url>
+    <loc>https://www.if-blog.site/tags/poem/</loc>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.if-blog.site/posts/others/aws-cli-at-pyenv/</loc>
     <lastmod>2019-09-24T15:31:42+09:00</lastmod>
   </url>
@@ -232,6 +242,11 @@
   </url>
   
   <url>
+    <loc>https://www.if-blog.site/tags/webapp/</loc>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.if-blog.site/tags/word2vec/</loc>
     <lastmod>2019-09-24T15:31:42+09:00</lastmod>
   </url>
@@ -244,6 +259,11 @@
   <url>
     <loc>https://www.if-blog.site/posts/nlp/diversity_neural_conversation_model/</loc>
     <lastmod>2019-09-24T15:31:42+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.if-blog.site/posts/edgwbs/book_reports_review/</loc>
+    <lastmod>2019-09-24T23:53:23+09:00</lastmod>
   </url>
   
   <url>
