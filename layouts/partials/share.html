@@ -1,6 +1,6 @@
 {{ if .Site.Params.sharebutton }}
 <div id="share-buttons">
-  <ul>
+  <ul style="list-style: none;">
     {{ if .Site.Params.sharebutton.twitter }}
     <li>
       <a href="https://twitter.com/share" class="twitter-share-button"{{ with .Site.Author.twitter }} data-via="{{ . }}"{{ end }}>Tweet</a>

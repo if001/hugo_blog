@@ -43,7 +43,7 @@ summaryLength = 10
         # If you want to display share buttons set these
         # This is Optional values
         twitter  = true
-        facebook = true
+        facebook = false
         tumblr   = false
         hatena   = true # hatena is Japanese social media
         google   = false
