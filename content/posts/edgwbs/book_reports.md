@@ -34,8 +34,6 @@ Google、Twitterを用いてのログインができる様にします。
 
 firebase
 
-
-
 ## Hosting
 Vuejs(typescript)をHostingで配信します。  
 まず、それっぽくコードを書きます。  
