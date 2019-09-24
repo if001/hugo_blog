@@ -8,16 +8,16 @@
     <atom:link href="/tags/firebase/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Firebaseを使ってwebアプリを公開した</title>
-      <link>https://www.if-blog.site/post/edgwbs/book_reports_firebase/</link>
+      <title>三行で読書感想文を書いて、SNSでシェアできるサービスを作った</title>
+      <link>https://www.if-blog.site/posts/edgwbs/book_reports_review/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/edgwbs/book_reports_firebase/</guid>
-      <description>firebaseのみで三行で読書感想文をSNSにシェアできるwebアプリケーションを作ってみました。
-画像
-構築の備忘録を残しておきます。
-今回使ったのは、以下のサービス
- hosting authentication storage database function  authenticateは以前使ったことがあり、大変便利だったので他のサービスを使ってみようと言うのが動機です。</description>
+      <guid>https://www.if-blog.site/posts/edgwbs/book_reports_review/</guid>
+      <description>サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
+  三行読書感想文
+使い方 googleアカウントもしくは、Twitterアカウントでログインできます。
+その他のSNSアカウントでのログインは、随時対応していこうと思います。
+  ログイン後に、感想を書く本を選びます。</description>
     </item>
     
   </channel>
