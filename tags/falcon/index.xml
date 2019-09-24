@@ -10,10 +10,10 @@
     
     <item>
       <title>falconでアップロードサーバーを作る</title>
-      <link>https://www.if-blog.site/post/falcon/falcon-img-upload/</link>
+      <link>https://www.if-blog.site/posts/falcon/falcon-img-upload/</link>
       <pubDate>Tue, 16 Oct 2018 20:48:42 +0900</pubDate>
       
-      <guid>https://www.if-blog.site/post/falcon/falcon-img-upload/</guid>
+      <guid>https://www.if-blog.site/posts/falcon/falcon-img-upload/</guid>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
@@ -22,10 +22,10 @@ image_name = &amp;#34;test.</description>
     
     <item>
       <title>falconを使ってみた</title>
-      <link>https://www.if-blog.site/post/falcon/falcon-tips/</link>
+      <link>https://www.if-blog.site/posts/falcon/falcon-tips/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/falcon/falcon-tips/</guid>
+      <guid>https://www.if-blog.site/posts/falcon/falcon-tips/</guid>
       <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
 簡単なtipsをメモしておく。
 シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。

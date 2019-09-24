@@ -9,10 +9,10 @@
     
     <item>
       <title>emacsひな祭りいってきたのでためになったpackageなどをまとめておく</title>
-      <link>https://www.if-blog.site/post/emacs/emacs-hinamatsuri/</link>
+      <link>https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/emacs/emacs-hinamatsuri/</guid>
+      <guid>https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/</guid>
       <description>2019年3月3日に開催された東京Emacsひなまつりにいってきました。
 https://tokyo-emacs.connpass.com/event/121603/
 随時コメント追加していきます。
@@ -26,10 +26,10 @@ https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f</description>
     
     <item>
       <title>lsp-modeを導入する</title>
-      <link>https://www.if-blog.site/post/emacs/lsp-mode/</link>
+      <link>https://www.if-blog.site/posts/emacs/lsp-mode/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/emacs/lsp-mode/</guid>
+      <guid>https://www.if-blog.site/posts/emacs/lsp-mode/</guid>
       <description>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
 lsp-mode
 https://github.com/emacs-lsp/lsp-mode
@@ -38,10 +38,10 @@ language server protocolとは language server protocol(lsp)とは、IDEやエ�
     
     <item>
       <title>use-packagesを使ってみる</title>
-      <link>https://www.if-blog.site/post/emacs/emacs-use-package/</link>
+      <link>https://www.if-blog.site/posts/emacs/emacs-use-package/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/emacs/emacs-use-package/</guid>
+      <guid>https://www.if-blog.site/posts/emacs/emacs-use-package/</guid>
       <description>これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
 https://github.com/jwiegley/use-package
 use-packageとは、emacsのパッケージ管理を強化するパッケージです。

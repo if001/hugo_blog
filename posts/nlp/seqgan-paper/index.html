@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf">
+  
+  <meta property="og:title" content="SeqGANの論文を読む" />
+<meta property="og:description" content="SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
+https://arxiv.org/pdf/1609.05473.pdf" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/posts/nlp/seqgan-paper/" />
+<meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
+
+
+  <title>
+  
+       SeqGANの論文を読む | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://www.if-blog.site/images/favicon/favicon1.jpeg"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/css/vendors/highlight/github-gist.css">
+  
+
+    
+    
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+      }
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+    
+    
+    
+    
+    
+    
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+
+    
+
+    
+    
+    
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">SeqGANの論文を読む</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+    <li>2019-09-24</li>
+    
+
+    
+    
+    
+    
+  </ul>
+  
+
+</div>
+
+
+
+          <div class="post-content markdown">
+            
+
+<p>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient</p>
+
+<p><a href="https://arxiv.org/pdf/1609.05473.pdf" target="_blank">https://arxiv.org/pdf/1609.05473.pdf</a></p>
+
+<p>SeqGANの論文を読んだのでまとめておきます。実装を行おうと思って読んだので手法をメインに読みます。
+結果などは余力があれば加筆します。</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>文章生成では、LSTMcellを使ったRNNが優れたパフォーマンスを行う。一般的な学習法は対数尤度を最大化する方法だが、次のような問題点がある。</p>
+
+<ul>
+<li>exposure bias(予測時には、自分の出力から次の語を予測することによるbias)</li>
+<li>BLEUを使っても良いけど、詩やchatbotだと難しい</li>
+</ul>
+
+<p>これらの問題に対して、General adversarial net(GAN)が有効そうである。ただし2つの問題がある。</p>
+
+<ul>
+<li>GANは連続データを生成するように設計されており、sequenceなどの離散データを直接生成するのは難しい。生成モデルGのパラメータの更新に識別モデルDの勾配を用いているが、微小な勾配により更新された生成モデルGに対応する出力値が離散のため存在しない可能性があるためである。</li>
+<li>GANは、生成された文全体に対して、score/lossのみを与えることができる。部分的に生成されたsequenceには、文全体としての現在と将来のscoreのバランスをどのようにうまく取れば良いかが自明でない。</li>
+</ul>
+
+<p>そこで、生成モデルに強化学習を用いたGANであるSeqGANを提案する。</p>
+
+<h2 id="sequence-generative-adversarial-nets">Sequence Generative Adversarial Nets</h2>
+
+<p>生成モデル$G_ \theta $はパラメータを$\theta$として、$Y_ {1:T} = (y_ 1, y_ 2 , y_ T)$,$y_ t \in \mathcal Y$ を生成するために学習する。ここで、$\mathcal Y$はvocabularyを表す。</p>
+
+<p>学習には、強化学習を用いる。時刻$t$において、状態$s$は現在の単語列$(y_ {1},y_ {2}, \ldots ,y_ {t-1})$を表し、行動$a$により次の単語$y_ t$を選択する。このため、方策モデル$G_ {\theta} (y_ {t}|Y_ {1:t-1})$ は確率的である。一方、行動を選択したあとでは、状態遷移は決定的である。つまり、もし現在の状態が$s=Y_ {1:t-1}$で行動が$a=y_ {t}$ならば、次の状態$s&rsquo;=Y_ {1:t}$に対して、$\delta^a_ {s,s&rsquo;}=1$である。そうでないなら、次の状態$s&rdquo;$に対して$\delta^a_ {s,s&rdquo;}=0$である。</p>
+
+<p>加えて、パラメーター$\phi$を持つ識別モデル$D_ \phi$は、生成モデル$G_ \theta$を学習しながら正解を識別する。識別モデル$D_ \phi$は、本物の文章かどうかを確率的に識別する。</p>
+
+<p>識別モデル$D_ \phi$は、正解文章と生成モデル$G_ \theta$から生成される不正解の文章を用いて学習する。同時に、生成モデル$G_ \theta$は、期待値と$D_ \phi$から得られる報酬に基づくMC searchにより学習する。</p>
+
+<h2 id="seqgan-via-policy-gradient">SeqGAN via Policy Gradient</h2>
+
+<p>生成モデル(方策)$G_ \theta(y_ t|Y_ {1:t-1})$の目的は、単語列$s_ 0$が与えら得た時に得られる期待値を最大化あすることである。</p>
+
+<p>$$ J(\theta) = E[R_ t|s_ 0,\theta ] = \sum_ {y_ 1 \in \it Y} G_ \theta (y_ 1|s_ 0)・Q^{G_ \theta}_ {D_ \phi}(s_ 0,y_ 1)$$</p>
+
+<p>ここで、$R_ t$は、完全な文章に対する報酬を表す。この報酬は、$D_ {\phi}$から得られる。これは後に記述する。$Q^{G_ \theta}_ {D_ \phi}(s_ 0,y_ 1)$は、方策$G_ \theta$に従うaction-value functionである。</p>
+
+<p>続いて、どのようにaction-value functionを推定するかだが、これには強化学習と識別モデル$D_ \phi$を報酬とし実際に推定される確率を用いる。</p>
+
+<p>式は次のように表される。
+$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(Y_ {1:T})$$</p>
+
+<p>ただし、終了した文章に対してのみを識別モデルが生成する報酬として扱う。我々は、ステップごとに、長い期間の報酬を気にしているので、1つ前の単語の適応(fitness)だけについて考慮すべきでなく、将来の報酬についても考慮する必要がある。これは、ちょうど囲碁やチェスをゲームするのに似ている。</p>
+
+<p>中間状態に対して、action-valueを評価することについてだが、まだ観測していない$T-t$の単語をサンプリングするために、roll-out policy$G_ \beta$を伴うMonte Carlo searchを適応する。</p>
+
+<p>N-time Monte Carlo searchは次のように定式化される。</p>
+
+<p>$$ { Y^1_ {1:T},&hellip;,Y^N_ {1:T} } = MC^{G_ \beta}(Y_ {1:t},N) $$</p>
+
+<p>実験では、$G_ \beta$は、生成器と同様にセットされた。(速度が必要ならば簡易版でも良い)</p>
+
+<p>分散を下げ、またaction-valueのより良い精度を得るため、現在の状態から文章の最後までのN回のroll-out pulicyを実行して、出力サンプルのbatchを得る。
+以上から、以下の定式化が行える。</p>
+
+<p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = \frac{1}{N} \sum_ {n=1}^N D_ \phi(T^n_ {1:T}, Y^n_ {1:T} \in MC^{G_ \beta}(Y_ {1:t};N)) \, {\rm for} \, t &lt; T$$</p>
+
+<p>$$ Q^{G_ \theta}_ {D_ \phi}(s=Y_ {1:T-1},a=y_ T) = D_ \phi(T^n_ {1:T}, Y^n_ {1:T}) \, {\rm for} \, t=T$$</p>
+
+<p>中間の報酬がないとき、関数は、状態$s&rsquo;=Y_ {1:t}$から始まりrole-outの終わりまでのnext-state valueとして繰り返し定義される。</p>
+
+<p>識別モデル$D_ {\phi}$を使った報酬は、生成モデルを繰り返し学習するために、動的に更新される。より現実的な文章のセットが生成されると、次のように識別モデルを更新する。</p>
+
+<p>$$
+min_ \phi - \mathbb E_ {Y〜p_ {data}}[log D_ {\phi}(Y)] - \mathbb  E_ {Y〜G_ {\theta}}[log (1 - D_ {\phi}(Y))]
+$$</p>
+
+<p>ようは、クロスエントロピーである。
+一方、生成モデルの目的関数$J(\theta)$は、以下のようになる。</p>
+
+<p>$\nabla_ {\theta}J(\theta) = \sum_ {t=1}^{T} \mathbb E_ {y_ {t}〜G_ {\theta}(y_ t|Y_ {1:t-1})}[\nabla_ {\theta}logG_ \theta(y_ t|Y_ {1:t-1})・Q_ {D_ \phi}^{G_ \theta}(Y_ {1:t-1,y_ t})]$</p>
+
+<p>ここで、$Y_ {1:t-1}$は生成モデル$G_ \theta$によりサンプリングされた観測される中間状態を表す。</p>
+
+<p>サンプリング手法で$\mathbb E[・]$は近似することができるので、生成モデルのパラメーターは次のように更新される。</p>
+
+<p>$$ \theta = \theta + \alpha \nabla_ \theta J(\theta)$$</p>
+
+<p>ここで、$\alpha_ h$は$h$ステップ目の学習率を表す。勾配法としては、AdamかRMSpropを使う。</p>
+
+<h2 id="the-generative-model-for-sequences">The Generative Model for Sequences</h2>
+
+<p>生成モデルとして、LSTMをつかう。</p>
+
+<h2 id="the-discriminative-model-for-sequences">The Discriminative Model for Sequences</h2>
+
+<p>識別モデルには、CNNをつかう。</p>
+
+<p>入力文章を次のように表す。
+$$ \varepsilon_ {1:T} = x_ 1 \otimes     x_ 2 \otimes \dots \otimes x_ t$$</p>
+
+<p>ここで、$x_ t \in \mathbb R^k$はk次元にembeddingされた単語、$\otimes$は行列$\epsilon \in \mathbb R^{T \times k}$ を生成するたのconcatenation operatorを表す。</p>
+
+<p>カーネル$ \boldsymbol{w} \in \mathbb R^{l \times k}$は、新しい特徴マップを生成するための$l$個の単語のwindow sizeへ適応する。(訳怪しい)</p>
+
+<p>$$c_ i = \rho ( \boldsymbol{w} \otimes \varepsilon_ {i:i+l-1}+b )$$</p>
+
+<p>ここで、$\otimes$は要素ごとの掛け算の和、$b$はバイアス、$\rho$は非線形関数を表す。異なるwindow sizeの様々なカーネルを適応し特徴量を抽出する。最後に、特徴マップ$\tilde{c}=max \lbrace c_ 1,\ldots,c_ {T-l+1} \rbrace $上にmax-over-timeプーリングを適応する。</p>
+
+<p>パフォーマンス向上のためにthe pooled feature mapsに基づく、the highway architecture (Srivastava, Greff, and Schmidhuber 2015)を追加する。
+最後に、活性化関数がシグモイド関数の全結合をつかい、正解か不正解の確率を出力する。
+詳しい式は、appendixにかく。</p>
+
+<h2 id="参考">参考</h2>
+
+<p><a href="http://hirotaka-hachiya.hatenablog.com/entry/2017/02/27/222611" target="_blank">http://hirotaka-hachiya.hatenablog.com/entry/2017/02/27/222611</a>
+<a href="https://mil-tokyo.github.io/paper-summary/papers/20170320-SeqGAN" target="_blank">https://mil-tokyo.github.io/paper-summary/papers/20170320-SeqGAN</a></p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/nlp" role="button">nlp </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/seqgan" role="button">SeqGAN </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button">論文 </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+	  
+          <div class="row pt-3">
+	    
+
+<h3>See Also</h3>
+<ul>
+    
+    <li><a href="/posts/nlp/diversity_neural_conversation_model/">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</a></li>
+    
+    <li><a href="/posts/nlp/char_vec/">文字をベクトル化する</a></li>
+    
+    <li><a href="/posts/nlp/nlp-parse-overview-1/">自然言語処理シリーズの構文解析を読む（概要）</a></li>
+    
+</ul>
+
+
+	  </div>
+
+	  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+    
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+  
+  <script src="https://www.if-blog.site/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://www.if-blog.site/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://www.if-blog.site/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

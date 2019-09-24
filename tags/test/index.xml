@@ -9,10 +9,10 @@
     
     <item>
       <title>最初の記事です</title>
-      <link>https://www.if-blog.site/post/hugo/first-article/</link>
+      <link>https://www.if-blog.site/posts/hugo/first-article/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/hugo/first-article/</guid>
+      <guid>https://www.if-blog.site/posts/hugo/first-article/</guid>
       <description>これまでQiitaに技術記事を投稿してましたが、Qiitaに投稿するまでもない備忘録などを管理しようと作ってみました。
 wordpressとかはてぶろなど色々探してみましたが、せっかくなので自分で作ろうということで、Hugoを使って作ってみました。
 Hugoを使った備忘録はいずれ。</description>

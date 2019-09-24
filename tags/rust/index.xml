@@ -9,10 +9,10 @@
     
     <item>
       <title>Rustでmodule間にまたがるmacro呼び出し</title>
-      <link>https://www.if-blog.site/post/others/rust-macro-use-another/</link>
+      <link>https://www.if-blog.site/posts/others/rust-macro-use-another/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/others/rust-macro-use-another/</guid>
+      <guid>https://www.if-blog.site/posts/others/rust-macro-use-another/</guid>
       <description>Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
 日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
 rustのバージョンは1.27.0
