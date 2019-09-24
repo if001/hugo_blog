@@ -38,6 +38,7 @@ summaryLength = 10
     highlightjs = true
     dateFormat = "2006-01-02"
     faviconfile = "images/favicon/favicon1.jpeg"
+    images = ["images/logo/logo.jpeg"]
 
     [params.sharebutton]
         # If you want to display share buttons set these
