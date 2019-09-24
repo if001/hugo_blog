@@ -6,16 +6,16 @@
     <p class="card-text">{{ .Site.Author.onething }}</p>
      <div>
         {{ with .Site.Author.twitter }}
-        <a href="https://twitter.com/{{ . }}"><i class="fab fa-twitter-square fa-2x" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/{{ . }}" target="_blank"><i class="fab fa-twitter-square fa-2x" aria-hidden="true" style="color:gray"></i></a>
         {{ end }}
         {{ with .Site.Author.github }}
-        <a href="https://github.com/{{ . }}"><i class="fab fa-github-square fa-2x" aria-hidden="true"></i></a>
+        <a href="https://github.com/{{ . }}" target="_blank"><i class="fab fa-github-square fa-2x" aria-hidden="true" style="color:gray"></i></a>
         {{ end }}
         {{ with .Site.Author.linkedin }}
-        <a href="https://www.linkedin.com/in/{{ . }}"><i class="fab fa-linkedin-square fa-2x" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/{{ . }}" target="_blank"><i class="fab fa-linkedin-square fa-2x" aria-hidden="true" style="color:gray"></i></a>
         {{ end }}
         {{ with .Site.Author.tumblr }}
-        <a href="https://{{ . }}.tumblr.com/"><i class="fab fa-tumblr-square fa-2x" aria-hidden="true"></i></a>
+        <a href="https://{{ . }}.tumblr.com/" target="_blank"><i class="fab fa-tumblr-square fa-2x" aria-hidden="true" style="color:gray"></i></a>
         {{ end }}
       </div>    
   </div>
