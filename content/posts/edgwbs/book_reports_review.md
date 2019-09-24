@@ -2,6 +2,7 @@
 title="三行で読書感想文を書いて、SNSでシェアできるサービスを作った"
 slug="book_reports_review"
 tags=["WebApp", "Poem", "Firebase"]
+date="2019-09-25T00:05:00+09:00"
 +++
 
 ## サービス概要
