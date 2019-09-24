@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.">
+  
+  <meta property="og:title" content="ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数" />
+<meta property="og:description" content="Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
+A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/posts/nlp/diversity_neural_conversation_model/" />
+<meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
+
+
+  <title>
+  
+       ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数 | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/posts/nlp/diversity_neural_conversation_model/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://www.if-blog.site/images/favicon/favicon1.jpeg"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/css/vendors/highlight/github-gist.css">
+  
+
+    
+    
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+      }
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+    
+    
+    
+    
+    
+    
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+
+    
+
+    
+    
+    
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+    <li>2019-09-24</li>
+    
+
+    
+    
+    
+    
+  </ul>
+  
+
+</div>
+
+
+
+          <div class="post-content markdown">
+            
+
+<p>Qiitaに投稿した記事、<a href="https://qiita.com/iss-f/items/0b5a2766e789213b42c1" target="_blank">kerasでHREDを構築してみる</a>の記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。</p>
+
+<p>A Diversity-Promoting Objective Function for Neural Conversation Models
+<a href="https://arxiv.org/abs/1510.03055" target="_blank">https://arxiv.org/abs/1510.03055</a></p>
+
+<p>会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。
+モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。</p>
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>sequence to sequece(seq2seq)などの対話モデルでは、多様で文法的な応答が求められる。このモデルでは、入力される文章と出力される文章の対応のみを考慮しているため、I&rsquo;m OKやI&rsquo;dont knowのような高頻度フレーズを生成しがちである。したがって、メッセージに関する応答の依存性だけでなく、応答とメッセージの関係性についても考慮すべきである。</p>
+
+<p>そこで、私たちは、Maximum Mutual Information（MMI）を目的関数とする対話モデルを提案する。私たちは、MMIを使用することで、多様で興味深い文章を生成することを示します。</p>
+
+<h2 id="mmiモデル">MMIモデル</h2>
+
+<p>seq2seqモデルの標準的な目的関数は以下のように表される。</p>
+
+<p>$$\hat{T} = argmax_T{\log p(T|S)}$$</p>
+
+<p>$N$は単語数を表し、入力文章(メッセージ)$S$とそれに対する応答$T$は以下のように表される。
+$S = {s_1, s<em>2, &hellip;, s</em>{N_s} }$
+$T = {t_1, t<em>2, &hellip;, t</em>{N_t}, EOS}$</p>
+
+<p>seq2seqモデルの目的関数を以下のように修正する。</p>
+
+<p>$$\hat{T} = argmax_T {\log p(T|S) - \log p(T)}$$</p>
+
+<p>このとき、argmaxの中身は、以下のように式変形から、<a href="https://ja.wikipedia.org/wiki/%E7%9B%B8%E4%BA%92%E6%83%85%E5%A0%B1%E9%87%8F" target="_blank">相互情報量(wikipedia)</a> を表していることがわかる。</p>
+
+<p>$${\log p(T|S) - \log p(T)} = \frac{\log p(S,T)}{\log p(S) \log p(T)}$$</p>
+
+<p>したがって、この式は、相互情報量を最大化(MMI)する応答を出力することとなる。</p>
+
+<p>また、$\log p(T)$は、seq2seqの標準的な目的関数に対するペナルティ項とみなすことができる。メッセージに対するありふれた応答に対してペナルティを与えることで、応答の多様性を保つことを期待している。</p>
+
+<p>このペナルティー項を調節できるように、(2)式に対して、パラメタ$\lambda$を追加する。
+これを、<strong>MMI-antiLM</strong>と呼ぶ。
+$$\hat{T} = argmax_T {\log p(T|S) - \lambda \log p(T)} \tag{1}$$</p>
+
+<p>式(3)をベイズの定理を用いて変形すると、以下のようになる。
+これを<strong>MMI-bidi</strong>と呼ぶ
+$$\hat{T} = argmax_T {(1-\lambda)\log p(T|S) + \lambda \log p(S|T)} \tag{2} $$
+MMI-bidiでは、$p(T|S)$と$p(S|T)$がトレードオフの関係にあることがわかる。</p>
+
+<p>seq2seqモデルの学習にMMIを適応させることは、重要ではない。さらに、モデルの訓練に時間がかかるので、訓練なしに$\lambda$を調整したい。そこで、モデルを訓練するのではなく、学習時には最尤モデルを、テスト時にMMI基準を使用する。</p>
+
+<h2 id="実用的な考察">実用的な考察</h2>
+
+<p>MMI-antiLMとMMI-bidiを適応するにあたり、</p>
+
+<ul>
+<li>文法的におかしな応答 (MMI-antiLM)</li>
+<li>デコードを困難にする (MMI-bidi)</li>
+</ul>
+
+<p>という問題があり、直接decodingに適応するのは困難である。</p>
+
+<p>そこで、これらの問題について、以下で解決策を説明する。</p>
+
+<h3 id="mmi-antilm-an-anti-language-model">MMI-antiLM(an anti-language model)</h3>
+
+<p>式(1)の第2項の$p(T)$は、次のように表される。</p>
+
+<p>$$ p(T) = \prod_ {k=1}^{N_ t} p(t_ k \mid t_ 1 , \cdots , t_ {k-1} ) $$</p>
+
+<p>anti-language modelでは、流暢な応答にもペナルティを与えるので、誤った文法の出力に繋がる可能性がある。そこで、$P(T)$に現在の単語$k$に基づく重み$g(k)$を乗算した、$U(T)$を導入する。</p>
+
+<p>$$ U(T)=\prod_ {k=1}^{N_ t} p(t_ k \mid t_ 1 \cdots t_ {k-1} )・g(k) $$</p>
+
+<p>\begin{eqnarray}
+g(k)
+ =
+  \begin{cases}
+    1 &amp; ( k \leq \gamma ) \\<br />
+    0 &amp; ( k \gt \gamma )
+  \end{cases}
+\end{eqnarray}</p>
+
+<p>ここで、$\gamma$は文頭から数えて何単語目かを表す閾値である。</p>
+
+<p>式（1）は、以下のように書き直すことができる。</p>
+
+<p>$$\hat{T} = argmax_T {\log p(T|S) - \lambda \log U(T) }$$</p>
+
+<p>こうすることで、メッセージにおける全ての単語に対して、ペナルティを与えるわけではなく、初めの何単語かにだけペナルティを与えることで、典型的なパターンがくるのを避けることを期待する。</p>
+
+<h3 id="mmi-bidi">MMI-bidi</h3>
+
+<p>式（2）の第2項には、$p(S|T)$が含まれている。</p>
+
+<p>$$\hat{T} = argmax_T {(1-\lambda)\log p(T|S) + \lambda \log p(S|T)}$$</p>
+
+<p>$p(S|T)$は、応答$T$の生成後でないと計算することはできない。また、応答$T$の探索空間が広すぎるために、全てを探索するのは難しい。したがって、この式を用いて直接decodeすることはできない。</p>
+
+<p>そこで、近似的なアプローチを行う。</p>
+
+<ul>
+<li>MMI-bidiの第1項である$p(T|S)$ (すなわち、標準的なseq2seqの目的関数)を与えられた第1世代N-bestリストを生成</li>
+<li>MMI-bidiの第2項を使ってN-bestリストをrerankする</li>
+<li>一般的に、標準的なseq2seqモデルから得られるN-bestは文法的であるため、最終的に選択されるoptionsは適切な文法である可能性が高い。</li>
+</ul>
+
+<h2 id="training">Training</h2>
+
+<ul>
+<li>encoderとdecoderはそれぞれ4層のLSTMから構成</li>
+<li>隠れ層は1000個の素子、単語埋め込み数の次元は1000次元</li>
+<li>LSTMパラメタと埋め込みは a uniform distribution in [−0.08, 0.08]で初期化</li>
+<li>SGDの学習率は0.1</li>
+<li>バッチサイズは256</li>
+<li>Gradient clipping is adopted by scaling gradients when the norm exceeded a threshold of 1</li>
+</ul>
+
+<h2 id="decoding">decoding</h2>
+
+<h3 id="mmi-antilm">MMI-antiLM</h3>
+
+<p>MMI-antiLMの式は簡単に実装できる。
+実験において、応答の長さも重要だと気づいた。そこで、損失関数に応答の長さのパラメタを加えた。</p>
+
+<p>$$ Score(T) = p(T|S) - \lambda U(T) + \gamma N_t$$</p>
+
+<p>ここで、$N_t$はターゲットの長さ、$\gamma$はその重みを表す。
+応答の候補のN-best listに関するMERTを使って、$\gamma$と$\lambda$を最適化した。</p>
+
+<h3 id="mmi-bidi-1">MMI-bidi</h3>
+
+<h2 id="結果">結果</h2>
+
+<p>評価には、BLEUを使う。さらに、生成された応答における異なるユニグラムおよびバイグラムの数を計算し、多様性を評価する。</p>
+
+<h3 id="twitter-conversation-triple-dataset">Twitter Conversation Triple Dataset</h3>
+
+<p>129Mのメッセージと応答の集合から、2300万の会話スニペットを使用。</p>
+
+<p>statistical machine translation (SMT)とseq2seqとの比較を行った。　MMI-bidiのBLEU評価値が一番高い。</p>
+
+<h3 id="opensubtitles-dataset">OpenSubtitles Dataset</h3>
+
+<p>60M、70Mのノイズを多く含む、映画キャラクターの対話データ</p>
+
+<p>他のモデルに比べ、MMI-antiLMモデルがBLEUの評価値と多様性の評価値どちらにおいても最も高くなった。MMI-bidiがMMI-antiLMより低い性能となったのは、N-bestリストの初期世代に左右されるからである。</p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>seq2seqを使った対話モデルでは、メッセージに対する応答が、一般的でありふれたものになる傾向があるという問題点があった。我々の分析では、これは、入力（メッセージ）を与えられた出力（応答）の単方向尤度の使用に起因することを示唆している。そこで目的関数に最大相互情報量(MMI)を使用することを提案した。実験の結果、提案されたMMIモデルでは、より多様で興味深い応答を生成することができた。</p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/deeplearning" role="button">Deeplearning </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/seq2seq" role="button">seq2seq </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/nlp" role="button">NLP </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button">論文 </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+	  
+          <div class="row pt-3">
+	    
+
+<h3>See Also</h3>
+<ul>
+    
+    <li><a href="/posts/nlp/seqgan-paper/">SeqGANの論文を読む</a></li>
+    
+</ul>
+
+
+	  </div>
+
+	  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+    
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+  
+  <script src="https://www.if-blog.site/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://www.if-blog.site/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://www.if-blog.site/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

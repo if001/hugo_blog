@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+   読み 表示 tex     デルタ $\Delta$ \Delta   ナブラ $\nabla$ \nabla   白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot]   属する $\in$ \in   要素 $\ni$ \ni   条件付き確率 $p(x \mid y)$ p(x \mid y)   ドット $x_1,x_2, \ldots, x_t$ x_1,x_2, \ldots, x_t   カリグラフィーフォント $\mathcal L$ \cal L   太文字ベクトル $\boldsymbol{w}$ \boldsymbol{w}    macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。">
+  
+  <meta property="og:title" content="機械学習系の数式によく出てくる記号などのTex表記まとめ" />
+<meta property="og:description" content="すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
+   読み 表示 tex     デルタ $\Delta$ \Delta   ナブラ $\nabla$ \nabla   白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot]   属する $\in$ \in   要素 $\ni$ \ni   条件付き確率 $p(x \mid y)$ p(x \mid y)   ドット $x_1,x_2, \ldots, x_t$ x_1,x_2, \ldots, x_t   カリグラフィーフォント $\mathcal L$ \cal L   太文字ベクトル $\boldsymbol{w}$ \boldsymbol{w}    macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/posts/others/tex_notation_numerical_formula/" />
+<meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
+
+
+  <title>
+  
+       機械学習系の数式によく出てくる記号などのTex表記まとめ | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/posts/others/tex_notation_numerical_formula/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://www.if-blog.site/images/favicon/favicon1.jpeg"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/css/vendors/highlight/github-gist.css">
+  
+
+    
+    
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+      }
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+    
+    
+    
+    
+    
+    
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+
+    
+
+    
+    
+    
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">機械学習系の数式によく出てくる記号などのTex表記まとめ</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+    <li>2019-09-24</li>
+    
+
+    
+    
+    
+    
+  </ul>
+  
+
+</div>
+
+
+
+          <div class="post-content markdown">
+            
+
+<p>すぐ忘れるのでTex表記をまとめて起きます。
+Qiitaが使っているという<a href="https://www.mathjax.org/" target="_blank">Easy Copy MathJax</a>を用います。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">読み</th>
+<th align="right">表示</th>
+<th align="center">tex</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">デルタ</td>
+<td align="right">$\Delta$</td>
+<td align="center"><code>\Delta</code></td>
+</tr>
+
+<tr>
+<td align="left">ナブラ</td>
+<td align="right">$\nabla$</td>
+<td align="center"><code>\nabla</code></td>
+</tr>
+
+<tr>
+<td align="left">白抜き</td>
+<td align="right">$\mathbb E[\cdot]$</td>
+<td align="center"><code>\mathbb E[\cdot]</code></td>
+</tr>
+
+<tr>
+<td align="left">属する</td>
+<td align="right">$\in$</td>
+<td align="center"><code>\in</code></td>
+</tr>
+
+<tr>
+<td align="left">要素</td>
+<td align="right">$\ni$</td>
+<td align="center"><code>\ni</code></td>
+</tr>
+
+<tr>
+<td align="left">条件付き確率</td>
+<td align="right">$p(x \mid y)$</td>
+<td align="center"><code>p(x \mid y)</code></td>
+</tr>
+
+<tr>
+<td align="left">ドット</td>
+<td align="right">$x_1,x_2, \ldots, x_t$</td>
+<td align="center"><code>x_1,x_2, \ldots, x_t</code></td>
+</tr>
+
+<tr>
+<td align="left">カリグラフィーフォント</td>
+<td align="right">$\mathcal L$</td>
+<td align="center"><code>\cal L</code></td>
+</tr>
+
+<tr>
+<td align="left">太文字ベクトル</td>
+<td align="right">$\boldsymbol{w}$</td>
+<td align="center"><code>\boldsymbol{w}</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。</p>
+
+<p>参考：<a href="http://easy-copy-mathjax.xxxx7.com/" target="_blank">http://easy-copy-mathjax.xxxx7.com/</a></p>
+
+<h3 id="追記">追記</h3>
+
+<p>$\KaTeX$だと、カリグラフィーフォントは、$\mathcal L$:<code>\mathcal L</code>こう。</p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/tex" role="button">Tex </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+	  
+          <div class="row pt-3">
+	    
+
+
+	  </div>
+
+	  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+    
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+  
+  <script src="https://www.if-blog.site/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://www.if-blog.site/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://www.if-blog.site/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

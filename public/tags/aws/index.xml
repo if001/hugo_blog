@@ -9,10 +9,10 @@
     
     <item>
       <title>pyenv環境でaws cli入れたらコマンドが見つからない</title>
-      <link>https://www.if-blog.site/post/others/aws-cli-at-pyenv/</link>
+      <link>https://www.if-blog.site/posts/others/aws-cli-at-pyenv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/others/aws-cli-at-pyenv/</guid>
+      <guid>https://www.if-blog.site/posts/others/aws-cli-at-pyenv/</guid>
       <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 バージョン：pyenv:1.0.10
 公式通りにインストールする。

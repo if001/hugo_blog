@@ -9,10 +9,10 @@
     
     <item>
       <title>kerasでモデルを結合する</title>
-      <link>https://www.if-blog.site/post/neuralnet/combine_model/</link>
+      <link>https://www.if-blog.site/posts/neuralnet/combine_model/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/neuralnet/combine_model/</guid>
+      <guid>https://www.if-blog.site/posts/neuralnet/combine_model/</guid>
       <description>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
 autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
 Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。

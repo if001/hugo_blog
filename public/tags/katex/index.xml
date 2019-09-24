@@ -9,10 +9,10 @@
     
     <item>
       <title>KaTeXを使ってみる</title>
-      <link>https://www.if-blog.site/post/hugo/katex-introduction/</link>
+      <link>https://www.if-blog.site/posts/hugo/katex-introduction/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.if-blog.site/post/hugo/katex-introduction/</guid>
+      <guid>https://www.if-blog.site/posts/hugo/katex-introduction/</guid>
       <description>これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
 以下を加えるだけでおk
 &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.</description>

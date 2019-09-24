@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &#34;&#34;&#34;Handles GET requests&#34;&#34;&#34; quote = { &#39;quote&#39;: ( &#34;I&#39;ve always been more interested in &#34; &#34;the future than in the past.">
+  
+  <meta property="og:title" content="falconを使ってみた" />
+<meta property="og:description" content="はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &#34;&#34;&#34;Handles GET requests&#34;&#34;&#34; quote = { &#39;quote&#39;: ( &#34;I&#39;ve always been more interested in &#34; &#34;the future than in the past." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/posts/falcon/falcon-tips/" />
+<meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
+
+
+  <title>
+  
+       falconを使ってみた | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/posts/falcon/falcon-tips/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://www.if-blog.site/images/favicon/favicon1.jpeg"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/css/vendors/highlight/github-gist.css">
+  
+
+    
+    
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+      }
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+    
+    
+    
+    
+    
+    
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+
+    
+
+    
+    
+    
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">falconを使ってみた</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+    <li>2019-09-24</li>
+    
+
+    
+    
+    
+    
+  </ul>
+  
+
+</div>
+
+
+
+          <div class="post-content markdown">
+            
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとして<a href="https://falconframework.org/" target="_blank">falcon</a>を使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。</p>
+
+<p>簡単なtipsをメモしておく。</p>
+
+<h2 id="シンプルな例">シンプルな例</h2>
+
+<p>falconの公式に乗っているように、シンプルな例は次のようになる。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># sample.py</span>
+
+<span class="kn">import</span> <span class="nn">falcon</span>
+
+<span class="k">class</span> <span class="nc">QuoteResource</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;Handles GET requests&#34;&#34;&#34;</span>
+        <span class="n">quote</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;quote&#39;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&#34;I&#39;ve always been more interested in &#34;</span>
+                <span class="s2">&#34;the future than in the past.&#34;</span>
+            <span class="p">),</span>
+            <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;Grace Hopper&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">resp</span><span class="o">.</span><span class="n">media</span> <span class="o">=</span> <span class="n">quote</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s1">&#39;/quote&#39;</span><span class="p">,</span> <span class="n">QuoteResource</span><span class="p">())</span></code></pre></div>
+<h2 id="処理シーケンス">処理シーケンス</h2>
+
+<p>falconにはmiddlewareの他に、hooksというものが使える。
+hooksを含めた処理シーケンスは次のようになる。</p>
+
+<pre><code>Middleware's process_request
+Middleware's process_resource
+Hook's before
+Resource's on_****
+Hook's after
+Middleware's process_response
+</code></pre>
+
+<p>引用：<a href="https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836" target="_blank">https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836</a></p>
+
+<p>middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。</p>
+
+<h2 id="hooks">hooks</h2>
+
+<p>hooksは以下のように使う。(<a href="https://falcon.readthedocs.io/en/stable/api/hooks.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">validate_image_type</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">resource</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+	<span class="o">....</span>
+
+<span class="nd">@falcon.before</span><span class="p">(</span><span class="n">validate_image_type</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">on_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+    <span class="k">pass</span></code></pre></div>
+<p>処理を差し込みたいメソッドにでコレーターでつけるだけ。</p>
+
+<h2 id="middleware">middleware</h2>
+
+<p>corsくらいしか使わなかったが、dbのconnection poolとかに使うようのものとかあるんだろう。(<a href="https://falcon.readthedocs.io/en/stable/api/middleware.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">CORSMiddleware</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">set_header</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span></code></pre></div>
+<h2 id="エラーハンドリング">エラーハンドリング</h2>
+
+<p>routeが見つからなかった時に、エラーリスポンスを返したいときは以下のようにする。(<a href="https://falcon.readthedocs.io/en/stable/api/errors.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Index</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+        <span class="n">resp</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;message&#34;</span><span class="p">:</span><span class="s2">&#34;ok&#34;</span><span class="p">})</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="n">Index</span><span class="p">())</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_sink</span><span class="p">(</span><span class="n">handle_404</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&#34;127.0.0.7&#34;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></code></pre></div>
+<p>exceptionなどが起きた場合でも、200のリスポンスを返し、レスポンスボディの中でエラーコードとメッセージを返したかったが、うまく行かなかったので、これは次の機会にやる。</p>
+
+<h2 id="requestの取得">requestの取得</h2>
+
+<p>requsetの取得は以下のようになる。(<a href="https://falcon.readthedocs.io/en/stable/api/request_and_response.html" target="_blank">公式</a>)</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">HealthCheck</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">on_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">resp</span><span class="p">):</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span> <span class="c1"># headerの取得</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span> <span class="c1"># request paramの取得</span>
+
+   <span class="c1"># request bodyの取得</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">falcon</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="n">index</span><span class="p">())</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">wsgiref</span> <span class="kn">import</span> <span class="n">simple_server</span>
+    <span class="n">httpd</span> <span class="o">=</span> <span class="n">simple_server</span><span class="o">.</span><span class="n">make_server</span><span class="p">(</span><span class="s2">&#34;127.0.0.7&#34;</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></code></pre></div>
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/falcon" role="button">falcon </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+	  
+          <div class="row pt-3">
+	    
+
+<h3>See Also</h3>
+<ul>
+    
+    <li><a href="/posts/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
+    
+    <li><a href="/posts/python-get-extn/">pythonで拡張子を取得する</a></li>
+    
+    <li><a href="/posts/python/colaboratory_google_drive_mount/">Google ColaboratoryでGoogle driveをマウントする</a></li>
+    
+    <li><a href="/posts/python/python-matplotlib_base/">matplotlibのよく使う記法まとめ</a></li>
+    
+    <li><a href="/posts/others/aws-cli-at-pyenv/">pyenv環境でaws cli入れたらコマンドが見つからない</a></li>
+    
+</ul>
+
+
+	  </div>
+
+	  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+    
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+  
+  <script src="https://www.if-blog.site/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://www.if-blog.site/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://www.if-blog.site/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>
