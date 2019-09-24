@@ -1,14 +1,10 @@
-{{ $ctx := . }}
-{{if .Params.tags }}
-<div class="tags">
-  <ul>
+
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="{{ "tags/" | absLangURL }}"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
     {{ range .Params.tags }}
-    <li>
-	<!-- <a href="{{$ctx.Site.BaseURL}}{{"/tags/" | absURL }}{{ . | urlize }}/">{{ . }}</a> -->
-	<!-- <a href="{{$ctx.Site.BaseURL}}{{"/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a> -->
-	<a href="{{"/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
-    </li>
+      <li><a href="{{ "tags/" | absLangURL }}{{ . | urlize }}" role="button">{{ . }} </a></li>
+      <!-- <button type="button" class="btn btn-outline-default btn-rounded waves-effect">Button</button> -->
     {{ end }}
-  </ul>
+  </div>
 </div>
-{{ end }}

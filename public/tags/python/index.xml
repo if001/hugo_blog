@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on アンドロイドは推理小説を描くか?</title>
+    <title>python on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/python/</link>
-    <description>Recent content in Python on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in python on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 01 Mar 2019 20:48:42 +0900</lastBuildDate>
@@ -16,8 +15,7 @@
       
       <guid>https://www.if-blog.site/post/python-get-extn/</guid>
       <description>ファイルの拡張子を取得する方法をいつも忘れるのでメモ
-import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力
-hoge/test .md  </description>
+import os file_path = &amp;#34;hoge/test.md&amp;#34; root, ext = os.path.splitext(file_path) print(root, ext) 出力</description>
     </item>
     
     <item>
@@ -29,24 +27,7 @@ hoge/test .md  </description>
       <description>はじめに 現在、サーバー上にHugoとHugoが生成した静的ファイルを置いてブログを公開している。 静的ファイルの生成とmdファイルや画像ファイルのアップロードのためfalconを使ってapiサーバーを作った。 falconをつかったのは、flaskやbottleは使ったことあったので、使ったことないものをということで。
 クライアント クライアントにはpythonのrequestsを使います。
 fileにタプルでファイル名を明示的に渡せる。 postの引数にfilesで渡すと、contents-typeもよしなにしてくれるんですね。
-image_name = &amp;#34;test.png&amp;#34; with open(image_file_path, &amp;#34;rb&amp;#34;) as image: files = {&amp;#39;file&amp;#39;: (image_name, image)} response = requests.post(url, files=files) print(response.text) サーバー falconはコンテナ上で動かします。ファイルアップロードのリクエストを受けると、 サーバー上のストレージに画像を保存します。
-なんかできないと思ってたら、middlewareにMultipartMiddlewareを指定しないとだめだった。
-fileは次のようにrequestから取得できる
-image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() ファイル名は次のように取得
-image_name = image.filename  実際は、corsとかあるがそれを省いた、アップロードだけの全体は以下のようになる。
-from falcon_multipart.middleware import MultipartMiddleware import falcon import json class UploadImage(object): def on_post(self, req, resp): image = req.get_param(&amp;#39;file&amp;#39;) raw = image.file.read() image_name = image.filename filepath = os.path.join(BASE_DIR, &amp;#34;static&amp;#34;, image_name) try: with open(filepath, &amp;#39;wb&amp;#39;) as f: f.</description>
-    </item>
-    
-    <item>
-      <title>Google ColaboratoryでGoogle driveをマウントする</title>
-      <link>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
-      <description>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
-before 認証
-!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq google-drive-ocamlfuse fuse from google.colab import auth auth.authenticate_user() from oauth2client.client import GoogleCredentials creds = GoogleCredentials.get_application_default() import getpass !google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} &amp;lt; /dev/null 2&amp;gt;&amp;amp;1 | grep URL vcode = getpass.getpass() !echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} マウント
-!mkdir -p drive !google-drive-ocamlfuse drive after from google.</description>
+image_name = &amp;#34;test.</description>
     </item>
     
     <item>
@@ -58,10 +39,18 @@ before 認証
       <description>はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
 簡単なtipsをメモしておく。
 シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
-# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;#34;&amp;#34;&amp;#34;Handles GET requests&amp;#34;&amp;#34;&amp;#34; quote = { &amp;#39;quote&amp;#39;: ( &amp;#34;I&amp;#39;ve always been more interested in &amp;#34; &amp;#34;the future than in the past.&amp;#34; ), &amp;#39;author&amp;#39;: &amp;#39;Grace Hopper&amp;#39; } resp.media = quote api = falcon.API() api.add_route(&amp;#39;/quote&amp;#39;, QuoteResource()) 処理シーケンス falconにはmiddlewareの他に、hooksというものが使える。 hooksを含めた処理シーケンスは次のようになる。
-Middleware&#39;s process_request Middleware&#39;s process_resource Hook&#39;s before Resource&#39;s on_**** Hook&#39;s after Middleware&#39;s process_response  引用：https://qiita.com/yohjizzz/items/f46bb3bc7b7c40768836
-middlewareを使った、認証系の共通処理はよく見るが、hookが使えるのは良いですね。
-hooks hooksは以下のように使う。(公式)</description>
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &amp;#34;&amp;#34;&amp;#34;Handles GET requests&amp;#34;&amp;#34;&amp;#34; quote = { &amp;#39;quote&amp;#39;: ( &amp;#34;I&amp;#39;ve always been more interested in &amp;#34; &amp;#34;the future than in the past.</description>
+    </item>
+    
+    <item>
+      <title>Google ColaboratoryでGoogle driveをマウントする</title>
+      <link>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/post/python/colaboratory_google_drive_mount/</guid>
+      <description>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !</description>
     </item>
     
     <item>
@@ -76,16 +65,7 @@ hooks hooksは以下のように使う。(公式)</description>
 matplotlib,pyplot,pylabの違い matplotlibがパッケージ全体
 pyplotはそのモジュール、スクリプトで作図するときに使う
 pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい
-基本的には、import matplotlib.pyplot as pltのように使う
-参考： https://matplotlib.org/faq/usage_faq.html#matplotlib-pyplot-and-pylab-how-are-they-related https://stackoverflow.com/questions/11469336/what-is-the-difference-between-pylab-and-pyplot
-グラフを描く シンプルな例は以下
-import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) plt.plot(x,y) plt.show() macでmatplotlibを呼ぶとValueError: unknown locale: UTF-8で怒られることがある。
-locale周りの設定がおかしいため。以下を参考に直す。
-Mac で ValueError: unknown locale: UTF-8 のエラーを解決したい
-https://www.lifewithpython.com/2016/09/python-ValueError-unknown-locale-UTF-8.html
-インスタンス化する plt.figure()でインスタンス化し、axesに対してプロットしていく
-多分この使い方が多いと思う
-import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = np.sin(x) fig = plt.figure() ax = fig.add_subplot(111) ax.plot(x,y) plt.</description>
+基本的には、import matplotlib.pyplot as pltのように使う</description>
     </item>
     
     <item>
@@ -97,11 +77,7 @@ import matplotlib.pyplot as plt import numpy as np x = np.arange(0,10,0.2) y = n
       <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 バージョン：pyenv:1.0.10
 公式通りにインストールする。
-$ pip3 install awscli --upgrade --user  すると、
-$ aws -bash: aws: command not found  コマンドが見つからない&amp;hellip;.
-調べると、$HOME/.localにインストールされるらしいので、パスを通す。
-aws --version aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19  できた！
-pyenvが問題なのかはわからん&amp;hellip;.</description>
+$ pip3 install awscli --upgrade --user  すると、</description>
     </item>
     
     <item>
@@ -112,12 +88,7 @@ pyenvが問題なのかはわからん&amp;hellip;.</description>
       <guid>https://www.if-blog.site/post/nlp/word2vec_output_word/</guid>
       <description>word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
 結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.most_similar( [ vector ], [], 1)[0][0] ただし、第3引数は出力する類似単語数を表す。
-使用例 青空文庫：江戸川乱歩の解析をしたので、その例を示す。
-model.wv[&amp;#34;ベクトル化したい単語&amp;#34;] で単語をベクトル化できる。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) vector = model.wv[&amp;#34;犯罪&amp;#34;] word = model.most_similar( [ vector ], [], 1) print(vector) print(word) 上記のようなコードを実行すると、
-[-0.01494294 -0.1509463 0.06123272 ..., 0.01335443 0.03439184 0.05130962] [(&amp;#39;犯罪&amp;#39;, 1.0000001192092896)] となり、「犯罪」をベクトル化し、そのベクトルから単語が出力できている。
-出力数を変更 vector = model.wv[&amp;#34;明智&amp;#34;] word = model.most_similar( [ vector ], [], 5) 以下のような結果が得られる。</description>
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.</description>
     </item>
     
     <item>
@@ -130,16 +101,7 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
 今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
 コードはここ、https://github.com/if001/fifc.git
 以下の3工程で行う。
- フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。
-フォントファイルとフォントのサイズを引数に与えることで、fontオブジェクトが生成できる。
-from PIL import ImageFont font_size=28 font = ImageFont.truetype(font_file, font_size, encoding=&amp;#39;unic&amp;#39;) 読み込んだフォントは下記のように保存する。
-from PIL import Image pict_height=28 pict_width=28 image = Image.new(&amp;#39;RGB&amp;#39;, (pict_height, pict_width), (255, 255, 255)) draw = ImageDraw.Draw(image) draw.text(pos, yomi, font=font, fill=&amp;#39;#000000&amp;#39;) image.save(&amp;#34;./font&amp;#34;, &amp;#39;PNG&amp;#39;) Image.new()  で空のイメージを生成し、
-Drawオブジェクトに対しのtext関数を用いてフォントファイルを書き込む。
-draw.text(pos, yomi, font=font, fill=&#39;#000000&#39;)  引数は、上記のtext関数のリンクを参照。
-保存するファイル名は、以下のように文字を16進数変換したものを使う。
-yomi=&amp;#34;歩&amp;#34; bytes_yomi = yomi.encode(&amp;#34;UTF-8&amp;#34;).hex() &amp;gt;&amp;gt; &amp;#39;e6ada9&amp;#39; 文字列とフォント画像をマッピング ファイル名を読み仮名を16進数変換し保存しているので、文字から毎回画像ファイルを読み込んでも良いが、高速に呼び出せるように、1文字と画像をファイルとkvsを使ってマッピングしておく。
-kvsにはplyvelを使う。以下のようにインスタンス化する。
-import plyvel db = plyvel.</description>
+ フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。</description>
     </item>
     
   </channel>

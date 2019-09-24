@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Katex on アンドロイドは推理小説を描くか?</title>
+    <title>katex on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/katex/</link>
-    <description>Recent content in Katex on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in katex on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/katex/" rel="self" type="application/rss+xml" />
@@ -16,8 +15,7 @@
       <guid>https://www.if-blog.site/post/hugo/katex-introduction/</guid>
       <description>これまでMathJaxを使っていたが、描画が遅いということもあり、$\KaTeX$を使ってみることにしました。 KaTeX:https://katex.org/
 以下を加えるだけでおk
-&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt;$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: &amp;#34;[[&amp;#34;, right: &amp;#34;]]&amp;#34;, display: true},{left: &amp;#34;$&amp;#34;, right: &amp;#34;$&amp;#34;, display: false}]})});&amp;lt;/script&amp;gt; MathJaxで表示していた数式も無事表示されてとりあえず問題なしです。 実際に入れてみた感じやっぱり早い。
-参考 KaTeXによる数式の表示:https://sekika.github.io/2017/05/01/katex-equation/ KaTeXを導入しました:http://nshi.jp/contents/other/katex/ KaTeXのデモ:http://sixthform.info/katex/examples/demo.html</description>
+&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css&amp;#34; /&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script src=&amp;#34;https://cdnjs.</description>
     </item>
     
   </channel>

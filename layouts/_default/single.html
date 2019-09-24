@@ -1,51 +1,89 @@
-{{ partial "header.html" . }}
-<div class="article">
-  <header>
-    <div class="article-header">
-      <h1>{{ .Title }}</h1>
-      <div class="article-meta">
-          <!-- <span class="posttime">{{ .Date.Format "2006/01/02" }}</span> -->
-	  <span class="posttime">{{ .Lastmod.Format "2006/01/02" }}</span>
-          {{ partial "tags.html" . }}
-      </div>
-    </div>
-    <!-- {{ partial "share.html" . }} -->
-  </header>
-  <div class="content">
-    {{ .Content }}
-  </div>
-  <footer>
-    <div class="article-footer">
-      <!-- {{ partial "tags.html" . }} -->
-      {{ with .Site.Params.adsense.content }}
-      <div class="adsense">
-        <span class="sponsor-label">Sponsored link</span>
-        {{ partial . }}
-      </div>
-      {{ end }}
-      {{ partial "share.html" . }}
-      {{ template "_internal/disqus.html" . }}
-      {{ partial "related.html" . }}
-      
-      <!-- {{ if or .Prev .Next }}
-	   <div id="pagenavigation-next-prev">
-           {{ if .Next }}
-           <div id="pagenavigation-next">
-           <span class="pagenav-label">Previous</span>
-           <a href="{{ .Next.Permalink }}">{{ .Next.Title }}</a>
-           </div>
-           {{ end }}
-           {{ if .Prev }}
-           <div id="pagenavigation-prev">
-           <span class="pagenav-label">Next</span>
-           <a href="{{ .Prev.Permalink }}">{{ .Prev.Title }}</a>
-           </div>
-           {{ end }}
-	   </div>
-	   {{ end }} -->
+{{ define "main" }}
+  <!-- Main layout -->
+  <main class="post-main-wrapper">
+    <!-- Grid row -->
+    <div class="row">
 
-      
+      <!-- Grid column -->
+
+      {{ if .Params.toc }}
+      <div class="col-md-10">
+      {{ else }}
+      <div class="container pr-5">
+      {{ end }}
+
+        <!-- Spied element -->
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          {{ partial "post-header.html" . }}
+
+
+          <div class="post-content markdown">
+            {{ .Content }}
+          </div>
+
+          <!-- Tags -->
+          <div class="row">
+            <div class="col-md-8">
+            {{ if .Params.tags }}
+              <div class="mb-5">
+                {{ partial "tags.html" . }}
+              </div>
+            {{ end }}
+            </div>
+            <!-- <div class="col-md-4">
+              <ul class="ul-x post-meta mb-5">
+                <li><a href="{{ .Type | relLangURL }}"><i class="fas fa-long-arrow-alt-right pr-2"></i>{{ i18n "return" }}</a></li>
+              </ul>
+            </div> -->
+          </div>
+          <!-- /.Tags -->
+
+	  
+          <div class="row pt-3">
+	    {{ partial "related.html" . }}
+	  </div>
+
+	  
+          <!-- Prev & Next -->
+          <!-- <div class="row pt-3"> -->
+          <!--   <div class="col-md-6"> -->
+          <!--     {{ if .PrevInSection }} -->
+          <!--       <a href={{ .PrevInSection.Permalink }} class="post-meta">{{ i18n "previousPost" }} -->
+          <!--         <div class="pt-2 pb-5 d-flex"> -->
+          <!--           <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i> -->
+          <!--           <span>{{ .PrevInSection.Title }}</span> -->
+          <!--         </div> -->
+          <!--       </a> -->
+          <!--     {{ end }} -->
+          <!--   </div> -->
+            
+          <!--   <div class="col-md-6 text-right" > -->
+          <!--     {{ if .NextInSection }} -->
+          <!--       <a href={{ .NextInSection.Permalink }} class="post-meta">{{ i18n "nextPost" }} -->
+          <!--         <div class="pt-2 pb-5 flex-reverse"> -->
+          <!--           <i class="fas fa-angle-right text-grey font-weight-bold ml-2 active-color"></i> -->
+          <!--           <span>{{ .NextInSection.Title }}</span> -->
+          <!--         </div> -->
+          <!--       </a> -->
+          <!--     {{ end }} -->
+          <!--   </div> -->
+          <!-- </div> -->
+          <!-- /.Prev & Next -->
+
+        </div>
+        <!-- /.Spied element -->
+
+      </div>
+      <!-- /.Grid column -->
+
+      {{ partial "toc.html" . }}
+
     </div>
-  </footer>
-</div><!-- .article -->
-{{ partial "footer.html" . }}
+    <!-- /.Grid row -->
+
+
+  </main>
+  <!-- /.Main layout -->
+
+{{ end }}

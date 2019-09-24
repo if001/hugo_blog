@@ -1,26 +1,73 @@
-{{ partial "header.html" . }}
-<div id="article-list">
-  {{ if not .IsHome }}
-  <div id="articles-list-header">
-      <h1>Tags: <span id="archive-value">{{ .Title }}</span></h1>
-  </div>
+{{ define "header" }} 
+   {{ partial "site-navbar.html" . }} 
+   {{ partial "homepage-header-noslides.html" . }}  
+
+  <!-- Welcome Word -->
+  {{ with $.Site.Params.welcome_head }}
+<section class="container pt-5 text-center">
+      <h1 class="display-3">{{ $.Site.Params.welcome_head }}</h1>
+      {{ with $.Site.Params.welcome_word }}
+      <p style="font-size:1.8rem; color: var(--text-light);">{{ $.Site.Params.welcome_word }}</p>
+      {{ end }}
+    </section>
   {{ end }}
-  {{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
-  {{ range $paginator.Pages }}
-  <div class="article">
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-    <div class="article-meta">
-	<!-- <span class="posttime">{{ .Date.Format "2006/01/02" }}</span> -->
-	<span class="posttime">{{ .Lastmod.Format "2006/01/02" }}</span>
-      {{ partial "tags.html" . }}
+  <!-- /.Welcome Word -->
+{{ end }} 
+
+
+{{ define "main" }}
+<main class="post-main-wrapper px-5">
+    <!-- <div class="container"> -->
+      <div class="row">
+      {{ $single := add (add (len (where .Pages ".Params.categories" "ne" nil)) (len (where .Pages ".Params.series" "ne" nil)) ) (len (where .Pages ".Params.tags" "ne" nil)) }}
+      {{ if gt $single 0 }}
+        <!-- Post list -->
+        <!-- <div class="content"> -->
+        <div class="col-md-9 mt-3">  
+      {{ else }}
+        <div class="container content mt-3">  
+      {{ end }}
+          <ul>
+            <!-- <div class="div-x"> -->
+            <!--   <\!-- {{ partial "page-heading.html" . }} -\-> -->
+            <!--   {{ $page_num := (len .Data.Pages)}} -->
+            <!--   {{ if gt $page_num 0 }} -->
+            <!--     <div class="px-2 middot"></div> -->
+            <!--     <div> -->
+            <!--       {{ i18n "postCount" $page_num }} -->
+            <!--     </div> -->
+            <!--   {{ end }} -->
+            <!-- </div> -->
+
+            {{ if .Content }}
+              <div class="post-content markdown">
+                {{ .Content }}
+              </div>
+          {{ end }}  
+        </ul>
+          <div>	    
+            {{ $paginator := .Paginate .Data.Pages.ByPublishDate.Reverse }}
+            {{ range $paginator.Pages }}
+            {{ partial "post-card.html" . }}
+            {{ end }}
+        </div>
+	
+	<div class="pagination pagination-outline justify-content-center active-color">
+          {{ template "_internal/pagination.html" . }}
+        </div>
+
+      </div>
+      <!-- /.Post list -->
+
+        <!-- Sidebar -->
+        <div class="col-md-3">
+	  {{ partial "sidebar-card.html" . }}
+          {{ partial "sidebar-categories.html" . }}    
+          {{ partial "sidebar-tags.html" . }}
+          {{ partial "sidebar-series.html" . }}
+        </div>
+        <!-- /.Sidebar -->
+	
     </div>
-  </div><!-- .article -->
-  {{ end }}
-  <nav>
-    <div id="pager">
-	{{ $paginator := .Paginate (where .Data.Pages "Type" "post").ByLastmod.Reverse 10 }}
-      {{ template "_internal/pagination.html" . }}
-    </div>
-  </nav>
-</div>
-{{ partial "footer.html" . }}
+  </main>
+{{ end }}

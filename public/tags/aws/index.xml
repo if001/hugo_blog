@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Aws on アンドロイドは推理小説を描くか?</title>
+    <title>aws on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/aws/</link>
-    <description>Recent content in Aws on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in aws on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/aws/" rel="self" type="application/rss+xml" />
@@ -17,11 +16,7 @@
       <description>pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
 バージョン：pyenv:1.0.10
 公式通りにインストールする。
-$ pip3 install awscli --upgrade --user  すると、
-$ aws -bash: aws: command not found  コマンドが見つからない&amp;hellip;.
-調べると、$HOME/.localにインストールされるらしいので、パスを通す。
-aws --version aws-cli/1.16.29 Python/2.7.13 Darwin/16.7.0 botocore/1.12.19  できた！
-pyenvが問題なのかはわからん&amp;hellip;.</description>
+$ pip3 install awscli --upgrade --user  すると、</description>
     </item>
     
   </channel>

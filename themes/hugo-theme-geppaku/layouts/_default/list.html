@@ -14,8 +14,8 @@
       {{ partial "tags.html" . }}
     </div>
   </div><!-- .article -->
+   <nav>
   {{ end }}
-  <nav>
     <div id="pager">
       {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
       {{ template "_internal/pagination.html" . }}

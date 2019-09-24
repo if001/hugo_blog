@@ -1,37 +1,61 @@
-        </div><!-- #main-->
-        {{ partial "sidebar.html" . }}
-      </div><!-- .container -->
-      <footer>
-        <div id="site-footer-wrap">
-          <div id="site-footer">
-            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
-            <span>
-              {{ if .Site.Copyright }}
-              {{ .Site.Copyright | markdownify}}
-              {{ else }}
-              Copyright (c) {{ .Site.LastChange.Format "2006" }}, <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-              {{ end }}
-            </span>
-          </div>
-        </div>
-      </footer>
-    </div><!-- #wrap -->
-</body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2"></script>
-<!-- <script type="text/x-mathjax-config">
-     MathJax.Hub.Config({
-     tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
-     });
-     </script>
-     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-</html>
+<!--Footer-->
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
 
 
+  <!-- Social icons -->
+  <div class="pb-2 mt-5 pt-5">
+    {{ if $.Site.Params.github }}
+      <a href="{{ $.Site.Params.github }} " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    {{ end }}
+    {{ if $.Site.Params.linkedin }}
+      <a href="{{ $.Site.Params.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.facebook }}
+      <a href="{{ $.Site.Params.facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook-f mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.googleplus }}
+    <a href="{{ $.Site.Params.googleplus }}" target="_blank" rel="noopener"><i class="fab fa-google-plus-g mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.twitter }}
+        <a href="{{ $.Site.Params.twitter }}" target="_blank" rel="noopener"><i class="fab fa-twitter mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.instagram }}
+        <a href="{{ $.Site.Params.instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if $.Site.Params.px500 }}
+        <a href="{{ $.Site.Params.px500 }}" target="_blank" rel="noopener"><i class="fab fa-500px mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+
+    {{ if $.Site.Params.email }}
+        <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if and $.Site.Params.include_rss $.RSSLink }}
+        <a href="{{ $.RSSLink }}"><i class="fas fa-rss mr-3" aria-hidden="true"></i></a>
+    {{ end }}
+
+    {{ if and $.Site.Params.i18n_flags $.IsTranslated }}
+        {{ range .Translations }}
+            <a href="{{ .Permalink }}"><img class="icon flag mr-3" src="{{ $.Site.BaseURL }}img/flags/{{ $.Lang }}.svg"></a>
+        {{ end }}
+    {{ end }}
+
+  </div>
+  <!-- Social icons -->
+
+  <!--Copyright-->
+  <div class="copyright py-4">
+    <!-- Copyright © 2018 Orianna -->
+    <span>  2016 - {{ now.Year }} &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->

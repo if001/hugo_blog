@@ -1,103 +1,164 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">    
-    
-
-    
-    <meta name="description" content="久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
 before 認証
-!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !add-apt-repository -y ppa:alessandro-strada/ppa 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get update -qq 2&amp;gt;&amp;amp;1 &amp;gt; /dev/null !apt-get -y install -qq">
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !">
+  
+  <meta property="og:title" content="Google ColaboratoryでGoogle driveをマウントする" />
+<meta property="og:description" content="久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/post/python/colaboratory_google_drive_mount/" />
+<meta property="article:modified_time" content="2019-04-06T15:08:26+09:00" />
+
+
+  <title>
+  
+       Google ColaboratoryでGoogle driveをマウントする | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/post/python/colaboratory_google_drive_mount/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+  
+  
+
+  
+  
+
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+    
+    
     
 
-    
-    
-    <link rel="shortcut icon" href="/images/favicon/favicon1.jpeg">
-    <link href="https://www.if-blog.site/index.xml" rel="alternate" type="application/rss+xml" title="アンドロイドは推理小説を描くか?" />
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    
-    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
-    
-    
-    
-    
-    
-    
-    
-    
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
       
-    
-    
-    
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" href="/css/myset.css">
-    <link rel="stylesheet" href="/css/syntax.css">
-    
-    
-    <link rel="stylesheet" type="text/css" href="https://www.if-blog.site/css/style.css}}">    
-    <link rel="stylesheet" type="text/css" href="https://www.if-blog.site/css/myset.css}}">
-    <link rel="stylesheet" type="text/css" href="https://www.if-blog.site/css/syntax.css}}">    
-    
-   
-    <title>Google ColaboratoryでGoogle driveをマウントする | アンドロイドは推理小説を描くか?</title>
-  </head>
-  <body>
-    <div id="wrap">
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
       
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-127416809-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <header class="site-header-myset">
-          <div class="site-header-left">
-            
-	    
-	    <a class="site-header-title" href="https://www.if-blog.site"><img class="title-img" src="https://www.if-blog.site/images/title/title1.jpeg" width="600"></a>
-	    
-        </div>
-      </header>
-      <div class="container">
-        <div id="main">
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-<div class="article">
-  <header>
-    <div class="article-header">
-      <h1>Google ColaboratoryでGoogle driveをマウントする</h1>
-      <div class="article-meta">
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
           
-	  <span class="posttime">2019/04/06</span>
-          
+        </ul>
 
-<div class="tags">
-  <ul>
+      </div>
+
+    </div>
+  </nav>
+  
+
     
-    <li>
-	
-	
-	<a href="/tags/python/">python</a>
-    </li>
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
     
   </ul>
+
+  <div class="px-4 post-heading">Google ColaboratoryでGoogle driveをマウントする</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>0001-01-01</li>
+    
+
+    
+      <li class="middot"></li>
+      <li></li>
+    
+  </ul>
+  
+
 </div>
 
 
-      </div>
-    </div>
-    
-  </header>
-  <div class="content">
-    
+
+          <div class="post-content markdown">
+            
 
 <p>久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。</p>
 
@@ -122,513 +183,167 @@ if (!doNotTrack) {
 <h2 id="after">after</h2>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/gdrive&#39;</span><span class="p">)</span></code></pre></div>
-  </div>
-  <footer>
-    <div class="article-footer">
-      
-      
-      
-<div id="share-buttons">
-  <ul>
-    
-    <li>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="if_004">Tweet</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-    </li>
-    
-    
-    <li>
-	<div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
-    </li>
-    
-    
-    
-    <li>
-      <a href="http://b.hatena.ne.jp/entry/https://www.if-blog.site/post/python/colaboratory_google_drive_mount//" class="hatena-bookmark-button" data-hatena-bookmark-title="Google ColaboratoryでGoogle driveをマウントする" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    </li>
-    
-    
-    
-    
-    <li  style="width:90px;">
-	<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
-	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
-    </li>
-    
-
-  </ul>
-</div>
-
-
-      
-      
-
-<h3>See Also</h3>
-<ul>
-    
-    <li><a href="/post/python-get-extn/">pythonで拡張子を取得する</a></li>
-    
-    <li><a href="/post/falcon/falcon-img-upload/">falconでアップロードサーバーを作る</a></li>
-    
-    <li><a href="/post/nlp/char_vec/">文字をベクトル化する</a></li>
-    
-    <li><a href="/post/falcon/falcon-tips/">falconを使ってみた</a></li>
-    
-    <li><a href="/post/nlp/word2vec_output_word/">word2vecでベクトルから単語を出力する</a></li>
-    
-</ul>
-
-
-      
-      
-
-      
-    </div>
-  </footer>
-</div>
-        </div>
-        <div class="sidebar">
-  
-  
-  <div class="sidebar-content">
-    <div class="sidebar-header">
-      <span>Author</span>
-    </div>
-    <div id="author">
-      <p><span>いふ</span></p>
-      <p><span>自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。</span></p>
-      <div>
-        
-        <a href="https://twitter.com/if_004" target="_black"><i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i></a>
-        
-        
-        <a href="https://github.com/if001" target="_black"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
-        
-        
-        
-      </div>
-    </div>
-  </div>
-  
-
-  
-  
-  
-  <div class="sidebar-content">
-    <div class="sidebar-header">
-      <span>Tags</span>
-    </div>
-    <div class="categories">
-      <ul>
-        
-	
-          <li>
-
-	      
-	      <a href="/tags/aws/" style="font-size: 14px;"><span></span> aws </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/deeplearning/" style="font-size: 14px;"><span></span> deeplearning </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/docker/" style="font-size: 14px;"><span></span> docker </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/emacs/" style="font-size: 17px;"><span></span> emacs </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/falcon/" style="font-size: 17px;"><span></span> falcon </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/google-analytics/" style="font-size: 17px;"><span></span> google-analytics </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	      <a href="/tags/hugo/" style="font-size: 23px;"><span></span> hugo </a>
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/katex/" style="font-size: 14px;"><span></span> katex </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/keras/" style="font-size: 14px;"><span></span> keras </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/neuralnet/" style="font-size: 17px;"><span></span> neuralnet </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/nlp/" style="font-size: 17px;"><span></span> nlp </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	  
-	      
-	      <a href="/tags/python/" style="font-size: 20px;"><span></span> python </a>
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/rust/" style="font-size: 14px;"><span></span> rust </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/seq2seq/" style="font-size: 14px;"><span></span> seq2seq </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/seqgan/" style="font-size: 14px;"><span></span> seqgan </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/test/" style="font-size: 14px;"><span></span> test </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/tex/" style="font-size: 14px;"><span></span> tex </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/word2vec/" style="font-size: 14px;"><span></span> word2vec </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      <a href="/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90/" style="font-size: 14px;"><span></span> 構文解析 </a>
-	      
-	      
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-	
-          <li>
-
-	      
-	      
-	      
-	      <a href="/tags/%E8%AB%96%E6%96%87/" style="font-size: 17px;"><span></span> 論文 </a>
-	      
-	  
-	      
-	  
-	      
-	  
-	      
-
-          </li>
-	
-          
-      </ul>
-    </div>
-  </div>
-  
-
-  
-  
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-</div>
-
-      </div>
-      <footer>
-        <div id="site-footer-wrap">
-          <div id="site-footer">
-            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
-            <span>
-              
-              Copyright (c) 2019, <a href="https://www.if-blog.site">アンドロイドは推理小説を描くか?</a>
-              
-            </span>
           </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://www.if-blog.site/post/others/ga-define/ class="post-meta">
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>GoogleAnalyticsのPV、セッション、ユーザーの定義</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+                <a href=https://www.if-blog.site/post/edgwbs/book_reports_firebase/ class="post-meta">
+                  <div class="pt-2 pb-5 flex-reverse">
+                    <i class="fas fa-angle-right text-grey font-weight-bold ml-2 active-color"></i>
+                    <span>Firebaseを使ってwebアプリを公開した</span>
+                  </div>
+                </a>
+              
+            </div>
+          </div>
+
+          
+
         </div>
-      </footer>
+        
+
+      </div>
+      
+
+      
+
     </div>
-</body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.css" integrity="sha384-9tPv11A+glH/on/wEu99NVwDPwkMQESOocs/ZGXPoIiLE8MU/qkqUcZ3zzL+6DuH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/katex.min.js" integrity="sha384-U8Vrjwb8fuHMt6ewaCy8uqeUXv4oitYACKdB0VziCerzt011iQ/0TqlSlv8MReCm" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-beta/dist/contrib/auto-render.min.js" integrity="sha384-aGfk5kvhIq5x1x5YdvCp4upKZYnA8ckafviDpmWEKp4afOZEqOli7gqSnh8I6enH" crossorigin="anonymous"></script>
-<script>$(document).ready(function(){renderMathInElement(document.body,{delimiters: [{left: "$$", right: "$$", display: true},{left: "$", right: "$", display: false}]})});</script>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.2"></script>
+    
 
 
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
 </html>
-
-
-

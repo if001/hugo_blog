@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Neuralnet on アンドロイドは推理小説を描くか?</title>
+    <title>neuralnet on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/neuralnet/</link>
-    <description>Recent content in Neuralnet on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in neuralnet on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/neuralnet/" rel="self" type="application/rss+xml" />
@@ -19,16 +18,7 @@
 Google Scholar: https://scholar.google.com/schhp?hl=ja
 研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
 いろいろ論文の検索エンジン使ってたけど、結局これが残った。texの引用が楽
-arXiv arXiv https://arxiv.org/
-トップページは慣れないとちょっと見づらい。有名な研究者で検索したものや分野で絞り込んだものをチェックするのが使いやすそう。
-arXivTimes https://medium.com/@arxivtimes
-日本語、arXivのまとめ系、ツイッター
-論文まとめてくれてるGitHub https://github.com/dennybritz/deeplearning-papernotes
-arXivのまとめ。古いものは2011年から、新しいものは2018まで更新がある。
-企業の論文 DeepMind https://deepmind.com/research/publications/
-Microsoft Research Publications http://research.microsoft.com/apps/catalog/default.aspx?t=publications&amp;amp;ra=47200
-Google Research Publications http://research.google.com/pubs/ArtificialIntelligenceandMachineLearning.html
-Yahoo! Labs http://labs.yahoo.com/publication/?area=machine-learning</description>
+arXiv arXiv https://arxiv.</description>
     </item>
     
     <item>
@@ -42,9 +32,7 @@ autoencoderの学習の際には、作成したencoderのModelとdecoderのModel
 Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
 Kerasのバージョンは、2.1.1
 まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。
-def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.summary() return model def model2(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.summary() return model まず、model1へのインプットを作る。model1のアウトプットをmodel2のインプットにし、Modelのインスタンスを作る。
-m1 = model1() m2 = model2() inp = Input(shape=(None, 10)) model1_output = m1(inp) out = m2(model1_output) model = Model(inp, out) model.summary() すると、こんな感じでモデルが結合できたのが確認できる。
-Using TensorFlow backend. _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_1 (InputLayer) (None, None, 10) 0 _________________________________________________________________ dense_1 (Dense) (None, None, 10) 110 ================================================================= Total params: 110 Trainable params: 110 Non-trainable params: 0 _________________________________________________________________ _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_2 (InputLayer) (None, None, 10) 0 _________________________________________________________________ dense_2 (Dense) (None, None, 10) 110 ================================================================= Total params: 110 Trainable params: 110 Non-trainable params: 0 _________________________________________________________________ _________________________________________________________________ Layer (type) Output Shape Param # ================================================================= input_3 (InputLayer) (None, None, 10) 0 _________________________________________________________________ model_1 (Model) (None, None, 10) 110 _________________________________________________________________ model_2 (Model) (None, None, 10) 110 ================================================================= Total params: 220 Trainable params: 220 Non-trainable params: 0 _________________________________________________________________ コード全体はこんな感じ。</description>
+def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.</description>
     </item>
     
     <item>
@@ -57,16 +45,7 @@ Using TensorFlow backend. ______________________________________________________
 今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
 コードはここ、https://github.com/if001/fifc.git
 以下の3工程で行う。
- フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。
-フォントファイルとフォントのサイズを引数に与えることで、fontオブジェクトが生成できる。
-from PIL import ImageFont font_size=28 font = ImageFont.truetype(font_file, font_size, encoding=&amp;#39;unic&amp;#39;) 読み込んだフォントは下記のように保存する。
-from PIL import Image pict_height=28 pict_width=28 image = Image.new(&amp;#39;RGB&amp;#39;, (pict_height, pict_width), (255, 255, 255)) draw = ImageDraw.Draw(image) draw.text(pos, yomi, font=font, fill=&amp;#39;#000000&amp;#39;) image.save(&amp;#34;./font&amp;#34;, &amp;#39;PNG&amp;#39;) Image.new()  で空のイメージを生成し、
-Drawオブジェクトに対しのtext関数を用いてフォントファイルを書き込む。
-draw.text(pos, yomi, font=font, fill=&#39;#000000&#39;)  引数は、上記のtext関数のリンクを参照。
-保存するファイル名は、以下のように文字を16進数変換したものを使う。
-yomi=&amp;#34;歩&amp;#34; bytes_yomi = yomi.encode(&amp;#34;UTF-8&amp;#34;).hex() &amp;gt;&amp;gt; &amp;#39;e6ada9&amp;#39; 文字列とフォント画像をマッピング ファイル名を読み仮名を16進数変換し保存しているので、文字から毎回画像ファイルを読み込んでも良いが、高速に呼び出せるように、1文字と画像をファイルとkvsを使ってマッピングしておく。
-kvsにはplyvelを使う。以下のようにインスタンス化する。
-import plyvel db = plyvel.</description>
+ フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。</description>
     </item>
     
   </channel>

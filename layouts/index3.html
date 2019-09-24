@@ -1,0 +1,56 @@
+{{ define "header" }} 
+   {{ partial "site-navbar.html" . }} 
+   {{ partial "homepage-header-noslides.html" . }}  
+
+  <!-- Welcome Word -->
+  {{ with $.Site.Params.welcome_head }}
+    <section class="container pt-5 text-center">
+      <h1 class="display-3">{{ $.Site.Params.welcome_head }}</h1>
+      {{ with $.Site.Params.welcome_word }}
+      <p style="font-size:1.8rem; color: var(--text-light);">{{ $.Site.Params.welcome_word }}</p>
+      {{ end }}
+    </section>
+  {{ end }}
+  <!-- /.Welcome Word -->
+
+{{ end }} 
+
+
+    {{ define "main" }}
+  <!-- Main layout -->
+  <main class="post-main-wrapper px-5">
+    <div class="row">
+      <!-- Post list -->
+      <div class="col-md-9 mt-3">
+	{{ $rootDir := (.Site.GetPage "/posts") }}
+	{{ $postDir := $rootDir.Pages.ByDate.Reverse }}
+	{{ $postDir }}
+	  
+	  {{ $paginator := .Paginate (first 2 $postDir) }}
+	  {{ range $paginator.Pages }}
+	  {{ partial "post-card.html" . }}
+          {{ end }}
+	<div class="pagination pagination-outline justify-content-center active-color">
+          {{ template "_internal/pagination.html" $rootDir }}
+        </div>
+
+      </div>
+      <!-- /.Post list -->
+
+      <!-- Sidebar -->
+      <div class="col-md-3">	  	  
+        {{ partial "sidebar-tags.html" $rootDir }}
+	
+	<!-- {{ partial "sidebar-categories.html" $rootDir }} -->
+        <!-- {{ partial "sidebar-series.html" $rootDir }} -->
+	
+	{{ partial "sidebar-card.html" $rootDir }}
+	
+      </div> 
+      <!-- /.Sidebar -->
+      
+    </div>
+  </main>
+  <!--Main layout-->
+
+{{ end }}
