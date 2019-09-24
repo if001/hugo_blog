@@ -12,8 +12,6 @@ pygmentsUseClasses = true # <span stype="xxxx">で色付けをするのではな
 publishdir = "public"
 
 summaryLength = 10
-dateFormat = "2006-01-02"
-
 
 # descriptionのsummaryを小さくする
 # #html側で指定するので一旦コメントアウト
@@ -38,7 +36,9 @@ dateFormat = "2006-01-02"
     katex = true
     mathjax = true
     highlightjs = true
-    
+    dateFormat = "2006-01-02"
+    faviconfile = "images/favicon/favicon1.jpeg"
+
     [params.sharebutton]
         # If you want to display share buttons set these
         # This is Optional values

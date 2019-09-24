@@ -15,16 +15,16 @@
   <div class="px-4 post-heading">{{ .Title }}</div>
 
   <ul class="post-meta li-x mt-1">
-    {{ if and .Site.Params.dateformfull .Site.Params.dateform }}
-      <li>{{ .Date.Format .Site.Params.dateform }}</li>
+    {{ if .Date }}
+    <li>{{ .Date.Format .Site.Params.dateFormat }}</li>
     {{ else }}
-      <li>{{ .Date.Format "2006-01-02" }}</li>
+    <li>{{ .Lastmod.Format "2006-01-02" }}</li>
     {{ end }}
 
-    {{ if not .Site.Params.noshowreadtime }}
-      <li class="middot"></li>
-      <li>{{ i18n "readingTime" .ReadingTime }}</li>
-    {{ end }}
+    <!-- {{ if not .Site.Params.noshowreadtime }} -->
+    <!--   <li class="middot"></li> -->
+    <!--   <li>{{ i18n "readingTime" .ReadingTime }}</li> -->
+    <!-- {{ end }} -->
   </ul>
   {{ with .Params.img }}
     <div class="view">

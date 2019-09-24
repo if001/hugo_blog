@@ -30,13 +30,12 @@
           <div class="view" style="background-image: url('{{ $pathURL | absURL }}/{{ .Name }}'); background-repeat: no-repeat; background-size: cover;">
 
             <!-- Mask & flexbox options-->
-            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-              <!-- Content -->
-              <!-- <div class="text-center white-text wow fadeIn">
-              </div> -->
-              <!-- Content -->
-
-            </div>
+            <!-- <div class="mask rgba-black-light d-flex justify-content-center align-items-center"> -->
+            <!--   <\!-- Content -\-> -->
+            <!--   <\!-- <div class="text-center white-text wow fadeIn"> -->
+            <!--   </div> -\-> -->
+            <!--   <\!-- Content -\-> -->
+            <!-- </div> -->
             <!-- Mask & flexbox options-->
 
           </div>
@@ -67,70 +66,70 @@
   <!--/.Slides-->
 
   <!-- Content -->
-  <div class="carousel-content text-center white-text wow fadeIn">
-    <div class="row mx-0 headfont mt-3 pt-4">
-      <!-- Avatar -->
-      <div class="col-12 col-sm-5 align-middle">
-        <a href="{{ .Site.BaseURL }}">
-          {{ if $.Site.Params.avatar }}
-            <img class="pull-right avatar avatar-md" src="{{ $.Site.Params.avatar | absURL }}" alt="" >
-          {{ else if $.Site.Params.faviconfile }}
-            <img class="pull-right avatar avatar-md" src="{{ $.Site.Params.faviconfile | absURL }}" alt="">
-          {{ end }}
-        </a>
-      </div>
+  <!-- <div class="carousel-content text-center white-text wow fadeIn"> -->
+  <!--   <div class="row mx-0 headfont mt-3 pt-4"> -->
+  <!--     <\!-- Avatar -\-> -->
+  <!--     <div class="col-12 col-sm-5 align-middle"> -->
+  <!--       <a href="{{ .Site.BaseURL }}"> -->
+  <!--         {{ if $.Site.Params.avatar }} -->
+  <!--           <img class="pull-right avatar avatar-md" src="{{ $.Site.Params.avatar | absURL }}" alt="" > -->
+  <!--         {{ else if $.Site.Params.faviconfile }} -->
+  <!--           <img class="pull-right avatar avatar-md" src="{{ $.Site.Params.faviconfile | absURL }}" alt=""> -->
+  <!--         {{ end }} -->
+  <!--       </a> -->
+  <!--     </div> -->
       
-      <div class="col-12 col-sm-7 text-left pl-2">
-        <a href="{{ .Site.BaseURL }}">
-          <h1 class="mb-2 h1" style="font-weight: 300;" >
-            <strong>{{ $.Site.Title }}</strong>
-          </h1>
-        </a>
+  <!--     <div class="col-12 col-sm-7 text-left pl-2"> -->
+  <!--       <a href="{{ .Site.BaseURL }}"> -->
+  <!--         <h1 class="mb-2 h1" style="font-weight: 300;" > -->
+  <!--           <strong>{{ $.Site.Title }}</strong> -->
+  <!--         </h1> -->
+  <!--       </a> -->
         
 
-        <!-- Ref Icon -->     
-        <div class="mt-2" style="font-size: 1rem; color: white;">
-            {{ if $.Site.Params.github }}
-              <a href="{{ $.Site.Params.github }}" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
-            {{ end }}
-            {{ if $.Site.Params.linkedin }}
-              <a href="{{ $.Site.Params.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--       <\!-- Ref Icon -\->      -->
+  <!--       <div class="mt-2" style="font-size: 1rem; color: white;"> -->
+  <!--           {{ if $.Site.Params.github }} -->
+  <!--             <a href="{{ $.Site.Params.github }}" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>     -->
+  <!--           {{ end }} -->
+  <!--           {{ if $.Site.Params.linkedin }} -->
+  <!--             <a href="{{ $.Site.Params.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
 
-            {{ if $.Site.Params.facebook }}
-              <a href="{{ $.Site.Params.facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.facebook }} -->
+  <!--             <a href="{{ $.Site.Params.facebook }}" target="_blank" rel="noopener"><i class="fab fa-facebook pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
 
-            {{ if $.Site.Params.googleplus }}
-            <a href="{{ $.Site.Params.googleplus }}" target="_blank" rel="noopener"><i class="fab fa-google-plus pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.googleplus }} -->
+  <!--           <a href="{{ $.Site.Params.googleplus }}" target="_blank" rel="noopener"><i class="fab fa-google-plus pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
 
-            {{ if $.Site.Params.twitter }}
-                <a href="{{ $.Site.Params.twitter }}" target="_blank" rel="noopener"><i class="fab fa-twitter pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.twitter }} -->
+  <!--               <a href="{{ $.Site.Params.twitter }}" target="_blank" rel="noopener"><i class="fab fa-twitter pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
 
-            {{ if $.Site.Params.instagram }}
-                <a href="{{ $.Site.Params.instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.instagram }} -->
+  <!--               <a href="{{ $.Site.Params.instagram }}" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
     
-            {{ if $.Site.Params.px500 }}
-                <a href="{{ $.Site.Params.px500 }}" target="_blank" rel="noopener"><i class="fab fa-500px pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.px500 }} -->
+  <!--               <a href="{{ $.Site.Params.px500 }}" target="_blank" rel="noopener"><i class="fab fa-500px pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
     
         
-            {{ if $.Site.Params.email }}
-                <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if $.Site.Params.email }} -->
+  <!--               <a href="mailto:{{ $.Site.Params.email }}"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
     
-            {{ if and $.Site.Params.include_rss $.RSSLink }}
-                <a href="{{ $.RSSLink }}"><i class="fas fa-rss pr-1" aria-hidden="true"></i></a>
-            {{ end }}
+  <!--           {{ if and $.Site.Params.include_rss $.RSSLink }} -->
+  <!--               <a href="{{ $.RSSLink }}"><i class="fas fa-rss pr-1" aria-hidden="true"></i></a> -->
+  <!--           {{ end }} -->
 
             
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </div> -->
+  <!-- </div> -->
   <!-- Content -->
 
   <!--Controls-->
