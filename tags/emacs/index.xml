@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs on アンドロイドは推理小説を描くか?</title>
+    <title>emacs on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/emacs/</link>
-    <description>Recent content in Emacs on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in emacs on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/emacs/" rel="self" type="application/rss+xml" />
@@ -22,36 +21,7 @@ https://ox-hugo.scripter.co/
 Ox-hugo
 https://sfus.net/blog/2018/12/org-mode-with-ox-hugo/
 Atomic-chrome
-https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f
-LSP
-https://qiita.com/blue0513/items/acc962738c7f4da26656
-eglot
-https://howm.osdn.jp/index-j.html
-Ivy
-https://qiita.com/tadsan/items/33ebb8db2271897a462b#ivycounsel
-Org-chapture
-https://www.5ing-myway.com/org-capture/
-child-frame
-https://www.gnu.org/software/emacs/manual/html_node/elisp/Child-Frames.html
-highlight-indent-guides.el
-https://qiita.com/blue0513/items/acc962738c7f4da26656
-doom-theme
-https://github.com/hlissner/emacs-doom-themes
-doom-modeline
-https://github.com/seagle0128/doom-modeline
-git-gutter
-https://emacs-jp.github.io/packages/vcs/git-gutter
-https://qiita.com/syohex/items/a669b35fbbfcdda0cbf2
-White-space mode
-https://qiita.com/itiut@github/items/4d74da2412a29ef59c3a
-Projectile
-https://github.com/bbatsov/projectile
-Ddss
-http://emacs.rubikitch.com/sd1408-ddskk/
-ripgrep
-https://github.com/dajva/rg.el
-http://emacs.rubikitch.com/ripgrep/
-感想 もっとゴリゴリな変態emacs使い(褒め言葉)ばかりかと思ってたけど、実用性の高い話が聞けてよかったです。emacs歴は7,8年ほどですが普段はpythonやmarkdownなどちょっとした開発にemacsを使う程度で、scalaやhtml、jsや規模の大きいプロジェクトなどではIDEを使っています。今回ので良い知見が得られたのでこれからはしっかりemacs使っていこうと思います。 ORGモード人気。</description>
+https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f</description>
     </item>
     
     <item>
@@ -63,25 +33,7 @@ http://emacs.rubikitch.com/ripgrep/
       <description>大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
 lsp-mode
 https://github.com/emacs-lsp/lsp-mode
-language server protocolとは language server protocol(lsp)とは、IDEやエディタとIDEが提供する機能(補間、定義jump、ドキュメントの表示など)の間で使用されるプロトコルを定義したものである。
-これまで、IDEなどの提供する機能(補間、定義へのjump、ドキュメントの表示など)は言語ごと、IDEごとに提供されていた。
-それを取りまとめるプロトコルが定義されることで、IDEごとの格差が緩和され、emacsでもIDEと同様の機能が実現でき流ようになるということです。
-詳しくは、以下が参考になると思う。
-https://microsoft.github.io/language-server-protocol/
-https://github.com/Microsoft/language-server-protocol
-https://qiita.com/atsushieno/items/ce31df9bd88e98eec5c4
-lsp-mode emacsでは、lsp-modeとeglotがlspをサポートしているみたい。今回はlsp-modeを導入する。
-lsp-mode: https://github.com/emacs-lsp/lsp-mode
-を見ながら設定していく。
-melpaからインストール
-M-x package-install [RET] lsp-mode [RET] 以下のように設定する。
-(use-package lsp-mode :custom (lsp-print-io t) (lsp-prefer-flymake &amp;#39;flymake) :commands lsp) lsp-print-ioで全てのログを*lsp-log*に表示する。今回はflymakeを使うので、(lsp-prefer-flymake &#39;flymake) を設定しておく。
-続いて、lsp-modeのバックエンドにcompanyを使うためにcompany-lspを、lsp-modeのUIをリッチにしてくれるlsp-uiを入れる。
-それぞれmelpaからインストールします。
-company-lsp https://github.com/tigersoldier/company-lsp
-companyのバックエンドに設定
-(use-package &amp;#39;company-lsp :after (lsp-mode company) :init (push &amp;#39;company-lsp company-backends) ) lsp-ui https://github.com/emacs-lsp/lsp-ui
-(use-package lsp-ui :custom ;; lsp-ui-doc (lsp-ui-doc-enable nil) (lsp-ui-doc-header t) (lsp-ui-doc-include-signature t) (lsp-ui-doc-position &amp;#39;at-point) ;; top, bottom, or at-point (lsp-ui-doc-max-width 150) (lsp-ui-doc-max-height 30) (lsp-ui-doc-use-childframe t) (lsp-ui-doc-use-webkit t) ;; lsp-ui-flycheck (lsp-ui-flycheck-enable nil) ;; lsp-ui-peek (lsp-ui-peek-enable t) (lsp-ui-peek-peek-height 20) (lsp-ui-peek-list-width 50) (lsp-ui-peek-fontify &amp;#39;on-demand) ;; never, on-demand, or always ;; lsp-ui-imenu (lsp-ui-imenu-enable nil) (lsp-ui-imenu-kind-position &amp;#39;top) ;; lsp-ui-sideline (lsp-ui-sideline-enable nil) :commands lsp-ui-mode :config (add-hook &amp;#39;lsp-mode-hook &amp;#39;lsp-ui-mode) (eval-after-load &amp;#34;flymake&amp;#34; (setq flymake-fringe-indicator-position nil) ) ) 主な機能は以下</description>
+language server protocolとは language server protocol(lsp)とは、IDEやエディタとIDEが提供する機能(補間、定義jump、ドキュメントの表示など)の間で使用されるプロトコルを定義したものである。</description>
     </item>
     
     <item>
@@ -94,15 +46,7 @@ companyのバックエンドに設定
 https://github.com/jwiegley/use-package
 use-packageとは、emacsのパッケージ管理を強化するパッケージです。
 use-packageのマクロを使用することで、
- 統一した記述による可読性が向上 パッケージの遅延ロードの設定を簡潔にかけることによる起動の高速化  などのメリットがあります。
-シンプルな例 requireでのライブラリの読み込みは次のように書き換えることができます。
-(require &amp;#39;foo)(use-package foo) use-packageではキーワードを使うことで、パッケージロード時の振る舞いを指定することができます。
-:init パッケージが読み込まれる前に実行される。
-(use-package foo :init (setq foo-variable t)) :config パッケージがロードされた後に実行される。
-(use-package foo :init (setq foo-variable t) :config (foo-mode 1)) :commands auto-loadするコマンドを指定する。
-(use-package color-moccur :commands (isearch-moccur isearch-all) :bind ((&amp;#34;M-s O&amp;#34; . moccur) :map isearch-mode-map (&amp;#34;M-o&amp;#34; . isearch-moccur) (&amp;#34;M-O&amp;#34; . isearch-moccur-all)) :init (setq isearch-lazy-highlight t) :config (use-package moccur-edit)) この場合、isearch-moccurとisearch-allがcolor-moccur.elからauto-loadされる。
-key-binding :bindキーワードを使用し以下のように設定する。
-(use-package ace-jump-mode :bind (&amp;#34;C-.&amp;#34; . ace-jump-mode)) リストを使い以下のように複数のキーバインドを設定することも可能</description>
+ 統一した記述による可読性が向上 パッケージの遅延ロードの設定を簡潔にかけることによる起動の高速化  などのメリットがあります。</description>
     </item>
     
   </channel>

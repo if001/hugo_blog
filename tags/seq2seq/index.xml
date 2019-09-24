@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Seq2seq on アンドロイドは推理小説を描くか?</title>
+    <title>seq2seq on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/seq2seq/</link>
-    <description>Recent content in Seq2seq on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in seq2seq on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/seq2seq/" rel="self" type="application/rss+xml" />
@@ -15,20 +14,7 @@
       
       <guid>https://www.if-blog.site/post/nlp/diversity_neural_conversation_model/</guid>
       <description>Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
-A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.org/abs/1510.03055
-会話タスクにおける、入力文章(メッセージ)とそれに対する応答に多様性をもたせる手法を提案した論文です。 モデル周りをメインにそれ以外は軽く流し読みしているので、悪しからず。
-はじめに sequence to sequece(seq2seq)などの対話モデルでは、多様で文法的な応答が求められる。このモデルでは、入力される文章と出力される文章の対応のみを考慮しているため、I&amp;rsquo;m OKやI&amp;rsquo;dont knowのような高頻度フレーズを生成しがちである。したがって、メッセージに関する応答の依存性だけでなく、応答とメッセージの関係性についても考慮すべきである。
-そこで、私たちは、Maximum Mutual Information（MMI）を目的関数とする対話モデルを提案する。私たちは、MMIを使用することで、多様で興味深い文章を生成することを示します。
-MMIモデル seq2seqモデルの標準的な目的関数は以下のように表される。
-$$\hat{T} = argmax_T{\log p(T|S)}$$
-$N$は単語数を表し、入力文章(メッセージ)$S$とそれに対する応答$T$は以下のように表される。 $S = {s_1, s2, &amp;hellip;, s{N_s} }$ $T = {t_1, t2, &amp;hellip;, t{N_t}, EOS}$
-seq2seqモデルの目的関数を以下のように修正する。
-$$\hat{T} = argmax_T {\log p(T|S) - \log p(T)}$$
-このとき、argmaxの中身は、以下のように式変形から、相互情報量(wikipedia) を表していることがわかる。
-$${\log p(T|S) - \log p(T)} = \frac{\log p(S,T)}{\log p(S) \log p(T)}$$
-したがって、この式は、相互情報量を最大化(MMI)する応答を出力することとなる。
-また、$\log p(T)$は、seq2seqの標準的な目的関数に対するペナルティ項とみなすことができる。メッセージに対するありふれた応答に対してペナルティを与えることで、応答の多様性を保つことを期待している。
-このペナルティー項を調節できるように、(2)式に対して、パラメタ$\lambda$を追加する。 これを、MMI-antiLMと呼ぶ。 $$\hat{T} = argmax_T {\log p(T|S) - \lambda \log p(T)} \tag{1}$$</description>
+A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.</description>
     </item>
     
   </channel>

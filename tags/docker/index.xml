@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Docker on アンドロイドは推理小説を描くか?</title>
+    <title>docker on アンドロイドは推理小説を書くか?</title>
     <link>https://www.if-blog.site/tags/docker/</link>
-    <description>Recent content in Docker on アンドロイドは推理小説を描くか?</description>
+    <description>Recent content in docker on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <atom:link href="/tags/docker/" rel="self" type="application/rss+xml" />
@@ -18,21 +17,7 @@
 いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
 インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
 ドメイン ドメインは、お名前.comで取得します。これは特に説明なしでいけます。
-DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。
-Google Cloud Consoleから、「ネットワークサービス」→「Cloud DNS」を選択します。
-任意のゾーン名、取得したドメイン、(説明)を入力して作成。
-  Aレコードの登録 DNS名には、www.取得したドメイン、リソースタイプにはAレコードを設定し、作成します。   レジストラへの登録 生成されるNSレコードのns-cloud-c1.googledomains.com.をお名前.com側に登録します。
-https化 let&amp;rsquo;s encryptを使ってhttps化しようと思っていたところ便利なものを発見したのでこちらを使います。
-https-portal
-自動で証明書の更新も行ってくれます。すごい。便利。
-親切にdocker-composeが公式に載せてあるので、参考にします。 docker-composeのインストールはpipなどで行ってください。
-https-portal:image:steveltn/https-portal:1ports:-&amp;#39;80:80&amp;#39;-&amp;#39;443:443&amp;#39;links:-wordpressrestart:alwaysenvironment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39;# STAGE: &amp;#39;production&amp;#39;# FORCE_RENEW: &amp;#39;true&amp;#39;wordpress:image:wordpresslinks:-db:mysqldb:image:mariadbenvironment:MYSQL_ROOT_PASSWORD:&amp;#39;&amp;lt;a secure password&amp;gt;&amp;#39; imageのバージョンは:1と指定しましょう。最新版を取ってくるようになります。
-image: steveltn/https-portal:1  1.2以下だと、let&amp;rsquo;s Encryptで証明書を取得する際にエラーが起きるので注意です。
-links:-wordpress linksで公開するサービス名を指定しましょう。
-environment:DOMAINS:&amp;#39;wordpress.example.com -&amp;gt; http://wordpress:80&amp;#39; 環境変数のDMAINSでは、リクエストを受けるドメイン -&amp;gt; https化したいエンドポイントを指定します。
-linksで指定したエイリアスで指定できます。また、-&amp;gt;を=&amp;gt;に変更することでリダイレクトができます。
-STAGEは、次の3つが指定できます。
- STAGE: &#39;local&#39;でオレオレ証明書を作成します。テストなどに STAGE: &#39;staging&#39;でテスト用の証明書を作成します。 STAGE: &#39;production&#39;で本番用に、Let&amp;rsquo;s Encryptで正式な証明書を作成します。  その他、環境変数も指定できます。この辺りを参考しながら、設定を行います。 https://github.com/SteveLTN/https-portal/tree/master/fs_overlay/var/lib/nginx-conf</description>
+DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。</description>
     </item>
     
   </channel>
