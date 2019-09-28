@@ -17,9 +17,19 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
 sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/nlp/word2vec_output_word/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="word2vecでベクトルから単語を出力する"/>
+<meta name="twitter:description" content="word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
+結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
+sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model."/>
+
+  
   <title>
   
        word2vecでベクトルから単語を出力する | アンドロイドは推理小説を書くか? 
@@ -96,7 +106,7 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -185,7 +195,25 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/word2vec" role="button">word2vec </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             
 

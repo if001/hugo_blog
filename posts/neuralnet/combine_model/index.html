@@ -23,9 +23,22 @@ Kerasのバージョンは、2.1.1
 def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/neuralnet/combine_model/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="kerasでモデルを結合する"/>
+<meta name="twitter:description" content="autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
+autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
+Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
+Kerasのバージョンは、2.1.1
+まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。
+def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model."/>
+
+  
   <title>
   
        kerasでモデルを結合する | アンドロイドは推理小説を書くか? 
@@ -102,7 +115,7 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(lay
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -191,7 +204,25 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(lay
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/keras" role="button">keras </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/neuralnet" role="button">neuralnet </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             <p>autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。</p>
 

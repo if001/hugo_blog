@@ -23,9 +23,22 @@ enableGitInfo=true 以下のように使う。
 {{ .Lastmod.Format &quot;2006/01/02&quot; }}  この更新事項を使って、記事を並び替えます。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/hugo/hugo-date-sort/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="Hugoの記事を更新順にソートする"/>
+<meta name="twitter:description" content="Hugoの記事を更新順にソートするメモです。
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
+そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/
+config.tomlに以下のように記述します。
+enableGitInfo=true 以下のように使う。
+{{ .Lastmod.Format &quot;2006/01/02&quot; }}  この更新事項を使って、記事を並び替えます。"/>
+
+  
   <title>
   
        Hugoの記事を更新順にソートする | アンドロイドは推理小説を書くか? 
@@ -102,7 +115,7 @@ enableGitInfo=true 以下のように使う。
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -191,7 +204,22 @@ enableGitInfo=true 以下のように使う。
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             <p>Hugoの記事を更新順にソートするメモです。<br />
 まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、<a href="https://gohugo.io/functions/format/" target="_blank">Lastmod</a>で更新時刻が取得できるのでそれを使います。<br />

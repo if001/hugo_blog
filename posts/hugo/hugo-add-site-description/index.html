@@ -19,9 +19,20 @@ html側で次のように書くと、markdownに書いたdescriptionが参照で
 description=&quot;hogehoge&quot;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/hugo/hugo-add-site-description/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="Hugoの記事にdescriptionを追加する"/>
+<meta name="twitter:description" content="Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ .Description }} markdown側では、ヘッダーに次のように記述します。
+description=&quot;hogehoge&quot;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。"/>
+
+  
   <title>
   
        Hugoの記事にdescriptionを追加する | アンドロイドは推理小説を書くか? 
@@ -98,7 +109,7 @@ description=&quot;hogehoge&quot;  これまで書いた記事全てに、descrip
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -187,7 +198,22 @@ description=&quot;hogehoge&quot;  これまで書いた記事全てに、descrip
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             
 

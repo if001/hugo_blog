@@ -21,9 +21,21 @@
  フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/nlp/char_vec/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="文字をベクトル化する"/>
+<meta name="twitter:description" content="文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。
+今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
+コードはここ、https://github.com/if001/fifc.git
+以下の3工程で行う。
+ フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。"/>
+
+  
   <title>
   
        文字をベクトル化する | アンドロイドは推理小説を書くか? 
@@ -100,7 +112,7 @@
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -189,7 +201,28 @@
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/nlp" role="button">nlp </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/neuralnet" role="button">neuralnet </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             
 

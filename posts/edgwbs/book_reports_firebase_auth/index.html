@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  
+  <meta name="description" content="Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
+https://firebase.google.com/docs/auth/?hl=ja
+  Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。
+Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。 今回は、vueのrouter guardは省略します。">
+  
+  <meta property="og:title" content="Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理" />
+<meta property="og:description" content="Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
+https://firebase.google.com/docs/auth/?hl=ja
+  Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。
+Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。 今回は、vueのrouter guardは省略します。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
+<meta property="article:published_time" content="2019-09-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-28T18:30:09+09:00" />
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
+
+<meta name="twitter:title" content="Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理"/>
+<meta name="twitter:description" content="Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
+https://firebase.google.com/docs/auth/?hl=ja
+  Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。
+Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。 今回は、vueのrouter guardは省略します。"/>
+
+  
+  <title>
+  
+       Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理 | アンドロイドは推理小説を書くか? 
+  
+  </title>
+
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+  <link rel="canonical" href="https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth/">
+
+  
+  
+
+  
+  <link href="https://www.if-blog.site/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://www.if-blog.site/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://www.if-blog.site/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.if-blog.site/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://www.if-blog.site/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://www.if-blog.site/images/favicon/favicon1.jpeg"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://www.if-blog.site/css/vendors/highlight/github-gist.css">
+  
+
+    
+    
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [['$$','$$'], ['\[','\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        TeX: { equationNumbers: { autoNumber: "AMS" },
+             extensions: ["AMSmath.js", "AMSsymbols.js"] }
+      }
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+    
+    
+    
+    
+    
+    
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://www.if-blog.site">
+          
+        <strong> </strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://www.if-blog.site">アンドロイドは推理小説を書くか?</a>
+          </li>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+
+    
+
+    
+    
+    
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+    <li>2019-09-28</li>
+    
+
+    
+    
+    
+    
+  </ul>
+  
+
+</div>
+
+
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/webapp" role="button">WebApp </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/firebase" role="button">Firebase </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/golang" role="button">Golang </a></li>
+      
+    
+  </div>
+</div>
+
+            </div>	
+	  </div>
+	  
+          <div class="post-content markdown">
+            
+
+<p>Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。<br />
+<a href="https://firebase.google.com/docs/auth/?hl=ja" target="_blank">https://firebase.google.com/docs/auth/?hl=ja</a></p>
+
+<figure>
+    <img src="../../images/bookreports_edgwbs/vuejs_golang_firebase.png" width="500"/> 
+</figure>
+
+
+<p>Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。</p>
+
+<h2 id="vue-js側">Vue.js側</h2>
+
+<p>VueCLI3を使い、typescriptのプロジェクトを作成します。
+今回は、vueのrouter guardは省略します。</p>
+
+<h3 id="準備">準備</h3>
+
+<p>npmからインストール。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ npm install firebase</code></pre></div>
+<p>firebaseの認証情報は、以下のドキュメントを参考に取得しておきます。<br />
+<a href="https://firebase.google.com/docs/auth/web/password-auth?authuser=1" target="_blank">https://firebase.google.com/docs/auth/web/password-auth?authuser=1</a></p>
+
+<p><code>src/main.ts</code>にfirebaseをimportし、上記で取得した認証情報を貼り付けます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="nx">firebase</span> <span class="nx">from</span> <span class="s1">&#39;firebase/app&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">fireBaseConfig</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">apiKey</span><span class="o">:</span> <span class="s1">&#39;*****&#39;</span><span class="p">,</span>
+  <span class="nx">authDomain</span><span class="o">:</span> <span class="s1">&#39;*****.firebaseapp.com&#39;</span><span class="p">,</span>
+  <span class="nx">databaseURL</span><span class="o">:</span> <span class="s1">&#39;https://******.firebaseio.com&#39;</span><span class="p">,</span>
+  <span class="nx">projectId</span><span class="o">:</span> <span class="s1">&#39;*****&#39;</span><span class="p">,</span>
+  <span class="nx">storageBucket</span><span class="o">:</span> <span class="s1">&#39;*****.appspot.com&#39;</span><span class="p">,</span>
+  <span class="nx">messagingSenderId</span><span class="o">:</span> <span class="s1">&#39;******&#39;</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">firebase</span><span class="p">.</span><span class="nx">initializeApp</span><span class="p">(</span><span class="nx">fireBaseConfig</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="ログイン処理">ログイン処理</h3>
+
+<p>firebaseではemail+passwordの通常の認証に加え、GoogleアカウントやTwitter、Githubのアカウントでのログインが1つのメソッドだけで行えます。</p>
+
+<p>Googleなどのアカウントでログインしたい場合は、あらかじめfirebaseから認証を許可するよう設定しておく必要があります。</p>
+
+<h4 id="signin-with-email-password">signIn with email+password</h4>
+
+<p>コンポーネントにfirebaseのログイン画面を作ります。以下はその例です。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="kr">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-property-decorator&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">firebase</span> <span class="nx">from</span> <span class="s1">&#39;firebase/app&#39;</span><span class="p">;</span>
+
+<span class="kd">@Component</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Home</span> <span class="kr">extends</span> <span class="nx">Vue</span> <span class="p">{</span>
+  <span class="kr">private</span> <span class="nx">email</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="kr">private</span> <span class="nx">password</span>: <span class="kt">string</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+  <span class="kr">private</span> <span class="nx">showPassword</span>: <span class="kt">boolean</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="kr">private</span> <span class="nx">siginInWithEmail() {</span>
+    <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithEmailAndPassword</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span>: <span class="kt">firebase.auth.UserCredential</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nx">Promise</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">reject</span><span class="p">(</span><span class="s1">&#39;user not found&#39;</span><span class="p">));</span>
+              <span class="p">}</span>
+              <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">getIdToken</span><span class="p">();</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">idToken</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;login success&#34;</span><span class="p">))</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
+            <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">));</span>
+  <span class="p">}</span>
+</code></pre></div>
+<p>見て分かる通り、以下のメソッドの引数にメールアドレスとパスワードを渡すだけです。<br />
+<code>firebase.auth().signInWithEmailAndPassword(this.email, this.password)</code></p>
+
+<p>このメソッドは、<code>Promise&lt;firebase.auth.UserCredential&gt;</code>を返します。 User情報などはここから取得できます。</p>
+
+<p>UserCredentialの中身は以下のドキュメントを参考。<br />
+<a href="https://firebase.google.com/docs/reference/js/firebase.auth.html#usercredential" target="_blank">https://firebase.google.com/docs/reference/js/firebase.auth.html#usercredential</a></p>
+
+<p><code>firebase.auth.UserCredential</code>のもつ<code>user</code>が<code>getIdToken</code>メソッドを持っており、ここからトークンが取得できます。</p>
+
+<p>PWAやスマホアプリでは、リフレッシュトークンを使いたいです。<code>getIdToken</code>では、トークンが失効していれば、firebase側でリフレッシュトークンを使ったトークンの更新処理を行ってくれるため、わざわざトークンの更新処理を追加する必要がありません。</p>
+
+<p><a href="https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken" target="_blank">https://firebase.google.com/docs/reference/js/firebase.User.html#getidtoken</a></p>
+
+<h4 id="signin-with-google-popup">signIn with Google(popup)</h4>
+
+<p>ログイン方法には、Popupで別ウィンドウが開きログインを行う方法とリダイレクトを用いた方法があります。 Googleアカウントを使いpopupでログインしたい場合は、以下のようにします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript">  <span class="kr">import</span> <span class="p">{</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vue-property-decorator&#39;</span><span class="p">;</span>
+  <span class="kr">import</span> <span class="nx">firebase</span> <span class="nx">from</span> <span class="s1">&#39;firebase/app&#39;</span><span class="p">;</span>
+  
+  <span class="kr">private</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">GoogleAuthProvider</span><span class="p">();</span>
+  
+  <span class="kd">@Component</span>
+  <span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">Home</span> <span class="kr">extends</span> <span class="nx">Vue</span> <span class="p">{</span>
+    <span class="kr">private</span> <span class="nx">signInByGoogleWithPopup() {</span>
+        <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithPopup</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">provider</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span>: <span class="kt">firebase.auth.UserCredential</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+        <span class="c1">// 省略
+</span></code></pre></div>
+<p>providerにGoogleを指定し、<code>firebase.auth().signInWithPopup(this.provider)</code>を呼ぶと、popupで見慣れたログイン画面が表示されます。
+図</p>
+
+<p><code>firebase.auth().signInWithPopup(this.provider)</code>もEmail+Passwordの場合と同様に、<code>Promise&lt;firebase.auth.UserCredential&gt;</code>を返すので、同様の方法でtokenやuser情報を取得できます。</p>
+
+<h4 id="signin-with-google-redirect">signIn with Google(redirect)</h4>
+
+<p>PWAでは、リダイレクトでのログインが推奨されています。</p>
+
+<p>リダイレクトは以下のようにします。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript">  <span class="kr">private</span> <span class="nx">siginInByGoogleWithRedirect() {</span>
+    <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithRedirect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">provider</span><span class="p">)</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">})</span>
+            <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">);</span>
+            <span class="p">});</span>
+  <span class="p">}</span>
+</code></pre></div>
+<p><code>siginInByGoogleWithRedirect</code>が呼ばれるとログイン画面にリダイレクトされます。</p>
+
+<p>ログイン画面から元のページへ遷移後、リダイレクトによる認証が正しく行えたか確認します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"> <span class="kr">private</span> <span class="nx">afterRedirect() {</span>
+    <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">getRedirectResult</span><span class="p">()</span>
+              <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span>: <span class="kt">firebase.auth.UserCredential</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="c1">// 省略
+</span></code></pre></div>
+<p><code>getRedirectResult</code>が<code>firebase.auth.UserCredential</code>を返すので、正しく認証できていれば、ここから先ほどと同様にユーザー情報やトークンを取得できます。</p>
+
+<h4 id="github-or-twitter">github or twitter</h4>
+
+<p>Googleアカウントを使った場合と同様に、プロバイダを指定しログインできます。
+予めTwitterでデベロッパーアプリケーションとしてアプリを登録し、APIキーとAPI Secretを取得しておきます。
+Twitterデベロッパー側に、OAuthコールバックとして、firebaseのURLを指定します。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">GithubAuthProvider</span><span class="p">();</span>
+<span class="c1">// or 
+</span><span class="c1"></span><span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">TwitterAuthProvider</span><span class="p">();</span>
+
+<span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithPopup</span><span class="p">(</span><span class="nx">provider</span><span class="p">)</span>
+</code></pre></div>
+<p><a href="https://firebase.google.com/docs/auth/web/github-auth?hl=ja" target="_blank">https://firebase.google.com/docs/auth/web/github-auth?hl=ja</a>
+<a href="https://firebase.google.com/docs/auth/web/twitter-login?hl=ja" target="_blank">https://firebase.google.com/docs/auth/web/twitter-login?hl=ja</a></p>
+
+<h3 id="パスワードの再設定">パスワードの再設定</h3>
+
+<p>パスワードの再設定のメールを送信するのも、メソッド1つで行えます。</p>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">sendPasswordResetEmail</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
+</code></pre></div>
+<p>送信されるメールのbodyは、firebaseから設定が行えます。</p>
+
+<p>ユーザーの更新、削除も同様に行えます。
+詳しくはドキュメントを参考。</p>
+
+<p><a href="https://firebase.google.com/docs/auth/web/manage-users?hl=ja#top_of_page" target="_blank">https://firebase.google.com/docs/auth/web/manage-users?hl=ja#top_of_page</a></p>
+
+<h3 id="メールアドレスの重複">メールアドレスの重複</h3>
+
+<p>Firebase Authenticationでは、メールアドレスの重複はデフォルトでは許可されていません。 Email+Passwordでアカウントを作成し、同じメールアドレスのGoogleアカウントでログインしようとすると、Googleアカウント側が有効となります。 このとき、ユーザー識別子は、Email+Passwordで作成したものが、Googleアカウントで作成したものに移行されるようです。</p>
+
+<p>重複を許可する設定も行えますが、1つのユーザーに複数のプロバイダを紐づけることもできるので、そちらを行った方が良いかと思います。
+<a href="https://firebase.google.com/docs/auth/web/account-linking" target="_blank">https://firebase.google.com/docs/auth/web/account-linking</a></p>
+
+<h3 id="認証状態の永続性">認証状態の永続性</h3>
+
+<p><a href="https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ja" target="_blank">https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ja</a></p>
+
+<h2 id="golang側">Golang側</h2>
+
+<p>フロントで取得したJWTを、バックエンドに投げ、バックエンドからJWTが正しいかをfirebaeに問い合わせに行きます。<br />
+ユーザーのログインのフローは簡単に書くと以下の図のような流れになります。</p>
+
+<figure>
+    <img src="../../images/bookreports_edgwbs/vuejs_golang_firebase_2.png" width="600"/> 
+</figure>
+
+
+<p>コード例は、以下の用になります。</p>
+<div class="highlight"><pre class="chroma"><code class="language-golang" data-lang="golang"><span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">()</span>
+<span class="kd">var</span> <span class="nx">opt</span> <span class="nx">option</span><span class="p">.</span><span class="nx">ClientOption</span>
+
+<span class="c1">// localのjson keyから認証する場合
+</span><span class="c1"></span><span class="nx">opt</span> <span class="p">=</span> <span class="nx">option</span><span class="p">.</span><span class="nf">WithCredentialsFile</span><span class="p">(</span><span class="s">&#34;****.json&#34;</span><span class="p">)</span>
+
+<span class="c1">// 環境変数から認証する場合
+</span><span class="c1"></span><span class="nx">credentials</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">google</span><span class="p">.</span><span class="nf">CredentialsFromJSON</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">authKey</span><span class="p">))</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+	 <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">opt</span> <span class="p">=</span> <span class="nx">option</span><span class="p">.</span><span class="nf">WithCredentials</span><span class="p">(</span><span class="nx">credentials</span><span class="p">)</span>
+		
+
+<span class="nx">app</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">firebase</span><span class="p">.</span><span class="nf">NewApp</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">opt</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nf">Error</span><span class="p">())</span>
+	 <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">client</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Auth</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">())</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;error getting Auth client: %v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	 <span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// ヘッダーからIDトークンを取得
+</span><span class="c1"></span><span class="nx">authHeader</span> <span class="o">:=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">GetHeader</span><span class="p">((</span><span class="s">&#34;Authorization&#34;</span><span class="p">))</span>
+<span class="nx">idToken</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="nx">authHeader</span><span class="p">,</span> <span class="s">&#34;Bearer &#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">// トークンを確認
+</span><span class="c1"></span><span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">VerifyIDToken</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">Background</span><span class="p">(),</span> <span class="nx">idToken</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="nx">log</span><span class="p">.</span><span class="nf">Fatalf</span><span class="p">(</span><span class="s">&#34;error verifying ID token: %v\n&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">log</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Verified ID token: %v\n&#34;</span><span class="p">,</span> <span class="nx">token</span><span class="p">)</span></code></pre></div>
+<p>参考
+<a href="https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=ja" target="_blank">https://firebase.google.com/docs/auth/admin/verify-id-tokens?hl=ja</a></p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>Vue.jsとGolangからFirebase Authenticationを使いユーザーの管理を行いました。
+これまで、ユーザー管理用のAPIを自分で書いていましたが、バックエンドもフロントエンドも少しコードを書くだけで認証が行えるfirebase、めっちゃ楽、すばらしいです.</p>
+
+<p>一方、firebaseは認証トークンにJWT(json web token)を使っており、JWTは使うべきでないというような記事も割と見かけるので、この辺りはもう少し詳しく調べて見ようかと思います。</p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+              <div class="mb-5">
+                
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/webapp" role="button">WebApp </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/firebase" role="button">Firebase </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/golang" role="button">Golang </a></li>
+      
+    
+  </div>
+</div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+          
+
+	  
+          <div class="row pt-3">
+	    
+
+<h3>See Also</h3>
+<ul>
+    
+    <li><a href="/posts/edgwbs/book_reports_review/">三行で読書感想文を書いて、SNSでシェアできるサービスを作った</a></li>
+    
+</ul>
+
+
+	  </div>
+
+	  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            
+          
+          
+          
+          
+          
+	  
+<div id="share-buttons">
+  <ul style="list-style: none;">
+    
+    <li>
+      <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </li>
+    
+    
+    
+    <li>
+      <a href="http://b.hatena.ne.jp/entry/https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth//" class="hatena-bookmark-button" data-hatena-bookmark-title="Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+    </li>
+    
+    
+    
+    
+    <li  style="width:90px;">
+	<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
+	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+      
+    </div>
+    
+
+
+  </main>
+  
+
+    
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2019 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://www.if-blog.site/js/main.js"></script>
+
+
+
+  
+  <script src="https://www.if-blog.site/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://www.if-blog.site/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://www.if-blog.site/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-127416809-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

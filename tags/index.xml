@@ -5,15 +5,33 @@
     <description>Recent content in Tags on アンドロイドは推理小説を書くか?</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 25 Sep 2019 00:05:00 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Firebase</title>
       <link>https://www.if-blog.site/tags/firebase/</link>
-      <pubDate>Wed, 25 Sep 2019 00:05:00 +0900</pubDate>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.if-blog.site/tags/firebase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://www.if-blog.site/tags/golang/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WebApp</title>
+      <link>https://www.if-blog.site/tags/webapp/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/tags/webapp/</guid>
       <description></description>
     </item>
     
@@ -23,15 +41,6 @@
       <pubDate>Wed, 25 Sep 2019 00:05:00 +0900</pubDate>
       
       <guid>https://www.if-blog.site/tags/poem/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>WebApp</title>
-      <link>https://www.if-blog.site/tags/webapp/</link>
-      <pubDate>Wed, 25 Sep 2019 00:05:00 +0900</pubDate>
-      
-      <guid>https://www.if-blog.site/tags/webapp/</guid>
       <description></description>
     </item>
     
@@ -99,11 +108,20 @@
     </item>
     
     <item>
-      <title>google analytics</title>
+      <title>google-analytics</title>
       <link>https://www.if-blog.site/tags/google-analytics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.if-blog.site/tags/google-analytics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JAVA</title>
+      <link>https://www.if-blog.site/tags/java/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/tags/java/</guid>
       <description></description>
     </item>
     
@@ -122,24 +140,6 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.if-blog.site/tags/keras/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>neuralnet</title>
-      <link>https://www.if-blog.site/tags/neuralnet/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/tags/neuralnet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NLP</title>
-      <link>https://www.if-blog.site/tags/nlp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/tags/nlp/</guid>
       <description></description>
     </item>
     
