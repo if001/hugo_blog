@@ -14,8 +14,7 @@ https://firebase.google.com/docs/auth/?hl=ja
 Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。 
 
 ## Vue.js側
-VueCLI3を使い、typescriptのプロジェクトを作成します。
-今回は、vueのrouter guardは省略します。
+VueCLI3を使い、typescriptのプロジェクトを作成します。今回は、vueのrouter guardは省略します。
 
 ### 準備
 npmからインストール。 
