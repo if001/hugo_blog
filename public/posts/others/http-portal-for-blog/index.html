@@ -21,9 +21,21 @@ DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNS�
 DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/others/http-portal-for-blog/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="Hugoで作ったwebサイトを公開する"/>
+<meta name="twitter:description" content="はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
+ドメイン ドメインは、お名前.comで取得します。これは特に説明なしでいけます。
+DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。"/>
+
+  
   <title>
   
        Hugoで作ったwebサイトを公開する | アンドロイドは推理小説を書くか? 
@@ -100,7 +112,7 @@ DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNS�
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -189,7 +201,25 @@ DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNS�
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/docker" role="button">docker </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             
 

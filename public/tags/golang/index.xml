@@ -1,0 +1,24 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on アンドロイドは推理小説を書くか?</title>
+    <link>https://www.if-blog.site/tags/golang/</link>
+    <description>Recent content in Golang on アンドロイドは推理小説を書くか?</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/golang/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</title>
+      <link>https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth/</guid>
+      <description>Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
+https://firebase.google.com/docs/auth/?hl=ja
+  Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。
+Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。 今回は、vueのrouter guardは省略します。</description>
+    </item>
+    
+  </channel>
+</rss>

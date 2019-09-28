@@ -23,9 +23,22 @@ rustのバージョンは1.27.0
 ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.if-blog.site/posts/others/rust-macro-use-another/" />
+
+<meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 <meta property="article:modified_time" content="2019-09-24T15:31:42+09:00" />
 
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
 
+<meta name="twitter:title" content="Rustでmodule間にまたがるmacro呼び出し"/>
+<meta name="twitter:description" content="Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
+日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
+rustのバージョンは1.27.0
+参考 https://github.com/rust-lang/book/issues/401
+マクロの書き方とか、rustのimport周りは意外と日本語記事があったので、そっちを参考に
+ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。"/>
+
+  
   <title>
   
        Rustでmodule間にまたがるmacro呼び出し | アンドロイドは推理小説を書くか? 
@@ -102,7 +115,7 @@ rustのバージョンは1.27.0
     </script>
     <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
-    
+
 </head>
 
   <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
@@ -191,7 +204,22 @@ rustのバージョンは1.27.0
 </div>
 
 
+	  <div class="row">
+            <div class="mb-5">
+              
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/rust" role="button">rust </a></li>
+      
+    
+  </div>
+</div>
 
+            </div>	
+	  </div>
+	  
           <div class="post-content markdown">
             
 
