@@ -17,7 +17,7 @@
       <description>Vue.jsとGolangでWebアプリケーションでFirebase Authenticationを使い、ログイン処理を行います。
 https://firebase.google.com/docs/auth/?hl=ja
   Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がたくさん上がっているので、そちらを参考にしてください。
-Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。 今回は、vueのrouter guardは省略します。</description>
+Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します。今回は、vueのrouter guardは省略します。</description>
     </item>
     
   </channel>

@@ -279,9 +279,9 @@
             
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/hugo/first-article/">
+  <a href="https://www.if-blog.site/posts/falcon/falcon-tips/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">最初の記事です</div>
+      <div class="px-4 post-heading">falconを使ってみた</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -292,9 +292,10 @@
     
 
     
-      これまでQiitaに技術記事を投稿してましたが、Qiitaに投稿するまでもない備忘録などを管理しようと作ってみました。
-wordpressとかはてぶろなど色々探してみましたが、せっかくなので自分で作ろうということで、Hugoを使って作ってみました。
-Hugoを使った備忘録はいずれ。......
+      はじめに Hugoをおいているwebサーバーに画像や、mdファイルをアップロードするためのapiサーバーとしてfalconを使ってみた。ORMなど必要なく、簡単なアップロードができれば良いということで、軽量さとシンプルさが特徴のfalconを使う。
+簡単なtipsをメモしておく。
+シンプルな例 falconの公式に乗っているように、シンプルな例は次のようになる。
+# sample.py import falcon class QuoteResource: def on_get(self, req, resp): &#34;&#34;&#34;Handles GET requests&#34;&#34;&#34; quote = { &#39;quote&#39;: ( &#34;I&#39;ve always been more interested in &#34; &#34;the future than in the past.......
     
   </a>
 
@@ -313,7 +314,10 @@ Hugoを使った備忘録はいずれ。......
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/test" role="button">test </a></li>
+      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/falcon" role="button">falcon </a></li>
       
     
   </div>
@@ -327,9 +331,9 @@ Hugoを使った備忘録はいずれ。......
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/others/tex_notation_numerical_formula/">
+  <a href="https://www.if-blog.site/posts/emacs/emacs-hinamatsuri/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">機械学習系の数式によく出てくる記号などのTex表記まとめ</div>
+      <div class="px-4 post-heading">emacsひな祭りいってきたのでためになったpackageなどをまとめておく</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -340,8 +344,15 @@ Hugoを使った備忘録はいずれ。......
     
 
     
-      すぐ忘れるのでTex表記をまとめて起きます。 Qiitaが使っているというEasy Copy MathJaxを用います。
-   読み 表示 tex     デルタ $\Delta$ \Delta   ナブラ $\nabla$ \nabla   白抜き $\mathbb E[\cdot]$ \mathbb E[\cdot]   属する $\in$ \in   要素 $\ni$ \ni   条件付き確率 $p(x \mid y)$ p(x \mid y)   ドット $x_1,x_2, \ldots, x_t$ x_1,x_2, \ldots, x_t   カリグラフィーフォント $\mathcal L$ \cal L   太文字ベクトル $\boldsymbol{w}$ \boldsymbol{w}    macだと、ギリシャ文字は日本語の読み方で変換するとスペルが出てくるので便利。......
+      2019年3月3日に開催された東京Emacsひなまつりにいってきました。
+https://tokyo-emacs.connpass.com/event/121603/
+随時コメント追加していきます。
+ox-hugo
+https://ox-hugo.scripter.co/
+Ox-hugo
+https://sfus.net/blog/2018/12/org-mode-with-ox-hugo/
+Atomic-chrome
+https://qiita.com/alpha22jp/items/f67bda3ed0c4ac84c29f......
     
   </a>
 
@@ -360,7 +371,7 @@ Hugoを使った備忘録はいずれ。......
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/tex" role="button">Tex </a></li>
+      <li><a href="https://www.if-blog.site/tags/emacs" role="button">emacs </a></li>
       
     
   </div>
@@ -374,9 +385,9 @@ Hugoを使った備忘録はいずれ。......
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/nlp-parse-overview-1/">
+  <a href="https://www.if-blog.site/posts/neuralnet/pepar_summary/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">自然言語処理シリーズの構文解析を読む（概要）</div>
+      <div class="px-4 post-heading">Deeplearningまわりの最新論文を浅く広くみてまわる</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -387,8 +398,12 @@ Hugoを使った備忘録はいずれ。......
     
 
     
-      はじめに 自然言語処理シリーズの構文解析を読んでいきます。   全体の概要把握:1時間 中身の細かいとこ：3時間 という感じで読み進めて行こうと思います。
-概要 構文解析を用いることで、単語の並びの背後にある文法的な構造を明らかにすることができる。構文解析を学ぶことで、自然言語処理で用いられる様々な先人の知恵を学習できる。......
+      最新論文の情報を広く浅く集めたい場合の巡回するサイトたちをまとめておきます。
+おすすめがあれば教えてください。
+Google Scholar: https://scholar.google.com/schhp?hl=ja
+研究者やキーワードが決まっていると探しやすい。ただ、ザッピングには向かない。
+いろいろ論文の検索エンジン使ってたけど、結局これが残った。texの引用が楽
+arXiv arXiv https://arxiv.......
     
   </a>
 
@@ -407,10 +422,7 @@ Hugoを使った備忘録はいずれ。......
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/nlp" role="button">nlp </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/%E6%A7%8B%E6%96%87%E8%A7%A3%E6%9E%90" role="button">構文解析 </a></li>
+      <li><a href="https://www.if-blog.site/tags/neuralnet" role="button">neuralnet </a></li>
       
     
   </div>
