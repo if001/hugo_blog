@@ -279,9 +279,9 @@
             
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/neuralnet/combine_model/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo_on_image/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">kerasでモデルを結合する</div>
+      <div class="px-4 post-heading">Hugoの記事に画像を載せる</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -292,12 +292,10 @@
     
 
     
-      autoencoderなどを作っていると、保存や推論を行う上での再利用性を考え、encoderとdecoderは分けてModelを作りたいことがある。
-autoencoderの学習の際には、作成したencoderのModelとdecoderのModelを結合する。
-Modelの結合は前はできなかった気がするが、できるようになっていたのでメモ。
-Kerasのバージョンは、2.1.1
-まずは、シンプルなモデルを2つ作る。input→model1→model2→outputを作る。
-def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(layer_input) model = Model(layer_input, layer_output) model.......
+      Hugoに画像を載せるときは、shortcodesを使うと良いらしい。
+画像を配置するディクトリを以下のように作っておく。
+{root}/content/post/images/  以下のように記述すると表示できる。
+{{&lt; figure src=&#34;../../images/test.png&#34; title=&#34;test&#34; width=&#34;320&#34; height=&#34;640&#34; &gt;}}  相対パスで記述でき、width、heightも設定可能。......
     
   </a>
 
@@ -316,10 +314,7 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(lay
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/keras" role="button">keras </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/neuralnet" role="button">neuralnet </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -333,9 +328,9 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(lay
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/emacs/lsp-mode/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-add-site-description/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">lsp-modeを導入する</div>
+      <div class="px-4 post-heading">Hugoの記事にdescriptionを追加する</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -346,10 +341,10 @@ def model1(): layer_input = Input(shape=(None, 10)) layer_output = Dense(10)(lay
     
 
     
-      大学時代から使っていたemacsの設定たちを綺麗にするという目的で、ついでにlsp-modeを導入してみようと思う。
-lsp-mode
-https://github.com/emacs-lsp/lsp-mode
-language server protocolとは language server protocol(lsp)とは、IDEやエディタとIDEが提供する機能(補間、定義jump、ドキュメントの表示など)の間で使用されるプロトコルを定義したものである。......
+      Hugoで書いた記事が検索で引っかからないなと思っていたら、descriptionタグが設定されていませんでした。 これでは検索に引っかからないのでdescriptionタグをつけましょう!
+html側で次のように書くと、markdownに書いたdescriptionが参照できます。
+{{ .Description }} markdown側では、ヘッダーに次のように記述します。
+description=&#34;hogehoge&#34;  これまで書いた記事全てに、descriptionをつけていくのは面倒ですね。......
     
   </a>
 
@@ -368,7 +363,7 @@ language server protocolとは language server protocol(lsp)とは、IDEやエ�
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/emacs" role="button">emacs </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -382,9 +377,9 @@ language server protocolとは language server protocol(lsp)とは、IDEやエ�
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/python/python-matplotlib_base/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-code-highlight/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">matplotlibのよく使う記法まとめ</div>
+      <div class="px-4 post-heading">Hugoの記事でコードハイライトする</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -395,13 +390,12 @@ language server protocolとは language server protocol(lsp)とは、IDEやエ�
     
 
     
-      すぐ忘れるので、matplotlibのよく使う記法をまとめておく
-公式：https://matplotlib.org/gallery.html
-普段は散布図とかplotとかしか使わないけど、こうして見るといろんなグラフがかけるみたい
-matplotlib,pyplot,pylabの違い matplotlibがパッケージ全体
-pyplotはそのモジュール、スクリプトで作図するときに使う
-pylabのimportは推奨されてない模様、インタラクティブな作図にはこっちを使うらしい
-基本的には、import matplotlib.pyplot as pltのように使う......
+      Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting
+config.tomlに以下のように記述
+pygmentsCodefences = true pygmentsUseClasses = true 以下のコマンドでcssを生成する。......
     
   </a>
 
@@ -420,7 +414,7 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -434,9 +428,9 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/others/aws-cli-at-pyenv/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-long-time-no-see/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">pyenv環境でaws cli入れたらコマンドが見つからない</div>
+      <div class="px-4 post-heading">Hugoのディレクトリ構造やデプロイ方法の備忘録</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -447,10 +441,11 @@ pylabのimportは推奨されてない模様、インタラクティブな作図
     
 
     
-      pyenv環境でaws cli入れたらコマンドが見つからないって言われたので調べたメモ
-バージョン：pyenv:1.0.10
-公式通りにインストールする。
-$ pip3 install awscli --upgrade --user  すると、......
+      久しぶりにHugoを触ったら、ディレクトリ構造からデプロイ方法までさっぱり忘れていたので、久しぶりに触った際のために備忘録を残す。
+ディレクトリ 基本的なディレクトリは以下
+markdownを書いたりと普段触るのはcontentディレクトリになる。
+デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。
+archetypes/ ・・・ markdown記事を生成する際のテンプレートなど config.toml ・・・ 設定ファイル content/ ・・・　markdownの記事を配置 layouts/　・・・ Htmlの共通部分 public/ ・・・ デプロイ後に生成される静的ファイル群 static/ ・・・ cssなどの静的ファイルを配置 themes/ ・・・ テーマを配置  デプロイ hugoのプロジェクトルートで以下のコマンドを打つ......
     
   </a>
 
@@ -469,10 +464,7 @@ $ pip3 install awscli --upgrade --user  すると、......
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/aws" role="button">aws </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -486,9 +478,9 @@ $ pip3 install awscli --upgrade --user  すると、......
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/others/rust-macro-use-another/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-ga/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">Rustでmodule間にまたがるmacro呼び出し</div>
+      <div class="px-4 post-heading">Hugoにgoogle analyticsを導入する</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -499,12 +491,10 @@ $ pip3 install awscli --upgrade --user  すると、......
     
 
     
-      Rustのmacroをモジュール化して、別のモジュールから呼ぼうと思ったらうまくいかなかった。
-日本語の記事があまりなかったのと、自分の備忘録ようにメモを残しておく。
-rustのバージョンは1.27.0
-参考 https://github.com/rust-lang/book/issues/401
-マクロの書き方とか、rustのimport周りは意外と日本語記事があったので、そっちを参考に
-ファイル構成 lib.rsでmodをまとめて、main.rsで呼ぶようなファイル構成にする。 このようにしておくと、main.rsのなかでmodを宣言しなくてよくなるし、また誰が誰を公開しているかわかりやすくなる（たぶん）。......
+      Hugoにgoogle analytics(ga)を導入しようと思ったら意外と簡単だった。
+まず、gaアカウントを作成。
+config.tomlに
+googleAnalytics = &#34;{ga tracking ID}&#34;  を設定するだけ。......
     
   </a>
 
@@ -523,7 +513,10 @@ rustのバージョンは1.27.0
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/rust" role="button">rust </a></li>
+      <li><a href="https://www.if-blog.site/tags/google-analytics" role="button">google analytics </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -537,9 +530,9 @@ rustのバージョンは1.27.0
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/seqgan-paper/">
+  <a href="https://www.if-blog.site/posts/others/http-portal-for-blog/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">SeqGANの論文を読む</div>
+      <div class="px-4 post-heading">Hugoで作ったwebサイトを公開する</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -550,8 +543,11 @@ rustのバージョンは1.27.0
     
 
     
-      SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient
-https://arxiv.org/pdf/1609.05473.pdf......
+      はじめに GCE上にdockerコンテナを使って、hugoの静的ファイルを公開してます。
+いろいろwebサービスを作ったりはしますが、公開するのは初めてだったので、いろいろと苦労した点をまとめておきます。
+インフラ GCEを使います。ほんとは、image化してインスタンスグループで公開したかったのですが、とりあえず、コンテナをVM上にデプロイすることにします。
+ドメイン ドメインは、お名前.comで取得します。これは特に説明なしでいけます。
+DNSは、route53を使いたかったんですが、今回はgoogleのcloud DNSを使います。......
     
   </a>
 
@@ -570,13 +566,10 @@ https://arxiv.org/pdf/1609.05473.pdf......
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/nlp" role="button">nlp </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
-      <li><a href="https://www.if-blog.site/tags/seqgan" role="button">SeqGAN </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button">論文 </a></li>
+      <li><a href="https://www.if-blog.site/tags/docker" role="button">docker </a></li>
       
     
   </div>
@@ -590,9 +583,9 @@ https://arxiv.org/pdf/1609.05473.pdf......
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/emacs/emacs-use-package/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-href-to-target-blank/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">use-packagesを使ってみる</div>
+      <div class="px-4 post-heading">Hugoでリンクを新しいウィンドウで開く</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -603,11 +596,11 @@ https://arxiv.org/pdf/1609.05473.pdf......
     
 
     
-      これまで長い間放置しててきたemacsの設定たちを見直すついでに、use-pacakgeを使ってみようと思う。
-https://github.com/jwiegley/use-package
-use-packageとは、emacsのパッケージ管理を強化するパッケージです。
-use-packageのマクロを使用することで、
- 統一した記述による可読性が向上 パッケージの遅延ロードの設定を簡潔にかけることによる起動の高速化  などのメリットがあります。......
+      リンクは新しいウィンドウで開いて欲しい派なんだけど、Hugoではデフォルトで通常のリンクの開きかた(?)をする。
+hrefではtarget=&#39;_blank&#39;を指定すれば良いのだが、markdownでどうすれば良いのか調べた。 Hugoでは次のようにconfig.tomlするといける。
+[blackfriday] hrefTargetBlank = true 簡単！
+参考：
+ https://gohugo.......
     
   </a>
 
@@ -626,7 +619,7 @@ use-packageのマクロを使用することで、
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/emacs" role="button">emacs </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -640,9 +633,9 @@ use-packageのマクロを使用することで、
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/word2vec_output_word/">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-start-article/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">word2vecでベクトルから単語を出力する</div>
+      <div class="px-4 post-heading">Hugoでブログを作る</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -653,9 +646,8 @@ use-packageのマクロを使用することで、
     
 
     
-      word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
-結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.......
+      はじめに Hugoとは、go言語で書かれた、静的なwebサイトをbuildingするためのframeworkです。 Hugoを使ってブログを作ってみたので構築方法を簡単にまとめておきます。
+サイトの作成 インストール brew install hugo  テンプレートの作成 hugo new site hugo-test  これで、次のようにテンプレートが作成されます。......
     
   </a>
 
@@ -674,10 +666,7 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/word2vec" role="button">word2vec </a></li>
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
       
     
   </div>
@@ -691,9 +680,9 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/diversity_neural_conversation_model/">
+  <a href="https://www.if-blog.site/posts/others/ga-define/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">ニューラルネットワークを用いた対話モデルのための多様性を促進する目的関数</div>
+      <div class="px-4 post-heading">GoogleAnalyticsのPV、セッション、ユーザーの定義</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -704,8 +693,9 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
     
 
     
-      Qiitaに投稿した記事、kerasでHREDを構築してみるの記事で、こちらの論文が参考になるとのコメント頂いて、読んで見たので簡単にまとめました。
-A Diversity-Promoting Objective Function for Neural Conversation Models https://arxiv.......
+       ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
+GDPRにより以下のものから保持期間を選択できる
+ 14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン ......
     
   </a>
 
@@ -724,16 +714,7 @@ A Diversity-Promoting Objective Function for Neural Conversation Models https://
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
     
-      <li><a href="https://www.if-blog.site/tags/deeplearning" role="button">Deeplearning </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/seq2seq" role="button">seq2seq </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/nlp" role="button">NLP </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button">論文 </a></li>
+      <li><a href="https://www.if-blog.site/tags/google-analytics" role="button">google-analytics </a></li>
       
     
   </div>
@@ -747,9 +728,9 @@ A Diversity-Promoting Objective Function for Neural Conversation Models https://
 
             
             <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/char_vec/">
+  <a href="https://www.if-blog.site/posts/python/colaboratory_google_drive_mount/">
     <div class="post-header text-center">
-      <div class="px-4 post-heading">文字をベクトル化する</div>
+      <div class="px-4 post-heading">Google ColaboratoryでGoogle driveをマウントする</div>
       <ul class="post-meta li-x mt-1">
 	
         <li>2019-09-24</li>
@@ -760,11 +741,9 @@ A Diversity-Promoting Objective Function for Neural Conversation Models https://
     
 
     
-      文章生成にchar-level lstmを使ってみる。英語ではうまくいっている例があるが日本語では難しい。これは、日本語は英語に比べ文字数が多く、ニューラルネットワークの次元数(パラメータ数)が増やす必要があるのが原因の1つだと思う。また、次元削減のため、日本語では文章を単語に区切り単語をベクトル化し、lstmで文章を生成する手法もあるが、単語に区切る時点でしゃべり言葉やネットの言葉ではうまく区切れないという問題がある。そこで、日本語の文字を画像として生成し、その画像をauto-encoderを用いてベクトル化することで、文字のベクトル化を行い、lstmに食わせるという手法を試して見ようと思う。
-今回は、auto-encodeを用いた文字レベルのベクトル化までを行ってみようと思う。
-コードはここ、https://github.com/if001/fifc.git
-以下の3工程で行う。
- フォントファイルからフォント画像を生成 文字列とフォント画像をマッピング フォント画像から特徴量を生成  フォントファイルからフォント画像を生成 フォントファイルは、PILのImageFontのturetypeを使い読み込むことができる。......
+      久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
+before 認証
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !......
     
   </a>
 
@@ -782,12 +761,6 @@ A Diversity-Promoting Objective Function for Neural Conversation Models https://
 <div class="li-x div-x post-meta">
   <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
   <div class="tags-sm">
-    
-      <li><a href="https://www.if-blog.site/tags/nlp" role="button">nlp </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/neuralnet" role="button">neuralnet </a></li>
-      
     
       <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
       
