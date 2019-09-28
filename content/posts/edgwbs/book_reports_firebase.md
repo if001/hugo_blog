@@ -17,7 +17,7 @@ Firebaseの説明や導入などは、Qiitaにもわかりやすい記事がた�
 VueCLI3を使い、typescriptのプロジェクトを作成します。今回は、vueのrouter guardは省略します。
 
 ### 準備
-npmからインストール。 
+npmからインストールします。 
 
 ```bash
 $ npm install firebase
