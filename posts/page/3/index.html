@@ -16,7 +16,7 @@
 
 <meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 
-<meta property="og:updated_time" content="2019-09-28T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-09-30T00:00:00+09:00" />
 
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
@@ -277,6 +277,57 @@
         </ul>
           <div>	    
             
+            
+            <div class="post-wrapper white-bg post-card">
+  <a href="https://www.if-blog.site/posts/hugo/hugo-date-sort/">
+    <div class="post-header text-center">
+      <div class="px-4 post-heading">Hugoの記事を更新順にソートする</div>
+      <ul class="post-meta li-x mt-1">
+	
+        <li>2019-09-24</li>
+        
+        
+      </ul>
+    </div>
+    
+
+    
+      Hugoの記事を更新順にソートするメモです。
+まず、Hugoの記事に更新時刻情報を付与します。markdownのヘッダーにdate情報を書いても良いのですが、gitで管理している場合には、Lastmodで更新時刻が取得できるのでそれを使います。
+そのほかにもgitから情報が取得できます。https://gohugo.io/variables/git/
+config.tomlに以下のように記述します。
+enableGitInfo=true 以下のように使う。
+{{ .Lastmod.Format &#34;2006/01/02&#34; }}  この更新事項を使って、記事を並び替えます。......
+    
+  </a>
+
+  
+  
+  <div class="post-meta li-x mt-2 div-x">
+    <div>
+      
+      
+    </div>
+    
+    <div>
+      
+        
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/hugo" role="button">Hugo </a></li>
+      
+    
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+
             
             <div class="post-wrapper white-bg post-card">
   <a href="https://www.if-blog.site/posts/hugo/hugo_on_image/">
@@ -727,54 +778,6 @@ GDPRにより以下のものから保持期間を選択できる
 </div>
 
             
-            <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/python/colaboratory_google_drive_mount/">
-    <div class="post-header text-center">
-      <div class="px-4 post-heading">Google ColaboratoryでGoogle driveをマウントする</div>
-      <ul class="post-meta li-x mt-1">
-	
-        <li>2019-09-24</li>
-        
-        
-      </ul>
-    </div>
-    
-
-    
-      久しぶりにColaboratory使ったらGoogle driveのマウントが簡単になってた。
-before 認証
-!apt-get install -y -qq software-properties-common python-software-properties module-init-tools !......
-    
-  </a>
-
-  
-  
-  <div class="post-meta li-x mt-2 div-x">
-    <div>
-      
-      
-    </div>
-    
-    <div>
-      
-        
-<div class="li-x div-x post-meta">
-  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
-  <div class="tags-sm">
-    
-      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
-      
-    
-  </div>
-</div>
-
-      
-    </div>
-  </div>
-
-</div>
-
-            
         </div>
 	
 	<div class="pagination pagination-outline justify-content-center active-color">
@@ -946,6 +949,8 @@ before 認証
 
   
 
+  
+
 
 
 
@@ -979,19 +984,19 @@ before 認証
             <li><a href="https://www.if-blog.site/tags/emacs" role="button"><span>emacs (3)</span></a></li>
           
         
+            <li><a href="https://www.if-blog.site/tags/firebase" role="button"><span>firebase (3)</span></a></li>
+          
+        
             <li><a href="https://www.if-blog.site/tags/neuralnet" role="button"><span>neuralnet (3)</span></a></li>
+          
+        
+            <li><a href="https://www.if-blog.site/tags/webapp" role="button"><span>webapp (3)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/falcon" role="button"><span>falcon (2)</span></a></li>
           
         
-            <li><a href="https://www.if-blog.site/tags/firebase" role="button"><span>firebase (2)</span></a></li>
-          
-        
             <li><a href="https://www.if-blog.site/tags/google-analytics" role="button"><span>google-analytics (2)</span></a></li>
-          
-        
-            <li><a href="https://www.if-blog.site/tags/webapp" role="button"><span>webapp (2)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button"><span>論文 (2)</span></a></li>
