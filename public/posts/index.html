@@ -16,7 +16,7 @@
 
 <meta property="og:image" content="https://www.if-blog.site/images/logo/logo.jpeg" />
 
-<meta property="og:updated_time" content="2019-09-28T00:00:00+00:00" />
+<meta property="og:updated_time" content="2019-09-30T00:00:00+09:00" />
 
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.if-blog.site/images/logo/logo.jpeg"/>
@@ -279,6 +279,57 @@
             
             
             <div class="post-wrapper white-bg post-card">
+  <a href="https://www.if-blog.site/posts/edgwbs/book_reports_firebase_cloud_functions/">
+    <div class="post-header text-center">
+      <div class="px-4 post-heading">Firebase Cloud Functionsを使ってTwitterのOGPを設定する</div>
+      <ul class="post-meta li-x mt-1">
+	
+        <li>2019-09-30</li>
+        
+        
+      </ul>
+    </div>
+    
+
+    
+      Vue.jsで作ったWebAppをFirebase Hostingで公開し、そこでTwitter用のOGPを設定しようとしましたが、Twitterのクローラーがjavascriptを解釈できないということで、別途方法を考える必要がありました。そこで、Firebase Cloud Functionsを使ってtwitter：OGPを設定してみようと思います。
+Firebase Cloud Functionsとは
+ Cloud Functions for Firebase を使用すると、Firebase 機能や HTTPS リクエストによってトリガーされたイベントに応じて、バックエンド コードを自動的に実行できます。コードは Google のクラウドに保存され、マネージド環境で実行されます。独自のサーバーを管理およびスケーリングする必要はありません。......
+    
+  </a>
+
+  
+  
+  <div class="post-meta li-x mt-2 div-x">
+    <div>
+      
+      
+    </div>
+    
+    <div>
+      
+        
+<div class="li-x div-x post-meta">
+  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
+  <div class="tags-sm">
+    
+      <li><a href="https://www.if-blog.site/tags/firebase" role="button">Firebase </a></li>
+      
+    
+      <li><a href="https://www.if-blog.site/tags/webapp" role="button">WebApp </a></li>
+      
+    
+  </div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+
+            
+            <div class="post-wrapper white-bg post-card">
   <a href="https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth/">
     <div class="post-header text-center">
       <div class="px-4 post-heading">Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理</div>
@@ -347,11 +398,11 @@ Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します�
     
 
     
-      []
-サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
+      サービス概要 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
   三行読書感想文
 使い方 googleアカウントもしくは、Twitterアカウントでログインできます。
-その他のSNSアカウントでのログインは、随時対応していこうと思います。......
+その他のSNSアカウントでのログインは、随時対応していこうと思います。
+  ログイン後に、感想を書く本を選びます。......
     
   </a>
 
@@ -748,57 +799,6 @@ A Diversity-Promoting Objective Function for Neural Conversation Models https://
 </div>
 
             
-            <div class="post-wrapper white-bg post-card">
-  <a href="https://www.if-blog.site/posts/nlp/word2vec_output_word/">
-    <div class="post-header text-center">
-      <div class="px-4 post-heading">word2vecでベクトルから単語を出力する</div>
-      <ul class="post-meta li-x mt-1">
-	
-        <li>2019-09-24</li>
-        
-        
-      </ul>
-    </div>
-    
-
-    
-      word2vecで単語をベクトルにしたり、類似度判定した記事はたくさんあるが、ベクトルから類似単語を出力する日本語記事を見つけられなかったのでメモ。 stack overflowにあった。 https://stackoverflow.com/questions/32759712/how-to-find-the-closest-word-to-a-vector-using-word2vec
-結論 結論から言うと、以下のように適当にモデルを作りmost_simlar関数にベクトルを与えるだけ。
-sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(sentences, size=100, window=5, min_count=5, workers=4) model.......
-    
-  </a>
-
-  
-  
-  <div class="post-meta li-x mt-2 div-x">
-    <div>
-      
-      
-    </div>
-    
-    <div>
-      
-        
-<div class="li-x div-x post-meta">
-  <li class="pr-0"><a href="https://www.if-blog.site/tags/"><i class="fas fa-tags"></i></a></li>
-  <div class="tags-sm">
-    
-      <li><a href="https://www.if-blog.site/tags/python" role="button">python </a></li>
-      
-    
-      <li><a href="https://www.if-blog.site/tags/word2vec" role="button">word2vec </a></li>
-      
-    
-  </div>
-</div>
-
-      
-    </div>
-  </div>
-
-</div>
-
-            
         </div>
 	
 	<div class="pagination pagination-outline justify-content-center active-color">
@@ -970,6 +970,8 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
 
   
 
+  
+
 
 
 
@@ -1003,19 +1005,19 @@ sentences = gensim.models.word2vec.Text8Corpus(filename) model = Word2Vec(senten
             <li><a href="https://www.if-blog.site/tags/emacs" role="button"><span>emacs (3)</span></a></li>
           
         
+            <li><a href="https://www.if-blog.site/tags/firebase" role="button"><span>firebase (3)</span></a></li>
+          
+        
             <li><a href="https://www.if-blog.site/tags/neuralnet" role="button"><span>neuralnet (3)</span></a></li>
+          
+        
+            <li><a href="https://www.if-blog.site/tags/webapp" role="button"><span>webapp (3)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/falcon" role="button"><span>falcon (2)</span></a></li>
           
         
-            <li><a href="https://www.if-blog.site/tags/firebase" role="button"><span>firebase (2)</span></a></li>
-          
-        
             <li><a href="https://www.if-blog.site/tags/google-analytics" role="button"><span>google-analytics (2)</span></a></li>
-          
-        
-            <li><a href="https://www.if-blog.site/tags/webapp" role="button"><span>webapp (2)</span></a></li>
           
         
             <li><a href="https://www.if-blog.site/tags/%E8%AB%96%E6%96%87" role="button"><span>論文 (2)</span></a></li>

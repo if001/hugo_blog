@@ -3,8 +3,9 @@ title="三行で読書感想文を書いて、SNSでシェアできるサービ�
 slug="book_reports_review"
 tags=["WebApp", "Poem", "Firebase"]
 date="2019-09-25T00:05:00+09:00"
+draft="false"
 +++
-[]
+
 ## サービス概要
 「読書感想文をもっと気軽に」をコンセプトに読んだ本の感想文/レビューを三行だけ書き、SNSでシェアするサービスです。
 
