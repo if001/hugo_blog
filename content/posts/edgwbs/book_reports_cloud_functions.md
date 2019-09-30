@@ -66,6 +66,24 @@ const ua = req.header('user-agent');
 console.log('ua:',ua);
 ```
 
+リクエストを振り分けるために、エンドポイントを`firebase.json`を修正します。  
+`/for_twitter`にアクセスが来るとFunctionsが呼ばれ、それ以外は通常のページを返します。  
+
+```
+  "rewrites": [
+		{
+		    "source": "/for_twitter/*",
+		    "function": "for_twitter"
+		},
+		{
+		    "source": "**",
+		    "destination": "/index.html"
+		}
+	]
+```
+
+
+
 ## Cloud Storeからデータを取得
 Firebase Admin SDKを使うと、FunctionsからDB/Storageに対し管理者としてアクセスが可能になります。もちろんですが、サーバー側空だけでフロント側から使わないように注意です。
 
