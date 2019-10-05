@@ -8,17 +8,6 @@
     <atom:link href="/tags/google-analytics/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>GoogleAnalyticsのPV、セッション、ユーザーの定義</title>
-      <link>https://www.if-blog.site/posts/others/ga-define/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/posts/others/ga-define/</guid>
-      <description> ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
-GDPRにより以下のものから保持期間を選択できる
- 14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン </description>
-    </item>
-    
-    <item>
       <title>Hugoにgoogle analyticsを導入する</title>
       <link>https://www.if-blog.site/posts/hugo/hugo-ga/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

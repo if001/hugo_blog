@@ -121,17 +121,6 @@ before 認証
     </item>
     
     <item>
-      <title>GoogleAnalyticsのPV、セッション、ユーザーの定義</title>
-      <link>https://www.if-blog.site/posts/others/ga-define/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.if-blog.site/posts/others/ga-define/</guid>
-      <description> ユーザー PV:ページ毎に閲覧された回数 セッション：30分以上の間隔をあけた操作、日付またぎ、別の参照元 ユーザー：cookieで保持
-GDPRにより以下のものから保持期間を選択できる
- 14 か月 26 か月(デフォルト) 38 か月 50 か月 自動的に期限切れにならない  集客 行動 コンバージョン </description>
-    </item>
-    
-    <item>
       <title>Hugoでブログを作る</title>
       <link>https://www.if-blog.site/posts/hugo/hugo-start-article/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -190,6 +179,20 @@ googleAnalytics = &amp;quot;{ga tracking ID}&amp;quot;  を設定するだけ。
 markdownを書いたりと普段触るのはcontentディレクトリになる。
 デプロイ後生成されるpublicディレクトリはサーバーなどで公開する。
 archetypes/ ・・・ markdown記事を生成する際のテンプレートなど config.toml ・・・ 設定ファイル content/ ・・・　markdownの記事を配置 layouts/　・・・ Htmlの共通部分 public/ ・・・ デプロイ後に生成される静的ファイル群 static/ ・・・ cssなどの静的ファイルを配置 themes/ ・・・ テーマを配置  デプロイ hugoのプロジェクトルートで以下のコマンドを打つ</description>
+    </item>
+    
+    <item>
+      <title>Hugoの記事でコードハイライトする</title>
+      <link>https://www.if-blog.site/posts/hugo/hugo-code-highlight/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.if-blog.site/posts/hugo/hugo-code-highlight/</guid>
+      <description>Hugoでコードのシンタックスハイライトする場合のメモ
+Hugo自体の機能を使う方法と、ハイライトする機能を持つjavascriptを読み込む2つの方法がある。
+Hugo自体の機能使う Hugo 0.28からGo機能でシンタックスハイライトが可能になった。
+Syntax Highlighting
+config.tomlに以下のように記述
+pygmentsCodefences = true pygmentsUseClasses = true 以下のコマンドでcssを生成する。</description>
     </item>
     
   </channel>
