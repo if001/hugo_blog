@@ -36,7 +36,7 @@ body {
   /* color: #333; */
   color: var(--text-dark);
   line-height: 1.6;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 img {
@@ -1145,6 +1145,7 @@ toc-nav  scrollspy
 
   display: flex;
   list-style: none;
+  font-size: 1.2rem;
 }
 
 .post-item .meta {
