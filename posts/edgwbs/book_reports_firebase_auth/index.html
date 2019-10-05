@@ -259,8 +259,7 @@ Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します�
   <span class="nx">messagingSenderId</span><span class="o">:</span> <span class="s1">&#39;******&#39;</span><span class="p">,</span>
 <span class="p">};</span>
 
-<span class="nx">firebase</span><span class="p">.</span><span class="nx">initializeApp</span><span class="p">(</span><span class="nx">fireBaseConfig</span><span class="p">);</span>
-</code></pre></div>
+<span class="nx">firebase</span><span class="p">.</span><span class="nx">initializeApp</span><span class="p">(</span><span class="nx">fireBaseConfig</span><span class="p">);</span></code></pre></div>
 <h3 id="ログイン処理">ログイン処理</h3>
 
 <p>firebaseではemail+passwordの通常の認証に加え、GoogleアカウントやTwitter、Githubのアカウントでのログインが1つのメソッドだけで行えます。</p>
@@ -290,8 +289,7 @@ Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します�
             <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">idToken</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&#34;login success&#34;</span><span class="p">))</span>
             <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span>
             <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">));</span>
-  <span class="p">}</span>
-</code></pre></div>
+  <span class="p">}</span></code></pre></div>
 <p>見て分かる通り、以下のメソッドの引数にメールアドレスとパスワードを渡すだけです。<br />
 <code>firebase.auth().signInWithEmailAndPassword(this.email, this.password)</code></p>
 
@@ -320,8 +318,7 @@ Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します�
         <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithPopup</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">provider</span><span class="p">)</span>
                     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span>: <span class="kt">firebase.auth.UserCredential</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
 
-        <span class="c1">// 省略
-</span></code></pre></div>
+        <span class="err">// 省略</span></code></pre></div>
 <p>providerにGoogleを指定し、<code>firebase.auth().signInWithPopup(this.provider)</code>を呼ぶと、popupで見慣れたログイン画面が表示されます。
 図</p>
 
@@ -340,16 +337,14 @@ Vue.js側 VueCLI3を使い、typescriptのプロジェクトを作成します�
             <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
               <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">);</span>
             <span class="p">});</span>
-  <span class="p">}</span>
-</code></pre></div>
+  <span class="p">}</span></code></pre></div>
 <p><code>siginInByGoogleWithRedirect</code>が呼ばれるとログイン画面にリダイレクトされます。</p>
 
 <p>ログイン画面から元のページへ遷移後、リダイレクトによる認証が正しく行えたか確認します。</p>
 <div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"> <span class="kr">private</span> <span class="nx">afterRedirect() {</span>
     <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">getRedirectResult</span><span class="p">()</span>
               <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span>: <span class="kt">firebase.auth.UserCredential</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-              <span class="c1">// 省略
-</span></code></pre></div>
+              <span class="err">// 省略</span></code></pre></div>
 <p><code>getRedirectResult</code>が<code>firebase.auth.UserCredential</code>を返すので、正しく認証できていれば、ここから先ほどと同様にユーザー情報やトークンを取得できます。</p>
 
 <h4 id="github-or-twitter">github or twitter</h4>
@@ -361,16 +356,14 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 <span class="c1">// or 
 </span><span class="c1"></span><span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">.</span><span class="nx">TwitterAuthProvider</span><span class="p">();</span>
 
-<span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithPopup</span><span class="p">(</span><span class="nx">provider</span><span class="p">)</span>
-</code></pre></div>
+<span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">signInWithPopup</span><span class="p">(</span><span class="nx">provider</span><span class="p">)</span></code></pre></div>
 <p><a href="https://firebase.google.com/docs/auth/web/github-auth?hl=ja" target="_blank">https://firebase.google.com/docs/auth/web/github-auth?hl=ja</a>
 <a href="https://firebase.google.com/docs/auth/web/twitter-login?hl=ja" target="_blank">https://firebase.google.com/docs/auth/web/twitter-login?hl=ja</a></p>
 
 <h3 id="パスワードの再設定">パスワードの再設定</h3>
 
 <p>パスワードの再設定のメールを送信するのも、メソッド1つで行えます。</p>
-<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">sendPasswordResetEmail</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span>
-</code></pre></div>
+<div class="highlight"><pre class="chroma"><code class="language-typescript" data-lang="typescript"><span class="nx">firebase</span><span class="p">.</span><span class="nx">auth</span><span class="p">().</span><span class="nx">sendPasswordResetEmail</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">email</span><span class="p">)</span></code></pre></div>
 <p>送信されるメールのbodyは、firebaseから設定が行えます。</p>
 
 <p>ユーザーの更新、削除も同様に行えます。
@@ -523,21 +516,21 @@ Twitterデベロッパー側に、OAuthコールバックとして、firebaseの
 <div id="share-buttons">
   <ul style="list-style: none;">
     
-    <li>
+    <li style="display: inline; margin:5px;">
       <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </li>
     
     
     
-    <li>
+    <li style="display: inline; margin:5px;">
       <a href="http://b.hatena.ne.jp/entry/https://www.if-blog.site/posts/edgwbs/book_reports_firebase_auth//" class="hatena-bookmark-button" data-hatena-bookmark-title="Vue.js &#43; Golang &#43; Firebase Authenticationでログイン処理" data-hatena-bookmark-layout="standard-balloon" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
     </li>
     
     
     
     
-    <li  style="width:90px;">
+    <li style="display: inline; margin:5px;">
 	<a data-pocket-label="pocket" data-pocket-count="horizontal" class="pocket-btn" data-lang="en"></a>
 	<script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>
     </li>
